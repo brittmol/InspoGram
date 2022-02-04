@@ -1,7 +1,13 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime 
 
+followers_detail = db.Table(
+    'followers',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('followers_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -9,6 +15,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     full_name = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.now())
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
@@ -28,5 +35,18 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'full_name': self.full_name,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'created_at': self.created_at
         }
+
+    # One post belongs to 1 user
+    user = db.relationship('User', back_populates='posts')
+
+    # Post can have many comments
+    comments = db.relationship('Comment', back_populates='post')
+
+    # Post can have many likes
+    likes = db.relationship('Like', back_populates='post')
+
+    # One post can have many photos
+    photos = db.relationship('Photo', back_populates='post')
