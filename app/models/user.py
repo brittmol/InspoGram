@@ -1,12 +1,13 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from datetime import datetime 
+from datetime import datetime
 
-followers_detail = db.Table(
-    'followers',
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-    db.Column('followers_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+
+follows = db.Table(
+    "follows",
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("followed_id", db.Integer, db.ForeignKey("users.id"))
 )
 
 class User(db.Model, UserMixin):
@@ -51,4 +52,12 @@ class User(db.Model, UserMixin):
     # One post can have many photos
     photos = db.relationship('Photo', back_populates='post')
 
-    followers = db.relationship('User', primaryjoin=(followers_detail.c.user_id == id), secondaryjoin=(followers_detail.c.follower_id == id), backref=db.backref("user_id"))
+    # User to user many to many for follows and following
+    followers = db.relationship(
+        "User",
+        secondary=follows,
+        primaryjoin=(follows.c.follower_id == id),
+        secondaryjoin=(follows.c.followed_id == id),
+        backref=db.backref("following", lazy="dynamic"),
+        lazy="dynamic"
+    )
