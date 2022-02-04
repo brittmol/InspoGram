@@ -50,3 +50,5 @@ class User(db.Model, UserMixin):
 
     # One post can have many photos
     photos = db.relationship('Photo', back_populates='post')
+
+    followers = db.relationship('User', primaryjoin=(followers_detail.c.user_id == id), secondaryjoin=(followers_detail.c.follower_id == id), backref=db.backref("user_id"))
