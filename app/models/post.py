@@ -1,5 +1,5 @@
 from .db import db
-from datetime import datetime 
+from datetime import datetime
 
 class Post(db.Model):
     __tablename__ = "posts"
@@ -21,10 +21,10 @@ class Post(db.Model):
     user = db.relationship('User', back_populates='posts')
 
     # Post can have many comments
-    comments = db.relationship('Comment', back_populates='post')
+    comments = db.relationship('Comment', back_populates='post', cascade="all, delete-orphan")
 
     # Post can have many likes
-    likes = db.relationship('Like', back_populates='post')
+    likes = db.relationship('Like', back_populates='post', cascade="all, delete-orphan")
 
     # One post can have many photos
-    photos = db.relationship('Photo', back_populates='post')
+    photos = db.relationship('Photo', back_populates='post', cascade="all, delete-orphan")

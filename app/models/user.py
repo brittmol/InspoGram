@@ -41,16 +41,14 @@ class User(db.Model, UserMixin):
         }
 
     # One post belongs to 1 user
-    user = db.relationship('User', back_populates='posts')
+    posts = db.relationship('Post', back_populates='user')
 
     # Post can have many comments
-    comments = db.relationship('Comment', back_populates='post')
+    comments = db.relationship('Comment', back_populates='user')
 
     # Post can have many likes
-    likes = db.relationship('Like', back_populates='post')
+    likes = db.relationship('Like', back_populates='user')
 
-    # One post can have many photos
-    photos = db.relationship('Photo', back_populates='post')
 
     # User to user many to many for follows and following
     followers = db.relationship(
