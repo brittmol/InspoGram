@@ -14,7 +14,12 @@ function SplashPage() {
         <main className="splash-main">
             <SplashPhone />
             <div className="splash-login-container">
-                <LoginForm />
+                <div className="splash-login-heading">
+                    <h1>Inspogram</h1>
+                </div>
+                <div className="splash-login-form-container">
+                    <LoginForm />
+                </div>
             </div>
         </main>
 
