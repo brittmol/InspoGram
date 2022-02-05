@@ -1,0 +1,60 @@
+
+.splash-main {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-phone-feed {
+    height: 38.4rem;
+    width: 21.6rem;
+    position: absolute;
+    top: 13.1rem;
+    left: 11.8rem;
+    background-size: cover;
+    background-image: url('../../images/splash4.jpeg');
+
+}
+
+.splash-phone-container {
+    position: relative;
+}
+
+
+.splash-feed-1 {
+    background-image: url( '../../images/splash1.jpeg');
+    animation: phoneFeed 6s infinite;
+
+}
+.splash-feed-2 {
+    background-image: url('../../images/splash2.jpeg');
+    animation: phoneFeed 6s infinite;
+
+
+}
+.splash-feed-3 {
+    background-image: url('../../images/splash3.jpeg');
+    animation: phoneFeed 6s infinite;
+
+
+}
+.splash-feed-4 {
+    background-image: url('../../images/splash4.jpeg');
+    animation: phoneFeed 6s infinite;
+
+}
+
+@keyframes phoneFeed {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
