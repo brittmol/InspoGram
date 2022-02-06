@@ -22,6 +22,7 @@ function SplashPage() {
     return (
         <main className="splash-main">
             <SplashPhone />
+            <div className="login-signup-container">
             <div className="splash-login-container">
                 <div className="splash-login-heading">
                     <h1>Inspogram</h1>
@@ -36,6 +37,7 @@ function SplashPage() {
                     <div>
 
                     </div>
+            </div>
                 <div className="signup-link-container">
                     <p>Don't have an account? <NavLink className='signup-link' to="/signup">Sign up</NavLink></p>
                 </div>
