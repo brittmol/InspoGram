@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
@@ -7,8 +7,17 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [disableButton, setDisableButton] = useState(true)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (email.includes('@') && password.length >= 6) {
+      setDisableButton(false)
+    } else {
+      setDisableButton(true)
+    }
+  }, [disableButton, email, password])
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -58,7 +67,7 @@ const LoginForm = () => {
             onChange={updatePassword}
           />
         </div>
-          <button type='submit'>Login</button>
+          <button className='login-button' disabled={disableButton} type='submit'>Login</button>
       </div>
     </form>
   );
