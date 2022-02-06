@@ -221,12 +221,12 @@
 
   .form-label {
       position: absolute;
-      top:-.9rem;
+      top:-1rem;
       left: .8rem;
       opacity: 1;
       display: inline-block;
       padding: 0 .3rem;
-      transition: all .3s;
+      transition: all .4s;
       display: block;
       background-color: white;
       color: gray;
@@ -238,4 +238,21 @@
       transform: translateY(1.5rem);
       opacity: 0;
       visibility: hidden;
+  }
+
+
+  /* SPLASH FOOTER STYLING */
+  .splash-footer-paragraph {
+      text-align: center;
+      font-size: 1.2rem;
+      color: gray;
+      padding-bottom: 1.8rem;
+  }
+
+  .splash-footer-paragraph > a {
+    color: gray;
+  }
+
+  .splash-footer-paragraph > a:hover {
+      text-decoration: underline;
   }
