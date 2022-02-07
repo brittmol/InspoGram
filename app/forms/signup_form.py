@@ -22,9 +22,9 @@ def username_exists(form, field):
 
 def match_passswords(form, field):
     password = form.data['password']
-    print(password, '************password*********')
+
     repeat_password = form.data['repeat_password']
-    print(repeat_password, '*********repeat password**************')
+
     if password != repeat_password:
         raise ValidationError('Password and repeat password input values must match.')
 
