@@ -23,16 +23,19 @@ def get_single_post(id):
 @login_required
 def create_post():
     #print(current_user)
-    req = request.json # grabs the information from our form/data 
+    req = request.json # grabs the information from our form/data
     new_post = Post(caption=req['caption'], user_id=current_user.id) # create a new post to upload
-
-    # might have to use for loop on req['photo'] if we allow user to add multiple photo at once
-    new_photos = Photo(photo=req['photo'], post_id=new_post.id)  
-    db.session.add(new_photos)
-    
 
     db.session.add(new_post) # adds data into staging area
     db.session.commit() # finally adds to the database
+
+    # might have to use for loop on req['photo'] if we allow user to add multiple photo at once
+    new_photos = Photo(photo=req['photo'], post_id=new_post.id)
+
+    db.session.add(new_photos)
+    db.session.commit()
+
+
 
     return new_post.to_dict()
 
@@ -44,7 +47,7 @@ def edit_post(id):
     orig_post = Post.query.get(id) # grabs the post that you want to edit
 
     orig_post.caption = req['caption'] # replace old caption with new
-    db.session.commit() # commit changes to data base 
+    db.session.commit() # commit changes to data base
 
     return orig_post.to_dict() # return edited post in dict
 
@@ -53,7 +56,7 @@ def edit_post(id):
 @login_required
 def delete_post(id):
     orig_post = Post.query.get(id) # grabs the post you want to delete
-    
+
     db.session.delete(orig_post) # deletes the post from data base
     db.session.commit() # commits the changes in database
     return # exits

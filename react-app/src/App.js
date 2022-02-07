@@ -9,6 +9,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import LoginPage from './components/splash/LoginPage';
 import SignUpPage from './components/splash/SignUpPage';
+import CreatePostForm from './components/post/CreatePostForm';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
+          <CreatePostForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
