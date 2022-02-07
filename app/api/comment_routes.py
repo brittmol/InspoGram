@@ -5,7 +5,7 @@ from app.models import Comment, db
 comments_router = Blueprint('comments', __name__)
 
 @comments_router.route('/')
-#@login_required
+# @login_required
 def get_all_comments():
     comments = Comment.query.all()
     return {'comments': [comment.to_dict() for comment in comments]}
@@ -14,11 +14,11 @@ def get_all_comments():
 @comments_router.route('/<int:id>/edit', methods=['PATCH'])
 @login_required
 def edit_comment(id):
-    req = request.json # grabs the newly edited comment 
+    req = request.json # grabs the newly edited comment
     comment = Comment.query.get(id) # grabs the post you want to edit
-    
-    comment.comment = req['comment'] # replaces old comment with new one
-    db.session.commit() # commits the changes in database
+    if(len(req['comment'])):
+        comment.comment = req['comment'] # replaces old comment with new one
+        db.session.commit() # commits the changes in database
 
     return comment.to_dict()
 
