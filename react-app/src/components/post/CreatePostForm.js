@@ -14,15 +14,22 @@ const CreatePostForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const payload = {caption, photo}
+        const payload = { caption, photo }
 
-        const post = await dispatch(createPost(payload))
-
+        const data = await dispatch(createPost(payload))
+        if (data) {
+            setErrors(data)
+        }
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <h2>Create New Post</h2>
+            <div className='login-error-container'>
+                {errors.map((error, ind) => (
+                    <div key={ind}>{error}</div>
+                ))}
+            </div>
             <textarea
                 placeholder="Write a caption..."
                 value={caption}

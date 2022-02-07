@@ -30,7 +30,6 @@ def create_post():
     # new_post = Post(caption=req['caption'], user_id=current_user.id) # create a new post to upload
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('form.data -------------------------------------', form.data)
         new_post = Post(caption=form.data['caption'], user_id=current_user.id)
     # will allow user to add multiple photo at once
         # for url in req['photo']:
