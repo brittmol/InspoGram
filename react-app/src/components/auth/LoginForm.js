@@ -47,7 +47,7 @@ const LoginForm = () => {
         ))}
       </div>
       <div className='login-input-container'>
-        <div className='email-container'>
+        <div className='input-container'>
           <input
             className='form-input'
             name='email'
@@ -58,7 +58,7 @@ const LoginForm = () => {
           />
           <label className='form-label' htmlFor='email'>Email</label>
         </div>
-        <div className='password-container'>
+        <div className='input-container'>
           <input
             className='form-input'
             name='password'
@@ -69,7 +69,7 @@ const LoginForm = () => {
           />
           <label className='form-label' htmlFor='password'>Password</label>
         </div>
-          <button className='login-button' disabled={disableButton} type='submit'>Login</button>
+          <button className='form-button' disabled={disableButton} type='submit'>Login</button>
       </div>
     </form>
   );
