@@ -24,7 +24,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -40,8 +40,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -70,21 +70,25 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (username, email, password, full_name, repeat_password) => async (dispatch) => {
+
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      username,
       email,
+      username,
       password,
+      full_name,
+      repeat_password
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
+    console.log('!!!!!!!!!!!!!!!!!', data)
     dispatch(setUser(data))
     return null;
   } else if (response.status < 500) {
@@ -100,6 +104,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
+      console.log('!!!!!!!!!!!!!!!!!',action.payload)
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
