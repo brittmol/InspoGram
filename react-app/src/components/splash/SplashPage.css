@@ -231,7 +231,7 @@
       transition: all .2s;
       display: block;
       background-color: var(--color-white);
-      color: var(--gray-secondary);
+      color: var(--gray-primary);
       font-size: 1.2rem;
   }
 
@@ -270,6 +270,3 @@
         width: 80%;
         text-align: center;
     }
-
-
-    
