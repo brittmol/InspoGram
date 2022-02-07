@@ -85,11 +85,11 @@
 
     width: 100%;
     min-height: 35rem;
-    background-color: white;
+    background-color: var(--color-white);
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid lightgray;
+    border: var(--border-light);
     position: relative;
 
 }
@@ -124,13 +124,13 @@
     width: calc(100% - 1.2rem);
     height: 100%;
     border-radius: .3rem;
-    border: 1px solid lightgray;
+    border: var(--border-light);;
     outline: none;
     padding-left: 1rem;
 }
 
 .login-input-container > div input:focus {
-    border: 1px solid gray;
+    border: var(--border-dark);;
 }
 
 .demo-button,
@@ -138,8 +138,8 @@
     height: 2.9rem;
     border-radius: .3rem;
     border: none;
-    background-color: #0095f6;
-    color: white;
+    background-color: var(--blue-primary);
+    color: var(--color-white);
     padding: .1rem;
     margin-top: .5rem;
     cursor: pointer;
@@ -150,47 +150,45 @@
 }
 
 .form-button:disabled {
-    background-color: #c0dffd;
+    background-color: var(--blue-light);
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     opacity: 1; /* Firefox */
     font-size: 1.2rem;
-    color: rgb(167, 167, 167);
+    color: var(--color-placeholder);
   }
 
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
     font-size: 1.2rem;
-    color: rgb(167, 167, 167);
+    color: var(--color-placeholder);
 
   }
 
   ::-ms-input-placeholder { /* Microsoft Edge */
     font-size: 1.2rem;
-    color: rgb(167, 167, 167);
+    color: var(--color-placeholder);
 
   }
 
   .form-link-container {
-        background-color: white;
+        background-color: var(--color-white);
         width: 100%;
-        /* position: absolute;
-        top: 37rem; */
         text-align: center;
         padding: 2.6rem 0;
-        border: 1px solid lightgray;
+        border: var(--border-light);
         font-size: 1.4rem;
         margin-top: 2rem;
 
   }
 
   .form-link {
-      color: #0095f6;
+      color: var(--blue-primary);;
   }
 
   .demo-container {
       margin-top: 1.5rem;
-      border-top: 1px solid lightgray;
+      border-top: var(--border-light);
       position: relative;
       display: flex;
       justify-content: center;
@@ -207,7 +205,7 @@
   .or-span {
       display: inline-block;
       position: absolute;
-      background-color: white;
+      background-color: var(--color-white);
       top: -1.2rem;
       font-size: 1.4rem;
       padding: 0 1.9rem;
@@ -215,13 +213,9 @@
 
   .login-error-container {
       font-size: 1.5rem;
-      color: red;
+      color: var(--color-error);
   }
 
-  /* .email-container,
-  .password-container {
-      position: relative;
-  } */
 
   .input-container {
       position: relative;
@@ -236,8 +230,8 @@
       padding: 0 .3rem;
       transition: all .2s;
       display: block;
-      background-color: white;
-      color: gray;
+      background-color: var(--color-white);
+      color: var(--gray-secondary);
       font-size: 1.2rem;
   }
 
@@ -257,12 +251,12 @@
   .splash-footer-paragraph {
       text-align: center;
       font-size: 1.2rem;
-      color: gray;
+      color: var(--gray-secondary);
       padding-bottom: 1.8rem;
   }
 
   .splash-footer-paragraph > a {
-    color: gray;
+    color: var(--gray-secondary);
   }
 
   .splash-footer-paragraph > a:hover {
@@ -276,3 +270,6 @@
         width: 80%;
         text-align: center;
     }
+
+
+    

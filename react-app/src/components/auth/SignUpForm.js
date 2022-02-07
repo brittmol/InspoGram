@@ -59,7 +59,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <form className='splash-login-form' onSubmit={onSignUp}>
+    <form autoComplete="off" className='splash-login-form' onSubmit={onSignUp}>
       <div className='login-error-container'>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
