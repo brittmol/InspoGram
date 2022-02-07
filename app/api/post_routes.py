@@ -8,7 +8,7 @@ posts_router = Blueprint('posts', __name__)
 @posts_router.route('/')
 #@login_required
 def get_all_posts():
-    posts = Post.query.all()
+    posts = Post.query.all() # querys to our data base to prepare all the json data
     return {'posts': [post.to_dict() for post in posts]}
 
 # Grabs a single post by id

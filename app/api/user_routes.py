@@ -28,7 +28,7 @@ def get_posts_by_user(id):
 
 # Gets all the comments by specific user
 @user_routes.route('/user/<int:id>/comments')
-#@login_required
+@login_required
 def get_comments_by_user(id):
     comments_by_id = Comment.query.filter(Comment.user_id == id).all()
     return comments_by_id.to_dict()
