@@ -1,6 +1,7 @@
 // constants
 const ADD_POST = 'post/ADD_POST'
 
+
 const addPost = (post) => ({
     type: ADD_POST,
     post
@@ -29,3 +30,17 @@ export const createPost = (payload) => async(dispatch) => {
         return ['An error occurred. Please try again.']
     }
 }
+
+
+const postReducer = (state = {}, action) => {
+    let newState = {}
+    switch(action.type) {
+        case ADD_POST:
+            newState = {...state, [action.post.id]: action.post}
+            return newState
+        default:
+            return state
+    }
+}
+
+export default postReducer;
