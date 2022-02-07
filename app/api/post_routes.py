@@ -1,5 +1,7 @@
 from flask import Blueprint, request#, jsonify
 from flask_login import login_required, current_user
+from app.forms.comment_form import CreateCommentForm
+from app.forms.post_form import CreatePostForm
 from app.models import Comment, db, Like, Post, Photo
 
 posts_router = Blueprint('posts', __name__)
@@ -22,22 +24,39 @@ def get_single_post(id):
 @posts_router.route('/create_post', methods=['POST'])
 @login_required
 def create_post():
-    #print(current_user)
-    req = request.json # grabs the information from our form/data
-    new_post = Post(caption=req['caption'], user_id=current_user.id) # create a new post to upload
+    form = CreatePostForm()
+    # req = request.json # grabs the information from our form/data
+    # new_post = Post(caption=req['caption'], user_id=current_user.id) # create a new post to upload
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        print('form.data -------------------------------------', form.data)
+        new_post = Post(caption=form.data['caption'], user_id=current_user.id)
+    # will allow user to add multiple photo at once
+        # for url in req['photo']:
+        db.session.add(new_post)
+        db.session.commit()
+        # for url in form.data['photo']:
+        new_photos = Photo(photo=form.data['photo'], post_id=new_post.id)
+        db.session.add(new_photos)
+        db.session.commit()
 
-    db.session.add(new_post) # adds data into staging area
-    db.session.commit() # finally adds to the database
+        return new_post.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-    # might have to use for loop on req['photo'] if we allow user to add multiple photo at once
-    new_photos = Photo(photo=req['photo'], post_id=new_post.id)
+# create comment on a post
+@posts_router.route('/<int:id>/comment/create', methods=['POST'])
+@login_required
+def comment_on_post(id):
+    form = CreateCommentForm()
 
-    db.session.add(new_photos)
-    db.session.commit()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment = Comment(comment=form.data['comment'], user_id=current_user.id, post_id=id)
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-
-
-    return new_post.to_dict()
 
 # edit caption on a post
 @posts_router.route('/<int:id>/edit', methods=['PUT'])
@@ -50,6 +69,7 @@ def edit_post(id):
     db.session.commit() # commit changes to data base
 
     return orig_post.to_dict() # return edited post in dict
+
 
 # delete a specific post
 @posts_router.route('/<int:id>/delete', methods=['DELETE'])
