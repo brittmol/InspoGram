@@ -2,14 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { createPost } from '../../../store/post'
+import { useSelector } from 'react-redux'
 
-const CreatePostForm = () => {
+const CreatePostForm = ({onClose}) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
     const [caption, setCaption] = useState("")
     const [photo, setPhoto] = useState("")
     const [errors, setErrors] = useState([])
+    const user = useSelector(state => state.session.user);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -19,6 +22,9 @@ const CreatePostForm = () => {
         const data = await dispatch(createPost(payload))
         if (data) {
             setErrors(data)
+        } else {
+            onClose()
+            history.push(`/api/user/${user.id}/posts`)
         }
     }
 

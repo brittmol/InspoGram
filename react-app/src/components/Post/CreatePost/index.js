@@ -9,6 +9,8 @@ function CreatePostModal() {
   const onCloseModal = () => {
     setShowModal(false)
   }
+
+  
   return (
     <>
       <button className="tickets-button" onClick={() => setShowModal(true)}>

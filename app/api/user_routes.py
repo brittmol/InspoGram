@@ -20,11 +20,15 @@ def user(id):
 
 
 # Gets all the post created by that specific user
-@user_routes.route('/user/<int:id>/posts')
+@user_routes.route('/<int:id>/posts')
 #@login_required
 def get_posts_by_user(id):
+    print('in route ****************************************')
     posts_by_id = Post.query.filter(Post.user_id == id).all()
-    return posts_by_id.to_dict()
+    print(posts_by_id, 'post by id********88****************************')
+
+    return {'posts': [post.to_dict() for post in posts_by_id]}
+
 
 # Gets all the comments by specific user
 @user_routes.route('/user/<int:id>/comments')
