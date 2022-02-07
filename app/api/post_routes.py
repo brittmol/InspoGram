@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.forms.comment_form import CreateCommentForm
 from app.forms.post_form import CreatePostForm
 from app.models import Comment, db, Like, Post, Photo
+from app.api.auth_routes import validation_errors_to_error_messages
 
 posts_router = Blueprint('posts', __name__)
 
