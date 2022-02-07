@@ -6,21 +6,21 @@ import { signUp } from '../../store/session';
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
-  const [fullName, setFullName] = useState('')
+  const [full_name, setFullName] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [repeat_password, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+    // if (password === repeatPassword) {
+      const data = await dispatch(signUp(username, email, password, full_name, repeat_password));
       if (data) {
         setErrors(data)
       }
-    }
+    // }
   };
 
   const updateFullName = (e) => {
@@ -55,21 +55,21 @@ const SignUpForm = () => {
         ))}
       </div>
       <div className='login-input-container'>
-      <div className='input-container'>
+        <div className='input-container'>
           <input
-          placeholder='Full Name'
-          className='form-input'
+            placeholder='Full Name'
+            className='form-input'
             type='text'
             name='full_name'
             onChange={updateFullName}
-            value={fullName}
+            value={full_name}
           ></input>
           <label className='form-label'>Full Name</label>
         </div>
         <div className='input-container'>
           <input
-          placeholder='User Name'
-          className='form-input'
+            placeholder='User Name'
+            className='form-input'
             type='text'
             name='username'
             onChange={updateUsername}
@@ -79,8 +79,8 @@ const SignUpForm = () => {
         </div>
         <div className='input-container'>
           <input
-          placeholder='Email'
-          className='form-input'
+            placeholder='Email'
+            className='form-input'
             type='text'
             name='email'
             onChange={updateEmail}
@@ -90,8 +90,8 @@ const SignUpForm = () => {
         </div>
         <div className='input-container'>
           <input
-          placeholder='Password'
-          className='form-input'
+            placeholder='Password'
+            className='form-input'
             type='password'
             name='password'
             onChange={updatePassword}
@@ -101,12 +101,12 @@ const SignUpForm = () => {
         </div>
         <div className='input-container'>
           <input
-          placeholder='Repeat Password'
-          className='form-input'
+            placeholder='Repeat Password'
+            className='form-input'
             type='password'
             name='repeat_password'
             onChange={updateRepeatPassword}
-            value={repeatPassword}
+            value={repeat_password}
             required={true}
           ></input>
           <label className='form-label'>Repeat Password</label>
