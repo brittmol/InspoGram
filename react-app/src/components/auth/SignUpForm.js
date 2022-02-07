@@ -38,6 +38,10 @@ const SignUpForm = () => {
     setFullName(e.target.value);
   };
 
+  // const updateFullname = (e) => {
+  //   setFullName(e.target.value);
+  // }
+
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
