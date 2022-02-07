@@ -26,6 +26,7 @@ function SignUpPage() {
                         <div className="splash-login-heading">
                             <h1>Inspogram</h1>
                         </div>
+                        <div className="header-text-container">Sign up to see photos from your friends.</div>
                         <div className="splash-login-form-container">
                             <SignUpForm />
                             <div className="demo-container">

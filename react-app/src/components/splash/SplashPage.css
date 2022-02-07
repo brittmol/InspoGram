@@ -268,3 +268,11 @@
   .splash-footer-paragraph > a:hover {
       text-decoration: underline;
   }
+
+    /* SIGN UP PAGE HEADER STYLING */
+
+    .header-text-container {
+        font-size: 2rem;
+        width: 80%;
+        text-align: center;
+    }

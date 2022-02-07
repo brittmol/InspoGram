@@ -6,6 +6,7 @@ import { signUp } from '../../store/session';
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
+  const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -20,6 +21,10 @@ const SignUpForm = () => {
         setErrors(data)
       }
     }
+  };
+
+  const updateFullName = (e) => {
+    setFullName(e.target.value);
   };
 
   const updateUsername = (e) => {
@@ -50,6 +55,17 @@ const SignUpForm = () => {
         ))}
       </div>
       <div className='login-input-container'>
+      <div className='input-container'>
+          <input
+          placeholder='Full Name'
+          className='form-input'
+            type='text'
+            name='full_name'
+            onChange={updateFullName}
+            value={fullName}
+          ></input>
+          <label className='form-label'>Full Name</label>
+        </div>
         <div className='input-container'>
           <input
           placeholder='User Name'
