@@ -2,7 +2,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../Auth/LogoutButton';
+import CreatePostModal from '../Post/CreatePost';
 import './NavBar.css'
 
 const NavBar = () => {
@@ -19,6 +20,7 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
+        <li><CreatePostModal /></li>
         <li>
           <LogoutButton />
         </li>

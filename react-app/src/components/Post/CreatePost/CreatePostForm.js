@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { createPost } from '../../store/post'
+import { createPost } from '../../../store/post'
 
 const CreatePostForm = () => {
     const dispatch = useDispatch()
