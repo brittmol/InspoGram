@@ -1,4 +1,4 @@
-from flask import Blueprint#, jsonify
+from flask import Blueprint, request#, jsonify
 from flask_login import login_required#, current_user
 from app.models import Comment, db
 
@@ -10,9 +10,21 @@ def get_all_comments():
     comments = Comment.query.all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
-@comments_router.route('/<int:id>/delete')
+# edits the ocmment
+@comments_router.route('/<int:id>/edit', methods=['PATCH'])
 @login_required
-def get_all_comments(id):
+def edit_comment(id):
+    req = request.json # grabs the newly edited comment 
+    comment = Comment.query.get(id) # grabs the post you want to edit
+    
+    comment.comment = req['comment'] # replaces old comment with new one
+    db.session.commit() # commits the changes in database
+
+    return comment.to_dict()
+
+@comments_router.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_comment(id):
     comment = Comment.query.get(id) # grabs the post you want to delete
     db.session.delete(comment) # deletes the post from data base
     db.session.commit() # commits the changes in database

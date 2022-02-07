@@ -39,7 +39,7 @@ def create_post():
 # edit caption on a post
 @posts_router.route('/<int:id>/edit', methods=['PUT'])
 @login_required
-def create_post(id):
+def edit_post(id):
     req = request.json # grabs the newly edited caption
     orig_post = Post.query.get(id) # grabs the post that you want to edit
 
@@ -51,7 +51,7 @@ def create_post(id):
 # delete a specific post
 @posts_router.route('/<int:id>/delete', methods=['DELETE'])
 @login_required
-def create_post(id):
+def delete_post(id):
     orig_post = Post.query.get(id) # grabs the post you want to delete
     
     db.session.delete(orig_post) # deletes the post from data base
@@ -75,7 +75,7 @@ def get_comments_by_post(id):
 # Gets all likes a specific post or add a like to a post
 @posts_router.route('/<int:id>/likes', methods=['GET', 'POST'])
 @login_required
-def get_likes_by_post(id):
+def get_edit_likes_by_post(id):
     if (request.method == 'POST'):
         # checks the database if the user has liked this post before
         liked = Like.query.filter_by(user_id=current_user.id, post_id=id).first()
