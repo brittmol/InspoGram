@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -6,12 +6,23 @@ import { signUp } from '../../store/session';
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
-  const [full_name, setFullName] = useState('')
+  const [full_name, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeat_password, setRepeatPassword] = useState('');
+  const [disableButton, setDisableButton] = useState(true);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (email.includes('@') && password.length >= 6 && username.length >= 2
+        && full_name.length >=4 && repeat_password === password
+    ) {
+      setDisableButton(false)
+    } else {
+      setDisableButton(true)
+    }
+  }, [disableButton, email, password, repeat_password, username, full_name])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -111,7 +122,7 @@ const SignUpForm = () => {
           ></input>
           <label className='form-label'>Repeat Password</label>
         </div>
-        <button className='form-button' type='submit'>Sign Up</button>
+        <button disabled={disableButton} className='form-button' type='submit'>Sign Up</button>
       </div>
     </form>
   );
