@@ -6,7 +6,7 @@ import PostDetails from './PostDetails';
 
 
 
-function PostDetailsModal({photo, postId}) {
+function PostDetailsModal({post}) {
   const [showModal, setShowModal] = useState(false);
   const onCloseModal = () => {
     setShowModal(false)
@@ -17,12 +17,12 @@ function PostDetailsModal({photo, postId}) {
 
   return (
     <>
-      <button id={postId} onClick={() => setShowModal(true)}>
-            {photo}
+      <button id={post.id} onClick={() => setShowModal(true)}>
+      {post?.photos[0]?.photo}
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <PostDetails postId={postId} onClose={onCloseModal}/>
+          <PostDetails post={post} onClose={onCloseModal}/>
         </Modal>
       )}
     </>

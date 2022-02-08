@@ -36,7 +36,7 @@ function GetUserPosts() {
 
                     <li key={post?.id}>
                             {post?.photos[0]?.photo}
-                        <PostDetailsModal photo={post?.photos[0]?.photo} postId={post?.id} />
+                        <PostDetailsModal post={post} />
                         {/* <button>
                             {post?.photos[0]?.photo}
                         </button> */}

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-function PostDetails({postId}) {
-    const post = useSelector(state => state.userPostsReducer.postId)
+function PostDetails({post}) {
+    const singlePost = useSelector(state => state.userPostsReducer[post.id])
 
     return (
         <div>
-            in modal {postId}
+            in modal {post.id}
         </div>
     )
 }
