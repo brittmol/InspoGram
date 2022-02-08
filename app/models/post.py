@@ -28,6 +28,8 @@ class Post(db.Model):
             'caption': self.caption,
             'created_at': self.created_at,
             'user_id': self.user_id,
-            'comments':[comment.to_dict() for comment in self.comments]
-            
+            'comments':[comment.to_dict() for comment in self.comments],
+            'likes':[like.to_dict() for like in self.likes],
+            'photos':[photo.to_dict() for photo in self.photos],
+
         }

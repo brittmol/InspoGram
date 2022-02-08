@@ -20,9 +20,14 @@ function GetUserPosts() {
     return (
         <>
         <h1>uuser posts doijaoidjaso</h1>
+        <ul>
             {postsList?.map(post => (
-                <li key={post.id}>{post.id}</li>
+                <div>
+                <li key={post?.id}>{post?.photos[0]?.photo}</li>
+                <li key={post?.id}>{post?.comments[0]?.comment}</li>
+                </div>
             ))}
+        </ul>
         </>
     )
 }

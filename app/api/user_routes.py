@@ -27,9 +27,13 @@ def get_posts_by_user(id):
     print('in route ****************************************')
     # posts_by_id = Post.query.filter(Post.user_id == id).all()
     posts_by_id = db.session.query(Post) \
-                        .join(Comment)  \
                         .filter(Post.user_id == id)\
-                        .options(joinedload(Post.comments)).all()
+                        .options(joinedload(Post.likes))\
+                        .options(joinedload(Post.photos))\
+                        .options(joinedload(Post.comments)).all()\
+                        # .join(Comment)  \
+                        # .join(Like)\
+                        # .join(Photo)\
     # .options(joinedload(Post.comments),
             # joinedload(Post.likes),
             # joinedload(Post.photos),
@@ -37,9 +41,7 @@ def get_posts_by_user(id):
     # ).all()
     for post in posts_by_id:
         print(post.to_dict(), '***new post******')
-    # .join(Like)\
-    # .join(Photo)\
-    # .join(User)\
+
 
     return {'posts': [post.to_dict() for post in posts_by_id]}
 
