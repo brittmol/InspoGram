@@ -1,5 +1,5 @@
 from .db import db
-from datetime import datetime 
+from datetime import datetime
 
 
 class Comment(db.Model):
@@ -17,7 +17,8 @@ class Comment(db.Model):
             'comment': self.comment,
             'created_at': self.created_at,
             'user_id': self.user_id,
-            'post_id': self.post_id
+            'post_id': self.post_id,
+            'user': self.user.to_dict()
         }
 
     # 1 comment belongs to 1 user

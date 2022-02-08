@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import { createComment } from '../../store/post';
+import "./AddComment.css";
 
 function CommentForm(id){
     const dispatch = useDispatch();
@@ -16,25 +17,25 @@ function CommentForm(id){
         e.preventDefault()
 
         const payload = {
-            comment, 
+            comment,
             post_id: id.id,
             user_id: sessionUser.id
         }
 
         dispatch(createComment(payload));
+        setComment("");
 
     }
 
     return(
         <form className="comment-form" onSubmit={handleSubmit}>
-            <h2>Create New Post</h2>
-            <textarea
+            <input
                 placeholder="Add a comment..."
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
             />
             <button type="submit">
-                Share
+                Post
             </button>
         </form>
     )

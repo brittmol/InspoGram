@@ -1,0 +1,12 @@
+.comment-form {
+    display: grid;
+    grid-template-columns: .9fr .1fr;
+    border-top: var(--border-light);
+    margin-top: 10px;
+
+}
+
+.comment-form input {
+    padding: 15px;
+    border: none;
+}

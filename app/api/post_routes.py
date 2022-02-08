@@ -140,9 +140,6 @@ def get_edit_likes_by_post(id):
 def get_all_posts_by_following(id):
     user = User.query.get(id)
     following = [u.id for u in user.following]
-    print(2 in following)
-
     feed = Post.query.filter(Post.user_id.in_(following)).all()
-    print("FEEEED", feed)
 
     return {"posts": [post.to_dict() for post in feed]}
