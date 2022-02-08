@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ProtectedRoute from '../Auth/ProtectedRoute';
+import GetUserPosts from '../Post/GetUserPosts/GetUserPosts';
+
 
 function User() {
   const [user, setUser] = useState({});
@@ -21,6 +24,7 @@ function User() {
   }
 
   return (
+    <>
     <ul>
       <li>
         <strong>User Id</strong> {userId}
@@ -32,6 +36,8 @@ function User() {
         <strong>Email</strong> {user.email}
       </li>
     </ul>
+      <GetUserPosts />
+    </>
   );
 }
 export default User;

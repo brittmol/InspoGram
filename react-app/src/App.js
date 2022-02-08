@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
+import User from './components/UserProfile/User';
 import { authenticate } from './store/session';
 import LoginPage from './components/splash/LoginPage';
 import SignUpPage from './components/splash/SignUpPage';
@@ -47,8 +47,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-
-
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
