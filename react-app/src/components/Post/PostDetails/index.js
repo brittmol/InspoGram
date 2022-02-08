@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal';
-import CreatePostForm from './CreatePostForm';
+// import CreatePostForm from './CreatePostForm';
+import PostDetails from './PostDetails';
 
 
 
-function CreatePostModal() {
+
+function PostDetailsModal({photo, postId}) {
   const [showModal, setShowModal] = useState(false);
   const onCloseModal = () => {
     setShowModal(false)
   }
 
 
+
+
   return (
     <>
-      <button onClick={() => setShowModal(true)}>
-            Create post
+      <button id={postId} onClick={() => setShowModal(true)}>
+            {photo}
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreatePostForm onClose={onCloseModal}/>
+          <PostDetails postId={postId} onClose={onCloseModal}/>
         </Modal>
       )}
     </>
   );
 }
-export default CreatePostModal;
+export default PostDetailsModal;

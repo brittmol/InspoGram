@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserPosts } from "../../../store/userPosts";
 import { deleteUserPost } from "../../../store/userPosts";
 import './GetUserPosts.css'
+import PostDetailsModal from "../PostDetails";
+
 
 
 function GetUserPosts() {
@@ -33,14 +35,16 @@ function GetUserPosts() {
                 {postsList?.map(post => (
 
                     <li key={post?.id}>
-                        <div>
                             {post?.photos[0]?.photo}
-                        </div>
-                        <div>
+                        <PostDetailsModal photo={post?.photos[0]?.photo} postId={post?.id} />
+                        {/* <button>
+                            {post?.photos[0]?.photo}
+                        </button> */}
+                        {/* <div> */}
                             {/* {edit?<input value={post?.caption} /> : <div>{post?.caption}</div>}
                             {edit? <button>Save</button> :<button id={post.id} onClick={onEdit}>Edit</button>} */}
-                        </div>
-                    <button onClick={handleDelete} id={post.id}>Delete</button>
+                        {/* </div> */}
+                    {/* <button onClick={handleDelete} id={post.id}>Delete</button> */}
                     </li>
 
                 ))}

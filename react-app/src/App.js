@@ -11,6 +11,8 @@ import LoginPage from './components/splash/LoginPage';
 import SignUpPage from './components/splash/SignUpPage';
 import CreatePostForm from './components/Post/CreatePost/CreatePostForm';
 import GetUserPosts from './components/Post/GetUserPosts/GetUserPosts'
+import Popup from './components/Post/PostDetails/Popup';
+
 
 
 function App() {
@@ -47,9 +49,11 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' >
           <User />
+          {/* <Popup /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId/posts/:postId' >
           {/* <User /> */}
+          <Popup />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
