@@ -31,14 +31,7 @@ def get_posts_by_user(id):
                         .options(joinedload(Post.likes))\
                         .options(joinedload(Post.photos))\
                         .options(joinedload(Post.comments)).all()
-                        # .join(Comment)  \
-                        # .join(Like)\
-                        # .join(Photo)\
-    # .options(joinedload(Post.comments),
-            # joinedload(Post.likes),
-            # joinedload(Post.photos),
-            # joinedload(Post.user)
-    # ).all()
+
     for post in posts_by_id:
         print(post.to_dict(), '***new post******')
 
