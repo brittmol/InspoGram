@@ -2,7 +2,7 @@ from flask import Blueprint, request#, jsonify
 from flask_login import login_required, current_user
 from app.forms.comment_form import CreateCommentForm
 from app.forms.post_form import CreatePostForm
-from app.models import Comment, db, Like, Post, Photo
+from app.models import Comment, db, Like, Post, Photo, User, follows
 from app.api.auth_routes import validation_errors_to_error_messages
 
 posts_router = Blueprint('posts', __name__)
@@ -19,7 +19,7 @@ def get_all_posts():
     newObj = {} # creates a new object
     for post in posts:
         newObj[str(post.to_dict()['id'])] = {'Post':{**post.to_dict(), 'Photo': [], 'Comment': []}}
-    
+
     for photo in photos:
         newObj[str(photo.to_dict()['post_id'])]["Post"]["Photo"].append(photo.to_dict())
 
@@ -133,3 +133,16 @@ def get_edit_likes_by_post(id):
 
     likes_by_id = Like.query.filter(Like.post_id == id).all()
     return {'likes': [like.to_dict() for like in likes_by_id]}
+
+
+@posts_router.route('/<int:id>/feed')
+#@login_required
+def get_all_posts_by_following(id):
+    user = User.query.get(id)
+    following = [u.id for u in user.following]
+    print(2 in following)
+
+    feed = Post.query.filter(Post.user_id.in_(following)).all()
+    print("FEEEED", feed)
+
+    return {"posts": [post.to_dict() for post in feed]}

@@ -45,8 +45,8 @@ export const createPost = (payload) => async(dispatch) => {
     }
 }
 
-export const getAllPost = () => async(dispatch) => {
-    const response = await fetch('/api/posts');
+export const getAllPost = (payload) => async(dispatch) => {
+    const response = await fetch(`/api/posts/${payload.id}/feed`);
     if (response.ok){
         const posts = await response.json();
         dispatch(getPost(posts));
@@ -89,7 +89,8 @@ const postReducer = (state = {}, action) => {
             for (let post of Object.values(action.posts)){
                 allPosts.push(post)
             }
-            return { ...state, "allPost": allPosts}
+
+            return { ...state, ...allPosts}
         case ADD_COMMENT:
             return {...state }
         default:
