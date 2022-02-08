@@ -10,6 +10,7 @@ const SinglePost = (post) => {
             <img className="photo" src={post['post'].Photo[0].photo}/>
             {/* Add another div of like button and comment to popup modal*/}
             <h2>{post['post'].caption}</h2>
+            {/* {if (sessionUser && comment.user_id === sessionUser.id)} */}
             <div className='comment-section'>
                 {(post['post'].Comment).map( (comment) => {
                     return <h2 key={comment.id}>{comment.comment}</h2>
