@@ -30,7 +30,7 @@ def get_posts_by_user(id):
                         .filter(Post.user_id == id)\
                         .options(joinedload(Post.likes))\
                         .options(joinedload(Post.photos))\
-                        .options(joinedload(Post.comments)).all()\
+                        .options(joinedload(Post.comments)).all()
                         # .join(Comment)  \
                         # .join(Like)\
                         # .join(Photo)\

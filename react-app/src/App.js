@@ -32,8 +32,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {user && <GetUserPosts />
-
+      {user && <NavBar />
       }
 
       <Switch>

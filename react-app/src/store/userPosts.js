@@ -1,9 +1,17 @@
 const LOAD_POSTS = 'userPosts/GET_POSTS'
+const ADD_USER_POST = 'userPosts/ADD_USER_POSTS'
 
 const loadPosts = (posts) => {
     return {
         type: LOAD_POSTS,
         posts
+    }
+}
+
+export const addUserPost = (post) => {
+    return {
+        type: ADD_USER_POST,
+        post
     }
 }
 
@@ -26,6 +34,9 @@ export const getUserPosts = (id) => async(dispatch) => {
 const userPostsReducer = (state={}, action) => {
     let newState = {}
     switch(action.type) {
+        case ADD_USER_POST:
+            newState = {...state, [action.post.id]: action.post}
+            return newState
         case LOAD_POSTS:
             action.posts.forEach(post => {
                 newState[post.id] = post

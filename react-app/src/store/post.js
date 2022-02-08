@@ -1,4 +1,6 @@
 // constants
+import { addUserPost } from "./userPosts"
+
 const ADD_POST = 'post/ADD_POST'
 
 
@@ -20,6 +22,7 @@ export const createPost = (payload) => async(dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(addPost(data))
+        dispatch(addUserPost(data))
         return null
     } else if (response.status < 500) {
         const data = await response.json();
