@@ -10,6 +10,7 @@ import { authenticate } from './store/session';
 import LoginPage from './components/splash/LoginPage';
 import SignUpPage from './components/splash/SignUpPage';
 import CreatePostForm from './components/post/CreatePostForm';
+import FeedPage from './components/Feed/FeedPage';
 
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpPage />
+        </Route>
+        <Route path='/feed' exact={true}>
+          <FeedPage />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
