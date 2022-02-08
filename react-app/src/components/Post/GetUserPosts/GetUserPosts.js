@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserPosts } from "../../../store/userPosts";
 import './GetUserPosts.css'
 import PostDetailsModal from "../PostDetails";
+import { useParams } from "react-router-dom";
 
 
 
@@ -10,8 +11,10 @@ function GetUserPosts() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
 
+    const {userId} = useParams()
+
     useEffect(() => {
-        dispatch(getUserPosts(user.id))
+        dispatch(getUserPosts(userId))
     }, [])
 
     const posts = useSelector(state => state.userPostsReducer)
