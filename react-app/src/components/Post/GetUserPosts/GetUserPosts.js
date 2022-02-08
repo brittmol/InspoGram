@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserPosts } from "../../../store/userPosts";
 
@@ -16,17 +16,26 @@ function GetUserPosts() {
     const posts = useSelector(state => state.userPostsReducer)
 
     const postsList = Object.values(posts)
+    console.log(postsList, '****postlist**********')
 
     return (
         <>
 
-        <ul>
-            {postsList?.map(post => (
+            <ul>
+                {postsList?.map(post => (
 
-                <li key={post?.id}>{post?.photos[0]?.photo}</li>
+                    <li key={post?.id}>
+                        <div>
+                            {post?.photos[0]?.photo}
+                        </div>
+                        <div>
+                            {post?.caption}
+                        </div>
 
-            ))}
-        </ul>
+                    </li>
+
+                ))}
+            </ul>
         </>
     )
 }

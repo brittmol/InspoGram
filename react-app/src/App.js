@@ -32,7 +32,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {user && <NavBar />
+      {user && <NavBar user={user} />
       }
 
       <Switch>

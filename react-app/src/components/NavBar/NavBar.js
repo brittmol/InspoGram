@@ -6,7 +6,7 @@ import LogoutButton from '../Auth/LogoutButton';
 import CreatePostModal from '../Post/CreatePost';
 import './NavBar.css'
 
-const NavBar = () => {
+const NavBar = ({user}) => {
   return (
     <nav className='navigation'>
       <ul>
@@ -15,11 +15,11 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
+        <li>
+          <NavLink to={`/users/${user.id}`} activeClassName='active'>
+            Profile
           </NavLink>
-        </li> */}
+        </li>
         <li><CreatePostModal /></li>
         <li>
           <LogoutButton />
