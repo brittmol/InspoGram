@@ -12,13 +12,17 @@ posts_router = Blueprint('posts', __name__)
 #@login_required
 def get_all_posts():
     #posts = Post.query.all() # querys to our data base to prepare all the json data
-    posts = db.session.query(Post, Photo).filter(Post.id == Photo.post_id).all() #querys joins table
+    posts = Post.query.all() #querys joins table
+    photos = Photo.query.all()
     comments = Comment.query.all()
 
     newObj = {} # creates a new object
-    for post, photo in posts:
-        newObj[str(post.to_dict()['id'])] = {'Post':{**post.to_dict(), 'Photo': {**photo.to_dict()}, 'Comment': []}}
-        
+    for post in posts:
+        newObj[str(post.to_dict()['id'])] = {'Post':{**post.to_dict(), 'Photo': [], 'Comment': []}}
+    
+    for photo in photos:
+        newObj[str(photo.to_dict()['post_id'])]["Post"]["Photo"].append(photo.to_dict())
+
     for comment in comments:
         newObj[str(comment.to_dict()['post_id'])]["Post"]["Comment"].append(comment.to_dict())
 

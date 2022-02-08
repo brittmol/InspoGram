@@ -1,6 +1,7 @@
 // constants
 const ADD_POST = 'post/ADD_POST'
 const GET_POST = 'post/GET_POST'
+const ADD_COMMENT = 'post/CREATE_POST'
 
 const addPost = (post) => ({
     type: ADD_POST,
@@ -10,6 +11,11 @@ const addPost = (post) => ({
 const getPost = (posts) => ({
     type: GET_POST,
     posts
+})
+
+const addComment = (comment) => ({
+    type: ADD_COMMENT,
+    comment
 })
 
 // Thunk
@@ -38,12 +44,35 @@ export const createPost = (payload) => async(dispatch) => {
 
 export const getAllPost = () => async(dispatch) => {
     const response = await fetch('/api/posts');
-    console.log(response)
     if (response.ok){
         const posts = await response.json();
         dispatch(getPost(posts));
     };
 }
+
+export const createComment = (payload) => async(dispatch) =>{
+    const response = await fetch(`/api/posts/${payload.post_id}/comment/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(addComment(data))
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+}
+
 
 
 const postReducer = (state = {}, action) => {
@@ -54,17 +83,12 @@ const postReducer = (state = {}, action) => {
             return newState
         case GET_POST:
             const allPosts = []
-            console.log("action.post", action.posts)
-            for (let [k,post] of Object.entries(action.posts)){
-                console.log(k,post)
+            for (let post of Object.values(action.posts)){
                 allPosts.push(post)
             }
-            // action.posts.post.forEach(post => {
-            //     allPosts.push(post)
-            // });
-            // console.log({ ...state, allPosts})
-            console.log({ ...state, "allPost": allPosts})
             return { ...state, "allPost": allPosts}
+        case ADD_COMMENT:
+            return {...state }
         default:
             return state
     }
