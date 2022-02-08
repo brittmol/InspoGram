@@ -48,7 +48,7 @@ const CreatePostForm = ({onClose}) => {
                 onChange={(e) => setPhoto(e.target.value)}
             />
             <button type="submit">
-                Share
+                Post
             </button>
         </form>
     )

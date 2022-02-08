@@ -14,6 +14,8 @@ import GetUserPosts from './components/Post/GetUserPosts/GetUserPosts'
 import Popup from './components/Post/PostDetails/Popup';
 
 
+import FeedPage from './components/Feed/FeedPage';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,6 +45,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpPage />
+        </Route>
+        <Route path='/feed' exact={true}>
+          <FeedPage />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

@@ -12,7 +12,6 @@ function PostDetails({ post, onClose }) {
     }
     return (
         <div>
-            in modal {post.id}
             <div>
                 {post?.photos[0]?.photo}
             </div>
