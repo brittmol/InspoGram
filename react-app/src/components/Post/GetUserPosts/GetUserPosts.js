@@ -35,7 +35,6 @@ function GetUserPosts() {
                 {postsList?.map(post => (
 
                     <li key={post?.id}>
-                            {post?.photos[0]?.photo}
                         <PostDetailsModal post={post} />
                         {/* <button>
                             {post?.photos[0]?.photo}
