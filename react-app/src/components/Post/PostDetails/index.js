@@ -16,16 +16,18 @@ function PostDetailsModal({post}) {
 
 
   return (
-    <>
-      <button id={post.id} onClick={() => setShowModal(true)}>
-        {post?.photos[0]?.photo}
-      </button>
+    <div className='profile-post-container'>
+      <div className="post-icon-container">
+        <i className="fas fa-heart hover-icon"></i>
+        <i class="far fa-comment hover-icon"></i>
+      </div>
+      <img className='profile-post-img' src={post?.photos[0]?.photo} onClick={() => setShowModal(true)}></img>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <PostDetails post={post} onClose={onCloseModal}/>
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 export default PostDetailsModal;

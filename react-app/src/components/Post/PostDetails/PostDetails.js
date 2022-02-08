@@ -14,7 +14,10 @@ function PostDetails({ post, onClose }) {
     return (
         <div>
             <div>
-                {post?.photos[0]?.photo}
+                {post?.caption}
+            </div>
+            <div>
+                <img src={post?.photos[0]?.photo} ></img>
             </div>
             <EditPostModal post={post}/>
             <button onClick={handleDelete} id={post.id}>Delete</button>

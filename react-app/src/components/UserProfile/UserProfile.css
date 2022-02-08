@@ -1,0 +1,45 @@
+.profile-feed-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 30rem 30rem 30rem;
+  row-gap: 2rem;
+  column-gap: 2rem;
+}
+
+.profile-post-container {
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  width: 30rem;
+  background-color: black;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-post-img {
+  height: 30rem;
+  width: 30rem;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.profile-post-img:hover {
+  opacity: 0.6;
+}
+
+.post-icon-container {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hover-icon {
+  z-index: -1;
+  color: whitesmoke;
+  position: absolute;
+}
+
+.profile-post-container:hover .hover-icon {
+  z-index: 100;
+}
