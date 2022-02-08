@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProtectedRoute from '../Auth/ProtectedRoute';
 import GetUserPosts from '../Post/GetUserPosts/GetUserPosts';
+import './UserProfile.css'
 
 
 function User() {
@@ -24,20 +25,28 @@ function User() {
   }
 
   return (
-    <>
-    <ul>
-      <li>
-        <strong>User Id</strong> {userId}
-      </li>
-      <li>
-        <strong>Username</strong> {user.username}
-      </li>
-      <li>
-        <strong>Email</strong> {user.email}
-      </li>
-    </ul>
-      <GetUserPosts />
-    </>
+    <main>
+      <div className='all-container'>
+        <section className='user-profile-container'>
+          <div className='profile-pic'>
+          </div>
+          <div className='profile-info-container'>
+            <div>
+              <strong>User Id</strong> {userId}
+            </div>
+            <div>
+              <strong>Username</strong> {user.username}
+            </div>
+            <div>
+              <strong>Email</strong> {user.email}
+            </div>
+          </div>
+          <div>
+          </div>
+        </section>
+        <GetUserPosts />
+      </div>
+    </main>
   );
 }
 export default User;

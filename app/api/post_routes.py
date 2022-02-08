@@ -1,8 +1,8 @@
 from flask import Blueprint, request#, jsonify
 from flask_login import login_required, current_user
 from app.forms.comment_form import CreateCommentForm
-from app.forms.post_form import CreatePostForm
-from app.models import Comment, db, Like, Post, Photo, User, follows
+from app.forms.post_form import CreatePostForm, EditPostForm
+from app.models import Comment, db, Like, Post, Photo, User
 from app.api.auth_routes import validation_errors_to_error_messages
 
 posts_router = Blueprint('posts', __name__)
@@ -77,13 +77,18 @@ def comment_on_post(id):
 @posts_router.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def edit_post(id):
-    req = request.json # grabs the newly edited caption
-    orig_post = Post.query.get(id) # grabs the post that you want to edit
+    form = EditPostForm()
 
-    orig_post.caption = req['caption'] # replace old caption with new
-    db.session.commit() # commit changes to data base
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    return orig_post.to_dict() # return edited post in dict
+    if form.validate_on_submit():
+        # new_post = Post(caption=form.data['caption'], user_id=current_user.id)
+        update_post = Post.query.get(id) # grabs the post that needs editing
+        update_post.caption = form.data['caption'] # replace old caption with new
+        db.session.add(update_post)
+        db.session.commit() # commit changes to data base
+        return update_post.to_dict() # return edited post in dict
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # delete a specific post

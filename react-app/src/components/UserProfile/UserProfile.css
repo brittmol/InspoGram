@@ -1,0 +1,69 @@
+.user-profile-container {
+  background-color: pink;
+  font-size: 2rem;
+}
+
+.profile-pic {
+  background-color: aqua;
+  border-radius: 10rem;
+  height: 15rem;
+  width: 15rem;
+  margin: 2rem 5rem;
+}
+
+.profile-info-container {
+  height: 15rem;
+  width: 15rem;
+  margin: 2rem 5rem;
+  background-color: brown;
+}
+
+.profile-feed-container {
+  display: grid;
+  justify-content: center;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: minmax(30rem, 1fr) minmax(30rem, 1fr) minmax(
+      30rem,
+      1fr
+    );
+  row-gap: 3rem;
+  column-gap: 3rem;
+}
+
+.profile-post-container {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-post-img {
+  height: 30rem;
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.profile-post-container:hover .profile-post-img {
+  opacity: 0.6;
+}
+
+.post-icon-container {
+  position: absolute;
+  display: flex;
+}
+
+.hover-icon {
+  z-index: -1;
+  color: whitesmoke;
+  font-size: 2rem;
+  margin: 0 2rem;
+  cursor: pointer;
+  /* position: absolute; */
+}
+
+.profile-post-container:hover .hover-icon {
+  z-index: 1;
+}
