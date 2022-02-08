@@ -19,6 +19,7 @@ function PostDetailsModal({post}) {
     <div className='profile-post-container'>
       <div className="post-icon-container">
         <i className="fas fa-heart hover-icon"></i>
+
         <i class="fas fa-comment hover-icon"></i>
       </div>
       <img className='profile-post-img' src={post?.photos[0]?.photo} onClick={() => setShowModal(true)}></img>
