@@ -8,11 +8,11 @@ def seed_posts():
     post2 = Post(
         caption='Love of my life', user_id=2)
     post3 = Post(
-        caption='Laying in bed', user_id=1)
+        caption='Laying in bed', user_id=2)
     post4 = Post(
-        caption='My role model', user_id=1)
+        caption='My role model', user_id=2)
     post5 = Post(
-        caption='My spidey senses are tingling', user_id=1)
+        caption='My spidey senses are tingling', user_id=2)
 
     db.session.add(post1)
     db.session.add(post2)
