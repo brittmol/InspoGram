@@ -18,7 +18,7 @@ function PostDetailsModal({post}) {
   return (
     <>
       <button id={post.id} onClick={() => setShowModal(true)}>
-      {post?.photos[0]?.photo}
+        {post?.photos[0]?.photo}
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
