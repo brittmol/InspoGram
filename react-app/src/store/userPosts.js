@@ -39,15 +39,13 @@ export const deleteUserPost = (id) => async(dispatch) => {
 
 
 export const getUserPosts = (id) => async(dispatch) => {
-    console.log(' *****************************')
 
     const response = await fetch(`/api/users/${id}/posts`)
-    console.log(response, 'response *****************************')
+
 
     if (response.ok) {
         const data = await response.json()
-        console.log(data, "****************data******************")
-        console.log(data.posts, "****************data******************")
+
         dispatch(loadPosts(data.posts))
     }
     // add a message for no posts found

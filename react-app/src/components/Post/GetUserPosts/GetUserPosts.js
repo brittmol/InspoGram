@@ -8,6 +8,7 @@ import './GetUserPosts.css'
 function GetUserPosts() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
+    const [edit, setEdit] = useState(false)
 
     useEffect(() => {
         dispatch(getUserPosts(user.id))
@@ -20,7 +21,10 @@ function GetUserPosts() {
         const id = e.target.id
         dispatch(deleteUserPost(id))
     }
-    console.log(postsList, '****postlist**********')
+    const onEdit = (e) => {
+        const id = e.target.id
+        setEdit(true)
+    }
 
     return (
         <>
@@ -33,7 +37,8 @@ function GetUserPosts() {
                             {post?.photos[0]?.photo}
                         </div>
                         <div>
-                            {post?.caption}
+                            {/* {edit?<input value={post?.caption} /> : <div>{post?.caption}</div>}
+                            {edit? <button>Save</button> :<button id={post.id} onClick={onEdit}>Edit</button>} */}
                         </div>
                     <button onClick={handleDelete} id={post.id}>Delete</button>
                     </li>
