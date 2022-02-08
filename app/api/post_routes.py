@@ -79,7 +79,7 @@ def delete_post(id):
 
     db.session.delete(orig_post) # deletes the post from data base
     db.session.commit() # commits the changes in database
-    return # exits
+    return {"message": "Deleted"}
 
 # Gets all photos a specific post
 @posts_router.route('/<int:id>/photos')
