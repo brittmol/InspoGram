@@ -116,29 +116,13 @@ def get_comments_by_post(id):
     return {'comments': [comment.to_dict() for comment in comments_by_id]}
 
 # Gets all likes a specific post or add a like to a post
-@posts_router.route('/<int:id>/likes', methods=['GET', 'POST'])
+@posts_router.route('/<int:id>/likes', methods=['POST'])
 @login_required
 def get_edit_likes_by_post(id):
-    if (request.method == 'POST'):
-        # checks the database if the user has liked this post before
-        liked = Like.query.filter_by(user_id=current_user.id, post_id=id).first()
-
-        # if the user has not liked this post before
-        # create a liked model and add it into database
-        if not liked:
-            like = Like(is_liked=True, user_id=current_user.id, post_id=id)
-            db.session.add(like)
-            db.session.commit()
-
-        # else delete the liked from the database because it means
-        # user is trying to unlike a post
-        else:
-            db.session.delete(liked)
-            db.session.commit()
-
-    likes_by_id = Like.query.filter(Like.post_id == id).all()
-    return {'likes': [like.to_dict() for like in likes_by_id]}
-
+    like = Like(is_liked=True,post_id=id,user_id=current_user.id)
+    db.session.add(like)
+    db.session.commit()
+    return like.to_dict()
 
 @posts_router.route('/<int:id>/feed')
 #@login_required
@@ -148,3 +132,11 @@ def get_all_posts_by_following(id):
     feed = Post.query.filter(Post.user_id.in_(following)).all()
 
     return {"posts": [post.to_dict() for post in feed]}
+
+@posts_router.route('/<int:id>/likes/delete', methods=['DELETE'])
+#@login_required
+def delete_likes(id):
+    like = Like.query.filter(Like.user_id==current_user.id, Like.post_id==id).first()
+    db.session.delete(like)
+    db.session.commit()
+    return {**like.to_dict()}

@@ -7,7 +7,7 @@ import MenuModal from "./ProfileMenuModal";
 
 
 function PostDetails({ post, onClose }) {
-    const singlePost = useSelector(state => state.userPostsReducer[post.id])
+    //const singlePost = useSelector(state => state.userPostsReducer[post.id])
     const dispatch = useDispatch()
 
     const handleDelete = (e) => {

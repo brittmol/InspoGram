@@ -59,7 +59,7 @@ a:hover {
     color: gray;
 }
 
-.like-btn:active {
+.not-liked:active {
     color: red;
 }
 
