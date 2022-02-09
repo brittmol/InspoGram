@@ -47,8 +47,7 @@ const updateComment = (comment) => {
 }
 
 export const updateUserComment = (id, comment) => async (dispatch) => {
-    console.log(comment, 'comment****************')
-    console.log(id, 'id***********D****************')
+
     const response = await fetch(`/api/comments/${id}/edit`, {
         method: "PATCH",
         headers: {
@@ -59,7 +58,7 @@ export const updateUserComment = (id, comment) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json()
-        console.log(data,' in thunc response*****D******A**Ds8aD*SAD*d')
+
         dispatch(updateComment(data))
         return null
     } else if (response.status < 500) {
@@ -126,7 +125,7 @@ export const getUserPosts = (id) => async (dispatch) => {
 }
 
 export const createUserComment = (payload) => async (dispatch) => {
-    console.log(payload, '*******payload****************11111111111111111')
+
     const response = await fetch(`/api/posts/${payload.post_id}/comment/create`, {
         method: 'POST',
         headers: {
@@ -134,11 +133,11 @@ export const createUserComment = (payload) => async (dispatch) => {
         },
         body: JSON.stringify(payload)
     })
-    console.log(response, 'iffffffffffffffffffffffffffffffffffffffffff')
+
 
     if (response.ok) {
         const data = await response.json()
-        console.log(data, '*********data****************')
+
         dispatch(addUserComment(data))
         return data
     } else if (response.status < 500) {
@@ -186,22 +185,13 @@ const userPostsReducer = (state = {}, action) => {
             return newState
         case UPDATE_USER_COMMENT:
             newState = {...state}
-            console.log(newState, 'pre store***********')
             for (let post in newState) {
-                console.log(newState, 'reducer log********')
                 if (newState[post].id === action.comment.post_id) {
-                    console.log(newState[post], ' in state newState*************************')
                     newState[post].comments.forEach(comment => {
                         if(comment.id === action.comment.id) {
-                            console.log(comment.comment, '1st comment***********')
-                            console.log(action.comment, 'action comment *********')
                             comment.comment = action.comment.comment
-                            console.log(comment.comment, '2nd comment***********')
-
-                            //  newState = {...state, newState.comments}
                         }
                     })
-                    console.log(newState, 'in store ********************')
                     return newState
                 }
             }
