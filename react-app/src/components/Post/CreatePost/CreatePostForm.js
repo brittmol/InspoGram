@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react' //useEffect, 
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { createPost } from '../../../store/post'

@@ -21,7 +21,7 @@ function PostDetailsModal({post}) {
         <i className="fas fa-heart hover-icon"></i>
         <i className="fas fa-comment hover-icon"></i>
       </div>
-      <img className='profile-post-img' src={post?.photos[0]?.photo} onClick={() => setShowModal(true)}></img>
+      <img className='profile-post-img' src={post?.photos[0]?.photo} onClick={() => setShowModal(true)} alt='user-pic'></img>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <PostDetails post={post} onClose={onCloseModal}/>

@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllPost } from '../../store/post';
 import SinglePost from "../Post/CreatePost/SinglePost";
 
+
 function FeedPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const postObject = useSelector(state => state.post);
-    const posts = Object.values(postObject)
+    const posts = useSelector(state => state.post.posts);
+    
 
     useEffect(() => {
         const payload = {
@@ -21,9 +22,8 @@ function FeedPage() {
 
     return (
         <>
-            {console.log(sessionUser)}
-            {posts[0]?.map((post) => {
-                return <SinglePost key={post.id} post={post} user={sessionUser} />
+            {posts?.map((post) => {
+                return <SinglePost key={post.id} post={post}/>
             })}
 
         </>

@@ -55,15 +55,15 @@ def get_posts_by_user(id):
 
 
 # Gets all the comments by specific user
-@user_routes.route('/user/<int:id>/comments')
+@user_routes.route('/<int:id>/comments')
 @login_required
 def get_comments_by_user(id):
     comments_by_id = Comment.query.filter(Comment.user_id == id).all()
-    return comments_by_id.to_dict()
+    return {'comments': [comment.to_dict()['comment'] for comment in comments_by_id]}
 
 # Gets all the likes that the user has made
-@user_routes.route('/user/<int:id>/likes')
-#@login_required
+@user_routes.route('/<int:id>/likes')
+@login_required
 def get_likes_by_user(id):
     likes_by_id = Like.query.filter(Like.user_id == id).all()
-    return likes_by_id.to_dict()
+    return {'likes': [like.to_dict()['post_id'] for like in likes_by_id] }

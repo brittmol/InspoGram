@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ProtectedRoute from '../Auth/ProtectedRoute';
+//import ProtectedRoute from '../Auth/ProtectedRoute';
 import GetUserPosts from '../Post/GetUserPosts/GetUserPosts';
 import './UserProfile.css'
 

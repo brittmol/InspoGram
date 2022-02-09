@@ -3,6 +3,7 @@ import { addUserPost } from "./userPosts"
 
 const ADD_POST = 'post/ADD_POST'
 const GET_POST = 'post/GET_POST'
+const GET_LIKES = 'like/GET_LIKE'
 const ADD_COMMENT = 'post/CREATE_POST'
 
 const addPost = (post) => ({
@@ -18,6 +19,11 @@ const getPost = (posts) => ({
 const addComment = (comment) => ({
     type: ADD_COMMENT,
     comment
+})
+
+const getLikes = (likes) => ({
+    type: GET_LIKES,
+    likes
 })
 
 // Thunk
@@ -45,11 +51,23 @@ export const createPost = (payload) => async(dispatch) => {
     }
 }
 
+export const getLikesByUser = (payload) => async(dispatch) => {
+    const response = await fetch(`/api/users/${payload.id}/likes`);
+
+    if (response.ok){
+        const likes = await response.json();
+        dispatch(getLikes(likes));
+        return likes
+    };
+}
+
 export const getAllPost = (payload) => async(dispatch) => {
     const response = await fetch(`/api/posts/${payload.id}/feed`);
+
     if (response.ok){
         const posts = await response.json();
         dispatch(getPost(posts));
+        return posts
     };
 }
 
@@ -77,7 +95,6 @@ export const createComment = (payload) => async(dispatch) =>{
 }
 
 
-
 const postReducer = (state = {}, action) => {
     let newState = {}
     switch(action.type) {
@@ -87,12 +104,15 @@ const postReducer = (state = {}, action) => {
         case GET_POST:
             const allPosts = []
             for (let post of Object.values(action.posts)){
-                allPosts.push(post)
+                allPosts.push(...post)
             }
-
-            return { ...state, ...allPosts}
+            return { ...state, 'posts': allPosts}
         case ADD_COMMENT:
-            return {...state }
+            return { ...state }
+        case GET_LIKES:
+            const allLikes = action.likes['likes'];
+            
+            return { ...state, 'likes': [...allLikes] }
         default:
             return state
     }

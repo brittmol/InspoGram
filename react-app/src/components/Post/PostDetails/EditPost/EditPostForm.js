@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react' // useEffect,
+//import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateUserPost } from '../../../../store/userPosts'
-import { useSelector } from 'react-redux'
+//import { useSelector } from 'react-redux'
 
 const EditPostForm = ({post, onClose}) => {
     const dispatch = useDispatch()
-    const history = useHistory()
+    //const history = useHistory()
 
     const [caption, setCaption] = useState(post?.caption || "")
     const [errors, setErrors] = useState([])
-    const user = useSelector(state => state.session.user);
+    //const user = useSelector(state => state.session.user);
 
 
     const handleSubmit = async (e) => {
