@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProtectedRoute from '../Auth/ProtectedRoute';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import GetUserPosts from './GetUserPosts/GetUserPosts';
 import UserProfileHeader from './UserProfileHeader';
 import './UserProfile.css'
+import { getAllPost } from '../../store/post';
+
 
 
 
 function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
+  const dispatch = useDispatch()
 
   const posts = useSelector(state => state.userPostsReducer)
   const postsList = Object.values(posts)
+
+  useEffect(() => {
+    const payload = {
+        id: userId
+    }
+    dispatch(getAllPost(payload));
+}, [dispatch, userId]);
 
   useEffect(() => {
     if (!userId) {
