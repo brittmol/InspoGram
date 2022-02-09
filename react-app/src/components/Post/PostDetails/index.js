@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal } from '../../../context/Modal';
+import { ProfileModal } from '../../../context/Modal';
 // import CreatePostForm from './CreatePostForm';
 import PostDetails from './PostDetails';
 
@@ -23,9 +23,9 @@ function PostDetailsModal({post}) {
       </div>
       <img className='profile-post-img' src={post?.photos[0]?.photo} onClick={() => setShowModal(true)}></img>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <ProfileModal onClose={() => setShowModal(false)}>
           <PostDetails post={post} onClose={onCloseModal}/>
-        </Modal>
+        </ProfileModal>
       )}
     </div>
   );

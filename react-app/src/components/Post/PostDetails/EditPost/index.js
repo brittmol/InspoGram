@@ -4,10 +4,14 @@ import EditPostForm from './EditPostForm';
 
 
 
-function EditPostModal ({post}) {
+function EditPostModal ({post, onCloseMenuModal}) {
   const [showModal, setShowModal] = useState(false);
   const onCloseModal = () => {
     setShowModal(false)
+    if(onCloseMenuModal) {
+      onCloseMenuModal()
+
+    }
   }
 
 
@@ -17,7 +21,7 @@ function EditPostModal ({post}) {
             Edit Caption
       </button>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal onClose={onCloseModal}>
           <EditPostForm post={post} onClose={onCloseModal}/>
         </Modal>
       )}

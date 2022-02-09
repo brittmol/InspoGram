@@ -1,0 +1,25 @@
+.profile-modal-img-container {
+    height: 100%;
+    width: 65%;
+}
+
+.profile-modal-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profile-modal-data-container {
+    height: 100%;
+    width: 35%;
+}
+
+.profile-modal-username {
+    height: 5rem;
+    border-bottom: var(--border-light);
+}
+
+.profile-modal-caption {
+    height: 10rem;
+    border-bottom: var(--border-light);
+}

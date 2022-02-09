@@ -38,3 +38,33 @@ export function ModalProvider({ children }) {
       modalNode
     );
   }
+
+  export function ProfileModal({ onClose, children }) {
+    const modalNode = useContext(ModalContext);
+    if (!modalNode) return null;
+
+    return ReactDOM.createPortal(
+      <div id="modal">
+        <div id="modal-background" onClick={onClose} />
+        <div id="profile-modal-content">
+          {children}
+        </div>
+      </div>,
+      modalNode
+    );
+  }
+
+  export function ProfileMenuModal({ onClose, children }) {
+    const modalNode = useContext(ModalContext);
+    if (!modalNode) return null;
+
+    return ReactDOM.createPortal(
+      <div id="modal">
+        <div id="modal-menu-background" onClick={onClose} />
+        <div id="profile-menu-modal">
+          {children}
+        </div>
+      </div>,
+      modalNode
+    );
+  }
