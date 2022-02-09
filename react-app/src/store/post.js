@@ -45,7 +45,7 @@ const deleteLike = (like) => {
 }
 
 // CRUD FEATRURE WITH REDUX
-// GET 
+// GET
 export const getLikesByUser = (payload) => async(dispatch) => {
     const response = await fetch(`/api/users/${payload.id}/likes`);
 
@@ -101,6 +101,7 @@ export const createComment = (payload) => async(dispatch) =>{
         body: JSON.stringify(payload)
     })
 
+    console.log(response, '*******payload****************')
     if (response.ok) {
         const data = await response.json()
         dispatch(addComment(data))

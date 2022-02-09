@@ -6,6 +6,7 @@ import './PostDetails.css'
 import MenuModal from "./ProfileMenuModal";
 import DisplayComment from "../../Comment/DisplayComments";
 import CommentForm from "../../Comment/AddComment";
+import DisplayAllComments from "../../Comment/DIsplayAllComments";
 
 
 function PostDetails({ post, onClose }) {
@@ -32,10 +33,11 @@ function PostDetails({ post, onClose }) {
                     {post?.caption}
                 </div>
                 <div>
-                    <DisplayComment comments={post.comments}/>
+                    {/* <DisplayComment comments={post.comments}/> */}
+                    <DisplayAllComments comments={post.comments}/>
                 </div>
                 <div>
-                    <CommentForm id={post.id}/>
+                    <CommentForm flag={true} id={post.id}/>
                 </div>
 
             </div>

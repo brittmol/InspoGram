@@ -2,6 +2,8 @@ const LOAD_POSTS = 'userPosts/GET_POSTS';
 const ADD_USER_POST = 'userPosts/ADD_USER_POSTS';
 const EDIT_USER_POST = 'userPosts/EDIT_USER_POSTS';
 const DELETE_USER_POST = 'userPosts/DELETE_USER_POSTS';
+const ADD_USER_COMMENT = 'userPost/CREATE_POST'
+
 
 const loadPosts = (posts) => {
     return {
@@ -9,6 +11,11 @@ const loadPosts = (posts) => {
         posts
     }
 }
+
+const addUserComment = (comment) => ({
+    type: ADD_USER_COMMENT,
+    comment
+})
 
 export const addUserPost = (post) => {
     return {
@@ -83,6 +90,35 @@ export const getUserPosts = (id) => async(dispatch) => {
     // add a message for no posts found
 }
 
+export const createUserComment = (payload) => async(dispatch) =>{
+    console.log(payload, '*******payload****************11111111111111111')
+    const response = await fetch(`/api/posts/${payload.post_id}/comment/create`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+    console.log(response, 'iffffffffffffffffffffffffffffffffffffffffff')
+
+    if (response.ok) {
+        const data = await response.json()
+        console.log(data, '*********data****************')
+        dispatch(addUserComment(data))
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+}
+
+
+
+
 
 
 const userPostsReducer = (state={}, action) => {
@@ -102,6 +138,16 @@ const userPostsReducer = (state={}, action) => {
             action.posts.forEach(post => {
                 newState[post.id] = post
             });
+            return newState
+        case ADD_USER_COMMENT:
+            newState = { ...state }
+            console.log(newState, 'newState*************************')
+            for (let post in newState.userPostsReducer){
+                if (post.id ===  action.comment.post_id) {
+                    post.comments.push(action.comment)
+                    return newState
+                }
+            }
             return newState
         default:
             return state
