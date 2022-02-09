@@ -141,12 +141,14 @@ export const likeAPost = (payload) => async(dispatch) => {
 
 // DELETE
 export const deleteALike = (payload) => async(dispatch) => {
-    const response = await fetch(`/api/likes/${payload.id}/likes/delete`,
+    const response = await fetch(`/api/posts/${payload.id}/likes/delete`,
     {
         method: 'DELETE'
     })
     if (response.ok){
         dispatch(deleteLike(payload));
+        const data = await response.json()
+        console.log(data)
         return response
     }
 }
@@ -174,8 +176,9 @@ const postReducer = (state = {}, action) => {
             return newObj
         case GET_LIKES:
             const allLikes = action.likes['likes'];
-            console.log( {...state} )
             return { ...state, 'likes': allLikes }
+        case DELETE_LIKE:
+            return { ...state }
         default:
             return state
     }

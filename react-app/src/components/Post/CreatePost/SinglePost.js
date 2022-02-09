@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react"; //
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getLikesByUser, likeAPost } from '../../../store/post';
+import { deleteALike, getLikesByUser, likeAPost } from '../../../store/post';
 
 import CommentForm from '../../Comment/AddComment';
 import DisplayComment from '../../Comment/DisplayComments';
@@ -37,7 +37,7 @@ const SinglePost = (post) => {
                 <div className='like-btn s-button'
                     onClick={() => {
                         like ? setLike(false) : setLike(true)
-                        
+                        like ? dispatch(deleteALike({id: post?.post.id})) :
                         dispatch(likeAPost({id: post?.post.id}))
                     }}
                 >

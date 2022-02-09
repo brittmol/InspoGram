@@ -132,3 +132,11 @@ def get_all_posts_by_following(id):
     feed = Post.query.filter(Post.user_id.in_(following)).all()
 
     return {"posts": [post.to_dict() for post in feed]}
+
+@posts_router.route('/<int:id>/likes/delete', methods=['DELETE'])
+#@login_required
+def delete_likes(id):
+    like = Like.query.filter(Like.user_id==current_user.id, Like.post_id==id).first()
+    db.session.delete(like)
+    db.session.commit()
+    return {**like.to_dict()}
