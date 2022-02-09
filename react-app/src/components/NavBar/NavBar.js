@@ -12,10 +12,11 @@ import cat from '../../images/cat.jpg'
 
 const NavBar = ({user}) => {
   return (
-    <nav className='navigation'>
+    <nav>
       <div className='left-bar'>
         <NavLink to='/feed' exact={true} activeClassName='active'>
           <img className='logo' src={logo} alt='logo' />
+          {/* <p className='logo'>Inspogram</p> */}
         </NavLink>
       </div>
       <div className='right-bar'>

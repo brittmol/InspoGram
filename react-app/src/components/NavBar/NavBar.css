@@ -1,6 +1,8 @@
 .logo {
-  height: 4rem;
+  height: 4.5rem;
   width: auto;
+  /* font-size: 4rem; */
+  /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 i {
@@ -9,8 +11,10 @@ i {
 }
 
 nav {
-  padding: 0 16px;
-  height: 54px;
+  margin: 0;
+  padding: 0 20px;
+  height: 65px;
+  width: 300rem;
   background-color: white;
   border: var(--border-light);
 }
