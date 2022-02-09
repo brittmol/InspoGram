@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import SignUpForm from "../auth/SignUpForm";
+import SignUpForm from "../Auth/SignUpForm";
 import SplashFooter from "./SplashFooter";
 import { login } from "../../store/session";
 import "./SplashPage.css"

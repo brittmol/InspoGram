@@ -4,18 +4,31 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', full_name= "Demo", email='demo@aa.io', password='password')
+        username='demo', full_name= "Demo", email='demo@aa.io', password='password')
     marnie = User(
         username='marnie', full_name= "Marnie", email='marnie@aa.io', password='password')
     bobbie = User(
         username='bobbie', full_name= "Bobbie", email='bobbie@aa.io', password='password')
+    susie = User(
+        username='susie', full_name= "Susie", email='susie@aa.io', password='password')
+    john = User(
+        username='john_doe', full_name= "John Doe", email='john_doe@aa.io', password='password')
+
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(susie)
+    db.session.add(john)
 
+    #.followers means users is followed by the appended user
+    # user_being_followed.followers.append(user_following)
     demo.followers.append(marnie)
     marnie.followers.append(demo)
+    bobbie.followers.append(demo)
+    susie.followers.append(marnie)
+    demo.followers.append(susie)
+
 
     db.session.commit()
 

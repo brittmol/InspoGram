@@ -31,14 +31,6 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'full_name': self.full_name,
-            'username': self.username,
-            'email': self.email,
-            'created_at': self.created_at
-        }
 
     # One post belongs to 1 user
     posts = db.relationship('Post', back_populates='user')
@@ -59,3 +51,23 @@ class User(db.Model, UserMixin):
         backref=db.backref("following", lazy="dynamic"),
         lazy="dynamic"
     )
+
+    def f_to_dict(self):
+        return {
+            'id': self.id,
+            'full_name': self.full_name,
+            'username': self.username,
+            'email': self.email,
+            'created_at': self.created_at,
+        }
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'full_name': self.full_name,
+            'username': self.username,
+            'email': self.email,
+            'created_at': self.created_at,
+            'followers': [follower.f_to_dict() for follower in self.followers],
+            'following': [follow.f_to_dict() for follow in self.following],
+        }

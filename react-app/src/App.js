@@ -3,13 +3,17 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import NavBar from './components/NavBar/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
+import ProtectedRoute from './components/Auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
+import User from './components/UserProfile/User';
 import { authenticate } from './store/session';
 import LoginPage from './components/splash/LoginPage';
 import SignUpPage from './components/splash/SignUpPage';
-import CreatePostForm from './components/post/CreatePostForm';
+import CreatePostForm from './components/Post/CreatePost/CreatePostForm';
+import GetUserPosts from './components/UserProfile/GetUserPosts/GetUserPosts'
+
+
+import FeedPage from './components/Feed/FeedPage';
 
 
 function App() {
@@ -31,7 +35,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      {user && <NavBar />}
+      {user && <NavBar user={user} />
+      }
+
       <Switch>
         <Route path='/login' exact={true}>
           <LoginPage />
@@ -39,15 +45,20 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpPage />
         </Route>
+        <Route path='/feed' >
+          <FeedPage />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute path='/users/:userId' >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/users/:userId/posts/:postId' >
+          {/* <User /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
-          <CreatePostForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
