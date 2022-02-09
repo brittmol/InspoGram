@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { deleteUserPost } from "../../../store/userPosts";
-import EditPostModal from "./EditPost";
+import EditPostModal from "../EditPost";
 import './PostDetails.css'
 import MenuModal from "./ProfileMenuModal";
 

@@ -2,7 +2,7 @@ import { ProfileMenuModal } from "../../../context/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState } from 'react';
 import { deleteUserPost } from "../../../store/userPosts";
-import EditPostModal from "./EditPost";
+import EditPostModal from "../EditPost";
 
 
 

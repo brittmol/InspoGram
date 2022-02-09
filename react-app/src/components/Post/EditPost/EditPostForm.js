@@ -1,7 +1,7 @@
 import React, { useState } from 'react' // useEffect,
 //import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { updateUserPost } from '../../../../store/userPosts'
+import { updateUserPost } from '../../../store/userPosts'
 //import { useSelector } from 'react-redux'
 
 const EditPostForm = ({post, onClose}) => {

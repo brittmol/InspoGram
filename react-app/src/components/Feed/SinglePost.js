@@ -1,10 +1,10 @@
 import { React, useEffect, useState } from "react"; //
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteALike, getLikesByUser, likeAPost } from '../../../store/post';
+import { deleteALike, getLikesByUser, likeAPost } from '../../store/post';
 
-import CommentForm from '../../Comment/AddComment';
-import DisplayComment from '../../Comment/DisplayComments';
+import CommentForm from '../Comment/AddComment';
+import DisplayComment from '../Comment/DisplayComments';
 import './SinglePost.css';
 
 

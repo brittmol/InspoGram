@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ProfileModal } from '../../../context/Modal';
 // import CreatePostForm from './CreatePostForm';
-import PostDetails from './PostDetails';
+import PostDetails from './PostDetailsInModal';
 
 
 
