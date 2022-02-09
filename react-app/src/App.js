@@ -9,9 +9,6 @@ import User from './components/UserProfile/User';
 import { authenticate } from './store/session';
 import LoginPage from './components/splash/LoginPage';
 import SignUpPage from './components/splash/SignUpPage';
-import CreatePostForm from './components/Post/CreatePost/CreatePostForm';
-import GetUserPosts from './components/UserProfile/GetUserPosts/GetUserPosts'
-
 
 import FeedPage from './components/Feed/FeedPage';
 

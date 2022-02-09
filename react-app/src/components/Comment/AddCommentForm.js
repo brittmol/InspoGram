@@ -5,7 +5,7 @@ import { createComment } from '../../store/post';
 import { createUserComment } from '../../store/userPosts';
 import "./AddComment.css";
 
-function CommentForm({id, flag}){
+function AddCommentForm({id, flag}){
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -63,4 +63,4 @@ function CommentForm({id, flag}){
     )
 }
 
-export default CommentForm;
+export default AddCommentForm;

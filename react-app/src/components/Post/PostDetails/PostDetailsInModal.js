@@ -4,8 +4,8 @@ import { deleteUserPost } from "../../../store/userPosts";
 import EditPostModal from "../EditPost";
 import './PostDetails.css'
 import MenuModal from "./ProfileMenuModal";
-import DisplayComment from "../../Comment/DisplayComments";
-import CommentForm from "../../Comment/AddComment";
+// import DisplayComment from "../../Comment/DisplayComments";
+import AddCommentForm from "../../Comment/FeedComment";
 import DisplayAllComments from "../../Comment/DIsplayAllComments";
 
 
@@ -37,7 +37,7 @@ function PostDetails({ post, onClose }) {
                     <DisplayAllComments comments={post.comments}/>
                 </div>
                 <div>
-                    <CommentForm flag={true} id={post.id}/>
+                    <AddCommentForm flag={true} id={post.id}/>
                 </div>
 
             </div>
