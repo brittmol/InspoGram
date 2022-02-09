@@ -18,7 +18,7 @@ const SinglePost = (post, user) => {
     return (
         <div className="post">
             {console.log(new Date(post.post.created_at).toDateString())}
-            <Link to={`/api/users/${post.post.users.id}`}>
+            <Link to={`/users/${post.post.users.id}`}>
                 <h2 className='post-owner'>{post.post.users.username}</h2>
             </Link>
             <img className="photo" src={post.post.photos[0].photo}/>
@@ -42,7 +42,7 @@ const SinglePost = (post, user) => {
                 <></>
             }
             <div className='post-caption'>
-                <Link to={`/api/users/${post.post.users.id}`}>{post.post.users.username}  </Link>
+                <Link to={`/users/${post.post.users.id}`}>{post.post.users.username}  </Link>
                 <p className='caption'>{post.post.caption}</p>
             </div>
             <div className='comment-section'>

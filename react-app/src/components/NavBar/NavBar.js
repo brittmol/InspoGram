@@ -11,7 +11,7 @@ const NavBar = ({user}) => {
     <nav className='navigation'>
       <ul>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
+          <NavLink to='/feed' exact={true} activeClassName='active'>
             Home
           </NavLink>
         </li>
