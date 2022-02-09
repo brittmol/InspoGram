@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProtectedRoute from '../Auth/ProtectedRoute';
-import GetUserPosts from '../Post/GetUserPosts/GetUserPosts';
+import { useSelector } from 'react-redux';
+import GetUserPosts from './GetUserPosts/GetUserPosts';
+import UserProfileHeader from './UserProfileHeader';
 import './UserProfile.css'
+
 
 
 function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
+
+  const posts = useSelector(state => state.userPostsReducer)
+  const postsList = Object.values(posts)
 
   useEffect(() => {
     if (!userId) {
@@ -27,23 +33,8 @@ function User() {
   return (
     <main>
       <div className='all-container'>
-        <section className='user-profile-container'>
-          <div className='profile-pic'>
-          </div>
-          <div className='profile-info-container'>
-            <div>
-              <strong>User Id</strong> {userId}
-            </div>
-            <div>
-              <strong>Username</strong> {user.username}
-            </div>
-            <div>
-              <strong>Email</strong> {user.email}
-            </div>
-          </div>
-          <div>
-          </div>
-        </section>
+        <UserProfileHeader postsList={postsList} user={user} />
+        <div className='profile-section-border'>&nbsp;</div>
         <GetUserPosts />
       </div>
     </main>
