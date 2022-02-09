@@ -4,6 +4,8 @@ import { deleteUserPost } from "../../../store/userPosts";
 import EditPostModal from "../EditPost";
 import './PostDetails.css'
 import MenuModal from "./ProfileMenuModal";
+import DisplayComment from "../../Comment/DisplayComments";
+import CommentForm from "../../Comment/AddComment";
 
 
 function PostDetails({ post, onClose }) {
@@ -23,15 +25,19 @@ function PostDetails({ post, onClose }) {
             <div className="profile-modal-data-container">
                 <div className="profile-modal-username">
                     <NavLink onClick={onClose} to={`/users/${post?.users?.id}`}>{post?.users?.username}</NavLink>
-                    {/* <span className="">. . .</span> */}
-                    {/* <i className="fa-solid fa-ellipsis"></i> */}
+
                     <MenuModal post={post} />
                 </div>
                 <div className="profile-modal-caption" >
                     {post?.caption}
-                    <EditPostModal post={post} />
                 </div>
-                <button onClick={handleDelete} id={post.id}>Delete</button>
+                <div>
+                    <DisplayComment comments={post.comments}/>
+                </div>
+                <div>
+                    <CommentForm id={post.id}/>
+                </div>
+
             </div>
         </>
     )
