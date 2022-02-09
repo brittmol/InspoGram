@@ -23,3 +23,17 @@
     height: 10rem;
     border-bottom: var(--border-light);
 }
+
+.modal-menu-edit,
+.modal-menu-delete {
+    height: 50%;
+    width: 100%;
+    border: none;
+    background-color: var(--color-white);
+    cursor: pointer;
+}
+
+.modal-menu-delete {
+    border-top: var(--border-light);
+    color: var(--color-error);
+}

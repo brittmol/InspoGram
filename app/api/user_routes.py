@@ -39,19 +39,6 @@ def get_posts_by_user(id):
     return {'posts': [post.to_dict() for post in posts_by_id]}
 
 
-#     q = (session.query(Group, Member, Item, Version)
-#         .join(Member)
-#         .join(Item)
-#         .join(Version)
-#         .filter(Version.name == my_version)
-#         .order_by(Group.number)
-#         .order_by(Member.number)
-#         ).all()
-# print_tree(q)
-
-# hirzai_owners = session.query(Owner) \
-#                        .join(Pony)  \
-#                        .filter(Pony.breed == "Hirzai")
 
 
 # Gets all the comments by specific user

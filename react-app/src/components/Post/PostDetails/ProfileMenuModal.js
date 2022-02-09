@@ -9,6 +9,7 @@ import EditPostModal from "./EditPost";
 function MenuModal({post}) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch()
+    const user = useSelector(state => state.session.user)
 
     const onCloseMenuModal = () => {
       setShowModal(false)
@@ -22,11 +23,13 @@ function MenuModal({post}) {
 
     return (
         <>
+        {user.id === post.users.id &&
         <span onClick={() => setShowModal(true)}>. . .</span>
+        }
         {showModal && (
             <ProfileMenuModal onClose={onCloseMenuModal}>
                 <EditPostModal onCloseMenuModal={onCloseMenuModal} post={post} />
-                <button onClick={handleDelete} id={post.id}>Delete</button>
+                <button className="modal-menu-delete" onClick={handleDelete} id={post.id}>Delete post</button>
             </ProfileMenuModal>
         )}
         </>

@@ -17,7 +17,7 @@ function EditPostModal ({post, onCloseMenuModal}) {
 
   return (
     <>
-      <button id={post.id} onClick={() => setShowModal(true)}>
+      <button className='modal-menu-edit' id={post.id} onClick={() => setShowModal(true)}>
             Edit Caption
       </button>
       {showModal && (
