@@ -1,45 +1,59 @@
-import { React, useEffect, useState } from "react"; //
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteALike, getLikesByUser, likeAPost } from '../../store/post';
+import { deleteALike, getAllPost, getLikesByUser, likeAPost } from '../../store/post';
 
-import CommentForm from '../Comment/AddComment';
-import DisplayComment from '../Comment/DisplayComments';
+import FeedCommentForm from '../Comment/FeedComment';
+import cat from '../../images/cat.jpg'
 import './SinglePost.css';
 
 
 
-const SinglePost = (post) => {
+const SinglePost = (id) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
+    const posts = useSelector(state => state.post.posts);
     const likes = useSelector(state => state.post.likes);
+    const [likeCount, setLikeCount] = useState(0)
     const [like, setLike] = useState(false)
+
+    let post = posts.filter(e => e.id === id.id)
 
     useEffect(() => {
         const payload = {
-            id: sessionUser.id
+            id: sessionUser?.id
         }
-
+        dispatch(getAllPost(payload));
         dispatch(getLikesByUser(payload))
-    }, [dispatch, sessionUser, post])
+    }, [dispatch, sessionUser])
 
     useEffect(() => {
-        setLike(likes?.includes(post?.post.id))
-    },[likes, post])
+        setLikeCount(post[0]?.likes.length)
+        setLike(likes?.includes(post[0]?.id))
+    },[likes])
+
+    const handleClick = () => {
+        console.log(post[0]?.likes.length)
+        like ? setLike(false) : setLike(true)
+        like ? dispatch(deleteALike({id: post[0]?.id})) : dispatch(likeAPost({id: post[0]?.id}))
+        like ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1)
+    }
 
     return (
         <div className="post">
-            <Link to={`/users/${post?.post.user_id}`}>
-                <h2 className='post-owner'>{post?.post.users.username}</h2>
-            </Link>
-            <img className="photo" src={post?.post.photos[0].photo} alt="users-pic" />
+            <div className="post-owner-header">
+                {/* <div className="user-info"> */}
+                    <img className='post-profile-pic' src={cat} alt='cat' />
+                    <Link to={`/users/${post[0]?.user_id}`}>
+                        <h2 className='post-owner'>{post[0]?.users.username}</h2>
+                    </Link>
+                {/* </div> */}
+                {/* <span className="drop-menu">. . .</span> */}
+            </div>
+            <img className="photo" src={post[0]?.photos[0].photo} alt="users-pic" />
             <div className='s-media-btn'>
                 <div className='like-btn s-button'
-                    onClick={() => {
-                        like ? setLike(false) : setLike(true)
-                        like ? dispatch(deleteALike({id: post?.post.id})) :
-                        dispatch(likeAPost({id: post?.post.id}))
-                    }}
+                    onClick={() => handleClick()}
                 >
                     { like ?
                     <i className="fas fa-heart liked"></i>:
@@ -50,22 +64,21 @@ const SinglePost = (post) => {
                     <i className="far fa-comment"></i>
                 </div>
             </div>
-            {post.post.likes.length > 0 ?
+            {likeCount > 0 ?
                 <div className='post-likes'>
                     Liked by
-                    <Link to="#"> {post.post.likes.length} others</Link>
+                    <Link to="#"> {likeCount} others</Link>
                 </div> :
                 <></>
             }
             <div className='post-caption'>
-                <Link to={`/users/${post.post.users.id}`}>{post.post.users.username}  </Link>
-                <p className='caption'>{post.post.caption}</p>
+                <Link to={`/users/${post[0]?.users.id}`}>{post[0]?.users.username}  </Link>
+                <p className='caption'>{post[0]?.caption}</p>
             </div>
             <div className='comment-section'>
-                <DisplayComment comments={post.post.comments} />
+                <FeedCommentForm id={post[0]?.id} />
+                {/* <DisplayComment id={post[0]?.id} /> */}
             </div>
-            <CommentForm id={post.post.id} />
-
         </div>
     )
 }

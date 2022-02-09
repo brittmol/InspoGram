@@ -45,7 +45,7 @@ const deleteLike = (like) => {
 }
 
 // CRUD FEATRURE WITH REDUX
-// GET 
+// GET
 export const getLikesByUser = (payload) => async(dispatch) => {
     const response = await fetch(`/api/users/${payload.id}/likes`);
 
@@ -101,6 +101,7 @@ export const createComment = (payload) => async(dispatch) =>{
         body: JSON.stringify(payload)
     })
 
+    console.log(response, '*******payload****************')
     if (response.ok) {
         const data = await response.json()
         dispatch(addComment(data))
@@ -177,8 +178,25 @@ const postReducer = (state = {}, action) => {
         case GET_LIKES:
             const allLikes = action.likes['likes'];
             return { ...state, 'likes': allLikes }
+        case ADD_LIKE:
+            newState = { ...state }
+            for(let post of newState.posts) {
+                if(post.id === action.like.post_id){
+                    post.likes = [...post.likes, action.like]
+                    console.log(newState)
+                    return newState
+                }
+            }
+            return newState
         case DELETE_LIKE:
-            return { ...state }
+            newState = { ...state }
+            for(let post of newState.posts) {
+                if(post.id === action.like.id) {
+                    post.likes = post.likes.filter((p) => p.post_id !== action.like.id)
+                    return newState
+                }
+            }
+            return newState
         default:
             return state
     }

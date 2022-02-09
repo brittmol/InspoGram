@@ -19,7 +19,7 @@ def edit_comment(id):
     if(len(req['comment'])):
         comment.comment = req['comment'] # replaces old comment with new one
         db.session.commit() # commits the changes in database
-
+    print(comment.to_dict(), 'dajhdiashduiuasdiu****************************')
     return comment.to_dict()
 
 @comments_router.route('/<int:id>/delete', methods=['DELETE'])
