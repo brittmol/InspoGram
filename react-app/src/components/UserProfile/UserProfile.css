@@ -115,4 +115,5 @@
 
 .post-icon-container span {
   padding-left: 1rem;
+  font-family: var(--font);
 }

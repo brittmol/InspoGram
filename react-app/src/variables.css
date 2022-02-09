@@ -13,4 +13,7 @@
     /* BORDER */
     --border-light: 1px solid lightgray;
     --border-dark: 1px solid gray;
+
+    /* FONT */
+    --font: Arial, Helvetica, sans-serif;
 }
