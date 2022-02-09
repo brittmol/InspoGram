@@ -16,6 +16,7 @@ const SinglePost = (post) => {
     const likes = useSelector(state => state.post.likes);
     const [like, setLike] = useState(false)
 
+    console.log(like)
     useEffect(() => {
         const payload = {
             id: sessionUser.id
@@ -32,11 +33,14 @@ const SinglePost = (post) => {
 
     return (
         <div className="post">
-            <div>
-                <img className='profile-pic' src={cat} alt='cat' />
-                <Link to={`/users/${post?.post.user_id}`}>
-                    <h2 className='post-owner'>{post?.post.users.username}</h2>
-                </Link>
+            <div className="post-owner-header">
+                {/* <div className="user-info"> */}
+                    <img className='post-profile-pic' src={cat} alt='cat' />
+                    <Link to={`/users/${post?.post.user_id}`}>
+                        <h2 className='post-owner'>{post?.post.users.username}</h2>
+                    </Link>
+                {/* </div> */}
+                {/* <span className="drop-menu">. . .</span> */}
             </div>
             <img className="photo" src={post?.post.photos[0].photo} alt="users-pic" />
             <div className='s-media-btn'>
