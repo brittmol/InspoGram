@@ -181,8 +181,8 @@ const postReducer = (state = {}, action) => {
             newState = { ...state }
             for(let post of newState.posts) {
                 if(post.id === action.like.post_id){
-                    post.likes.push(action.like)
-                    console.log(post)
+                    post.likes = [...post.likes, action.like]
+                    console.log(newState)
                     return newState
                 }
             }
@@ -195,7 +195,7 @@ const postReducer = (state = {}, action) => {
                     return newState
                 }
             }
-            return { ...state }
+            return newState
         default:
             return state
     }

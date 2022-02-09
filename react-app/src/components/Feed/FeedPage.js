@@ -24,7 +24,7 @@ function FeedPage() {
     return (
         <>
             {Object.values(posts)?.map((post) => {
-                return <SinglePost key={post.id} post={post}/>
+                return <SinglePost key={post.id} id={post.id}/>
             })}
         </>
     )
