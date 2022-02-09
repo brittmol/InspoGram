@@ -1,7 +1,8 @@
-const LOAD_POSTS = 'userPosts/GET_POSTS'
-const ADD_USER_POST = 'userPosts/ADD_USER_POSTS'
-const EDIT_USER_POST = 'userPosts/EDIT_USER_POSTS'
-const DELETE_USER_POST = 'userPosts/DELETE_USER_POSTS'
+const LOAD_POSTS = 'userPosts/GET_POSTS';
+const ADD_USER_POST = 'userPosts/ADD_USER_POSTS';
+const EDIT_USER_POST = 'userPosts/EDIT_USER_POSTS';
+const DELETE_USER_POST = 'userPosts/DELETE_USER_POSTS';
+const ADD_LIKE = 'userPosts/ADD_LIKE';
 
 const loadPosts = (posts) => {
     return {
@@ -27,6 +28,13 @@ export const editUserPost = (post) => {
 const deletePost = (id) => {
     return {
         type: DELETE_USER_POST,
+        id
+    }
+}
+
+const addLike = (id) => {
+    return {
+        type: ADD_LIKE,
         id
     }
 }
@@ -84,6 +92,31 @@ export const getUserPosts = (id) => async(dispatch) => {
     // add a message for no posts found
 }
 
+export const likeAPost = (id) => async(dispatch) => {
+
+    const response = await fetch(`/api/posts/${id}/likes`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id })
+    })
+    if(response.ok) {
+        const data = await response.json()
+
+        dispatch(addLike(data))
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+
+}
+
 const userPostsReducer = (state={}, action) => {
     let newState = {}
     switch(action.type) {
@@ -102,6 +135,8 @@ const userPostsReducer = (state={}, action) => {
                 newState[post.id] = post
             });
             return newState
+        case ADD_LIKE:
+            return {...state}
         default:
             return state
     }

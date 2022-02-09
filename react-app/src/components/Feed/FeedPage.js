@@ -21,9 +21,9 @@ function FeedPage() {
 
     return (
         <>
-
+            {console.log(sessionUser)}
             {posts[0]?.map((post) => {
-                return <SinglePost key={post.id} post={post} />
+                return <SinglePost key={post.id} post={post} user={sessionUser} />
             })}
 
         </>
