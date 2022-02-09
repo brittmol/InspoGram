@@ -1,3 +1,13 @@
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .post{
     display: flex;
     flex-direction: column;
@@ -5,4 +15,54 @@
     max-width: 614px;
     margin: 10px auto;
     border: var(--border-light)
+}
+
+.post-owner {
+    margin-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.post-caption {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.4rem;
+    margin: 8px 15px;
+}
+
+.caption {
+
+    margin-left: 5px;
+}
+
+.post-likes {
+    margin-left: 15px;
+    margin-top: 5px;
+    font-size: 1.4rem;
+}
+
+.s-media-btn {
+    display: flex;
+    margin-left: 15px;
+    font-size: 2.35rem;
+    align-items: center;
+    margin-top: 5px;
+
+}
+
+.s-button {
+    margin-right: 10px;
+}
+
+.s-button:hover {
+    color: gray;
+}
+
+.like-btn:active {
+    color: red;
+}
+
+.liked {
+    color: red;
 }

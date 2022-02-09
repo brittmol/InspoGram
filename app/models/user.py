@@ -69,5 +69,5 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'created_at': self.created_at,
             'followers': [follower.f_to_dict() for follower in self.followers],
-            'following': [follow.f_to_dict() for follow in self.following]
+            'following': [follow.f_to_dict() for follow in self.following],
         }
