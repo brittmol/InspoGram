@@ -45,7 +45,7 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpPage />
         </Route>
-        <Route path='/feed' exact={true}>
+        <Route path='/feed' >
           <FeedPage />
         </Route>
         <ProtectedRoute path='/users' exact={true} >

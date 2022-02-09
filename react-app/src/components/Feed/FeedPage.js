@@ -8,6 +8,7 @@ function FeedPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const posts = useSelector(state => state.post.posts);
+    //const posts = useSelector(state => state.post);
     
 
     useEffect(() => {
@@ -16,16 +17,15 @@ function FeedPage() {
         }
 
         dispatch(getAllPost(payload));
-    }, [dispatch])
+    }, [dispatch, sessionUser])
 
     if (!posts) return null;
 
     return (
         <>
-            {posts?.map((post) => {
+            {Object.values(posts)?.map((post) => {
                 return <SinglePost key={post.id} post={post}/>
             })}
-
         </>
     )
 }

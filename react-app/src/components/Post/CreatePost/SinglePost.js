@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react"; //
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getLikesByUser } from '../../../store/post';
+import { getLikesByUser, likeAPost } from '../../../store/post';
 
 import CommentForm from '../../Comment/AddComment';
 import DisplayComment from '../../Comment/DisplayComments';
@@ -21,21 +21,25 @@ const SinglePost = (post) => {
         }
 
         dispatch(getLikesByUser(payload))
-    }, [dispatch])
+    }, [dispatch, sessionUser, post])
 
     useEffect(() => {
         setLike(likes?.includes(post?.post.id))
-    },[likes])
+    },[likes, post])
     
     return (
         <div className="post">
-            <Link to={`/api/users/${post.post.users.id}`}>
-                <h2 className='post-owner'>{post.post.users.username}</h2>
+            <Link to={`/users/${post?.post.user_id}`}>
+                <h2 className='post-owner'>{post?.post.users.username}</h2>
             </Link>
-            <img className="photo" src={post.post.photos[0].photo} alt="users-pic" />
+            <img className="photo" src={post?.post.photos[0].photo} alt="users-pic" />
             <div className='s-media-btn'>
                 <div className='like-btn s-button'
-                    onClick={() => like ? setLike(false):setLike(true)}
+                    onClick={() => {
+                        like ? setLike(false) : setLike(true)
+                        
+                        dispatch(likeAPost({id: post?.post.id}))
+                    }}
                 >
                     { like ?
                     <i className="fas fa-heart liked"></i>:
@@ -54,7 +58,7 @@ const SinglePost = (post) => {
                 <></>
             }
             <div className='post-caption'>
-                <Link to={`/api/users/${post.post.users.id}`}>{post.post.users.username}  </Link>
+                <Link to={`/users/${post.post.users.id}`}>{post.post.users.username}  </Link>
                 <p className='caption'>{post.post.caption}</p>
             </div>
             <div className='comment-section'>
