@@ -6,7 +6,7 @@ import "./DisplayComment.css"
 function DisplayComment(comments) {
     return (
         <div className="single-comment">
-            {/* {console.log(comments.comments[comments.comments.length - 1])} */}
+            {/* {console.log(comments.comments[comments.comments.length - 1])}   */}
 
             {comments.comments.length > 1 ?
                 <>
