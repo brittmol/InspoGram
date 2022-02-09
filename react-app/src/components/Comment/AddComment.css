@@ -10,3 +10,20 @@
     padding: 15px;
     border: none;
 }
+
+.single-comment {
+    margin: 0px 15px;
+    font-size: 1.4rem;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+
+}
+
+.all-comments {
+    color: gray;
+    font-weight: normal;
+
+}
+
+.user-comments {
+    display: flex;
+}

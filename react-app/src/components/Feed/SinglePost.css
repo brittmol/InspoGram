@@ -19,12 +19,35 @@ a:hover {
     background-color: white;
 }
 
+.post-owner-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 14px 4px 14px 16px;
+}
+
+/* .user-info {
+    display: flex;
+} */
+
+.post-profile-pic {
+    border-radius: 50%;
+    height: 3.1rem;
+    width: 3.1rem;
+    object-fit: cover;
+    border: 1px solid gray;
+}
+
+/* .drop-menu {
+    display: flex;
+    justify-content: flex-end;
+} */
+
 .post-owner {
-    margin-left: 15px;
-    margin-top: 14px;
-    margin-bottom: 14px;
     font-size: 1.4rem;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding-left: 16px;
 }
 
 .post-caption {

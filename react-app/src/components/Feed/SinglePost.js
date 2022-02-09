@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { deleteALike, getAllPost, getLikesByUser, likeAPost } from '../../store/post';
 
 import CommentForm from '../Comment/AddComment';
-//import cat from '../../images/cat.jpg'
+import cat from '../../images/cat.jpg'
 import './SinglePost.css';
 
 
@@ -41,11 +41,14 @@ const SinglePost = (id) => {
 
     return (
         <div className="post">
-            <div>
-                {/* <img className='profile-pic' src={cat} alt='cat' /> */}
-                <Link to={`/users/${post[0]?.user_id}`}>
-                    <h2 className='post-owner'>{post[0]?.users.username}</h2>
-                </Link>
+            <div className="post-owner-header">
+                {/* <div className="user-info"> */}
+                    <img className='post-profile-pic' src={cat} alt='cat' />
+                    <Link to={`/users/${post[0]?.user_id}`}>
+                        <h2 className='post-owner'>{post[0]?.users.username}</h2>
+                    </Link>
+                {/* </div> */}
+                {/* <span className="drop-menu">. . .</span> */}
             </div>
             <img className="photo" src={post[0]?.photos[0].photo} alt="users-pic" />
             <div className='s-media-btn'>
