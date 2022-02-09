@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react"; //
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteALike, getLikesByUser, likeAPost } from '../../store/post';
+import cat from '../../images/cat.jpg'
 
 import CommentForm from '../Comment/AddComment';
 import DisplayComment from '../Comment/DisplayComments';
@@ -27,11 +28,16 @@ const SinglePost = (post) => {
         setLike(likes?.includes(post?.post.id))
     },[likes, post])
 
+    console.log(post.post.likes.length)
+
     return (
         <div className="post">
-            <Link to={`/users/${post?.post.user_id}`}>
-                <h2 className='post-owner'>{post?.post.users.username}</h2>
-            </Link>
+            <div>
+                <img className='profile-pic' src={cat} alt='cat' />
+                <Link to={`/users/${post?.post.user_id}`}>
+                    <h2 className='post-owner'>{post?.post.users.username}</h2>
+                </Link>
+            </div>
             <img className="photo" src={post?.post.photos[0].photo} alt="users-pic" />
             <div className='s-media-btn'>
                 <div className='like-btn s-button'

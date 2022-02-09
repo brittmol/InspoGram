@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // useEffect, 
+import React, { useState } from 'react'; // useEffect,
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from "react-router-dom";
 import { createComment } from '../../store/post';
@@ -35,7 +35,7 @@ function CommentForm(id){
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
             />
-            <button type="submit">
+            <button disabled={!comment.length} type="submit">
                 Post
             </button>
         </form>
