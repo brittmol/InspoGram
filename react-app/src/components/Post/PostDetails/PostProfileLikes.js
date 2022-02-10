@@ -25,8 +25,8 @@ function PostProfileLikes({post}) {
     const [showModal, setShowModal] = useState(false);
 
     // let post = posts.filter(e => e.id === id)
-    console.log(post, 'post&&&&&&&&&&&&&&&&&&&&&&')
-    console.log(likes, 'likes********************')
+
+
 
     useEffect(() => {
         const payload = {
@@ -44,7 +44,7 @@ function PostProfileLikes({post}) {
     const handleClick = () => {
 
         like ? setLike(false) : setLike(true)
-        like ? dispatch(deleteALike({ id: post?.id })) : (dispatch(likeAPost({ id: post?.id })))
+        // like ? dispatch(deleteALike({ id: post?.id })) : (dispatch(likeAPost({ id: post?.id })))
         like ? dispatch(deleteUserLike({ id: post?.id })) : dispatch(addUserLike({id: post?.id}))
         like ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1)
     }

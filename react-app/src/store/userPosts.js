@@ -115,7 +115,7 @@ export const deleteUserLike = (payload) => async (dispatch) => {
             method: 'DELETE'
         })
     if (response.ok) {
-        console.log(payload, 'delete payload')
+
         // dispatch(deleteLike(payload));
         dispatch(deleteLikeFromUser(payload))
         const data = await response.json()
@@ -259,9 +259,9 @@ const userPostsReducer = (state = {}, action) => {
             for (let post in newState) {
 
                 if (newState[post].id === action.like.post_id) {
-                    console.log(newState[post].likes, 'pre push ***********')
+
                     newState[post].likes = [...newState[post].likes, action.like]
-                    console.log(newState[post].likes, 'post push ***********')
+
 
                     return newState
                 }
@@ -283,17 +283,17 @@ const userPostsReducer = (state = {}, action) => {
             // return newState
             for (let post in newState) {
                 newState[post].likes.forEach(like => {
-                    console.log(newState[post], 'in for loop**********')
-                    console.log(like, 'like')
-                    console.log(action.like.id, 'like id action')
+
+
+
                     if (like.post_id === Number(action.like.id)) {
                         like = 1
                         let index = newState[post].likes.indexOf(1)
-                        console.log(newState[post].likes, 'in the delete pre filter')
+
 
                         newState[post].likes.splice(index, 1)
 
-                        console.log(newState[post].likes, 'in the delete post filter')
+
 
                         return newState
                     }

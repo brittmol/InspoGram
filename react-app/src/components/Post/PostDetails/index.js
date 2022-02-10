@@ -1,18 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProfileModal } from '../../../context/Modal';
 // import CreatePostForm from './CreatePostForm';
 import PostDetails from './PostDetailsInModal';
 import { useHistory, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 
-function PostDetailsModal({post}) {
+function PostDetailsModal({ post }) {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory()
-  const {userId} = useParams()
-  const [numLikes, setNumLikes] = useState(0)
+  const { userId } = useParams()
+  const user = useSelector(state => state.session.user)
 
+  const [likesCount, setLikesCount] = useState(0)
+  const [isLiked, setIsLiked] = useState(false)
+
+
+  // post?.likes.forEach(element => {
+  //   console.log(element?.user_id, 'element')
+
+  console.log(isLiked, 'liked****')
+  console.log(likesCount, 'likes count*******')
+  // });
+  useEffect(() => {
+    const filtered = post?.likes?.filter(element => {
+      // console.log(element?.user_id, 'element')
+      return element?.user_id === user?.id
+    });
+
+    setIsLiked(filtered.length >= 1)
+    setLikesCount(post?.likes?.length)
+
+  }, [])
+  useEffect(() => {
+
+  })
 
   const onCloseModal = () => {
     setShowModal(false)
@@ -37,7 +61,7 @@ function PostDetailsModal({post}) {
       <img className='profile-post-img' src={post?.photos[0]?.photo} onClick={handleClick} alt='user-pic'></img>
       {showModal && (
         <ProfileModal onClose={onCloseModal}>
-          <PostDetails post={post} onClose={onCloseModal}/>
+          <PostDetails post={post} onClose={onCloseModal} />
         </ProfileModal>
       )}
     </div>

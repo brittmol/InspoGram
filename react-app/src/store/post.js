@@ -53,7 +53,7 @@ export const getLikesByUser = (payload) => async(dispatch) => {
 
     if (response.ok){
         const likes = await response.json();
-        console.log(likes.likes, 'get likes by user ......************')
+
         dispatch(getLikes(likes));
         // dispatch(getUserLikes(likes.likes))
         return likes
@@ -121,7 +121,7 @@ export const createComment = (payload) => async(dispatch) =>{
 }
 
 export const likeAPost = (payload) => async(dispatch) => {
-    console.log(payload, 'payload ******************')
+
     const response = await fetch(`/api/posts/${payload.id}/likes`, {
         method: "POST",
         headers: {
@@ -131,7 +131,7 @@ export const likeAPost = (payload) => async(dispatch) => {
     })
     if(response.ok) {
         const data = await response.json()
-        console.log(data, 'data************************')
+
         dispatch(addLike(data))
         // dispatch(addUserLike(data))
         return data
@@ -153,7 +153,7 @@ export const deleteALike = (payload) => async(dispatch) => {
         method: 'DELETE'
     })
     if (response.ok){
-        console.log(payload, 'delete payload')
+
         dispatch(deleteLike(payload));
         // dispatch(deleteUserLike(payload))
         const data = await response.json()
