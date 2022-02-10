@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import User, Post, Comment, Like, Photo, db
 from sqlalchemy.orm import joinedload
 
@@ -54,3 +54,29 @@ def get_comments_by_user(id):
 def get_likes_by_user(id):
     likes_by_id = Like.query.filter(Like.user_id == id).all()
     return {'likes': [like.to_dict()['post_id'] for like in likes_by_id] }
+
+
+@user_routes.route('/<int:id>/follow', methods=["POST"])
+@login_required
+def follow_a_user(id):
+    user = User.query.get(id)
+
+    if(user in current_user.following):
+        return {'users': [*current_user.to_dict()["following"]]}
+    else:
+        current_user.following.append(user)
+        db.session.commit()
+        return {'users': [*current_user.to_dict()["following"]]}
+
+
+@user_routes.route('/<int:id>/unfollow')
+@login_required
+def unfollow_a_user(id):
+    user = User.query.get(id)
+
+    if(user in current_user.following):
+        current_user.following.remove(user)
+        db.session.commit()
+        return {'users': [*current_user.to_dict()["following"]]}
+    else:
+        return {'users': [*current_user.to_dict()["following"]]}

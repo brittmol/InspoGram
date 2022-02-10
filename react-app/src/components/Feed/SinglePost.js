@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { deleteALike, getAllPost, getLikesByUser, likeAPost } from '../../store/post';
+// import { getUserPosts } from "../../store/userPosts";
 import ShowPostLikesModal from "../Modal/LikesModal/LikeModal";
 import FeedCommentForm from '../Comment/FeedComment';
 import { LikeModal } from "../../context/Modal";
@@ -17,6 +18,7 @@ const SinglePost = (id) => {
     const posts = useSelector(state => state.post.posts);
     const likes = useSelector(state => state.post.likes);
     const sessionUser = useSelector((state) => state.session.user);
+    // const userPosts = useSelector(state => state.userPostsReducer);
 
     const [like, setLike] = useState(false)
     const [likeCount, setLikeCount] = useState(0);
@@ -28,6 +30,7 @@ const SinglePost = (id) => {
         const payload = {
             id: sessionUser?.id
         }
+        // dispatch(getUserPosts(payload.id))
         dispatch(getAllPost(payload));
         dispatch(getLikesByUser(payload))
     }, [dispatch, sessionUser])

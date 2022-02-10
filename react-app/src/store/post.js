@@ -3,14 +3,17 @@ import { addUserPost } from "./userPosts"
 import { loadPosts } from "./userPosts"
 
 
-const GET_POST = 'post/GET_POST'
-const GET_LIKES = 'post/likes/GET_LIKE'
+const GET_POST = 'post/GET_POST';
+const GET_LIKES = 'post/likes/GET_LIKE';
 
-const ADD_POST = 'post/ADD_POST'
+const ADD_POST = 'post/ADD_POST';
 const ADD_LIKE = 'post/likes/ADD_LIKE';
-const ADD_COMMENT = 'post/CREATE_POST'
+const ADD_COMMENT = 'post/CREATE_POST';
+const FOLLOW_USER = 'user/FOLLOW_USER';
 
 const DELETE_LIKE = 'post/likes/DELETE_LIKE';
+const UNFOLLOW_USER = 'user/UNFOLLOW_USER';
+
 
 const addPost = (post) => ({
     type: ADD_POST,
@@ -32,19 +35,26 @@ const getLikes = (likes) => ({
     likes
 })
 
-export const addLike = (like) => {
-    return {
-        type: ADD_LIKE,
-        like
-    }
-}
+const addLike = (like) => ({
+    type: ADD_LIKE,
+    like
+})
 
-export const deleteLike = (like) => {
-    return {
-        type: DELETE_LIKE,
-        like
-    }
-}
+const followUser = (user) => ({
+    type: FOLLOW_USER,
+    user
+})
+
+
+const deleteLike = (like) => ({
+    type: DELETE_LIKE,
+    like
+})
+
+const unfollowUser = (user) => ({
+    type: UNFOLLOW_USER,
+    user
+})
 
 // CRUD FEATRURE WITH REDUX
 // GET
@@ -146,6 +156,22 @@ export const likeAPost = (payload) => async(dispatch) => {
 
 }
 
+export const followAUser = (id) => async(dispatch) => {
+    const response = await fetch(`/api/users/${id}/follow`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id })
+    })
+    if(response.ok) {
+        const data = await response.json()
+
+        dispatch(followUser(data))
+        return data
+    }
+}
+
 // DELETE
 export const deleteALike = (payload) => async(dispatch) => {
     const response = await fetch(`/api/posts/${payload.id}/likes/delete`,
@@ -159,6 +185,16 @@ export const deleteALike = (payload) => async(dispatch) => {
         const data = await response.json()
 
         return response
+    }
+}
+
+export const unfollowAUser = (id) => async(dispatch) => {
+    const response = await fetch(`/api/users/${id}/unfollow`)
+    if(response.ok) {
+        const data = await response.json()
+
+        dispatch(unfollowUser(data))
+        return data
     }
 }
 
@@ -196,6 +232,9 @@ const postReducer = (state = {}, action) => {
                 }
             }
             return newState
+        case FOLLOW_USER:
+            newState = { ...state }
+            return newState
         case DELETE_LIKE:
             newState = { ...state }
             for(let post of newState.posts) {
@@ -204,6 +243,9 @@ const postReducer = (state = {}, action) => {
                     return newState
                 }
             }
+            return newState
+        case UNFOLLOW_USER:
+            newState = { ...state }
             return newState
         default:
             return state
