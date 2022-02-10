@@ -9,6 +9,8 @@ import ShowPostLikesModal from "../../Modal/LikesModal/LikeModal";
 import { LikeModal } from '../../../context/Modal'
 import cat from '../../../images/cat.jpg'
 import '../../Feed/SinglePost.css'
+import { addUserLike, deleteUserLike } from "../../../store/userPosts";
+
 
 function PostProfileLikes({post}) {
     const dispatch = useDispatch();
@@ -30,7 +32,7 @@ function PostProfileLikes({post}) {
         const payload = {
             id: sessionUser?.id
         }
-        // dispatch(getAllPost(payload));
+        dispatch(getAllPost(payload));
         dispatch(getLikesByUser(payload))
     }, [dispatch, sessionUser])
 
@@ -42,7 +44,8 @@ function PostProfileLikes({post}) {
     const handleClick = () => {
 
         like ? setLike(false) : setLike(true)
-        like ? dispatch(deleteALike({ id: post?.id })) : dispatch(likeAPost({ id: post?.id }))
+        like ? dispatch(deleteALike({ id: post?.id })) : (dispatch(likeAPost({ id: post?.id })))
+        like ? dispatch(deleteUserLike({ id: post?.id })) : dispatch(addUserLike({id: post?.id}))
         like ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1)
     }
 

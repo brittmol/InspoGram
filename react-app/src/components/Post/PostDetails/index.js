@@ -11,6 +11,9 @@ function PostDetailsModal({post}) {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory()
   const {userId} = useParams()
+  const [numLikes, setNumLikes] = useState(0)
+
+
   const onCloseModal = () => {
     setShowModal(false)
     history.push(`/users/${userId}`)

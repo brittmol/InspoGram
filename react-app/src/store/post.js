@@ -1,5 +1,7 @@
 // constants
 import { addUserPost } from "./userPosts"
+import { loadPosts } from "./userPosts"
+
 
 const GET_POST = 'post/GET_POST'
 const GET_LIKES = 'post/likes/GET_LIKE'
@@ -30,14 +32,14 @@ const getLikes = (likes) => ({
     likes
 })
 
-const addLike = (like) => {
+export const addLike = (like) => {
     return {
         type: ADD_LIKE,
         like
     }
 }
 
-const deleteLike = (like) => {
+export const deleteLike = (like) => {
     return {
         type: DELETE_LIKE,
         like
@@ -51,7 +53,9 @@ export const getLikesByUser = (payload) => async(dispatch) => {
 
     if (response.ok){
         const likes = await response.json();
+        console.log(likes.likes, 'get likes by user ......************')
         dispatch(getLikes(likes));
+        // dispatch(getUserLikes(likes.likes))
         return likes
     };
 }
@@ -129,6 +133,7 @@ export const likeAPost = (payload) => async(dispatch) => {
         const data = await response.json()
         console.log(data, 'data************************')
         dispatch(addLike(data))
+        // dispatch(addUserLike(data))
         return data
     } else if (response.status < 500) {
         const data = await response.json();
@@ -150,7 +155,7 @@ export const deleteALike = (payload) => async(dispatch) => {
     if (response.ok){
         console.log(payload, 'delete payload')
         dispatch(deleteLike(payload));
-
+        // dispatch(deleteUserLike(payload))
         const data = await response.json()
 
         return response
