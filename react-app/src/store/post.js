@@ -101,7 +101,7 @@ export const createComment = (payload) => async(dispatch) =>{
         body: JSON.stringify(payload)
     })
 
-    console.log(response, '*******payload****************')
+
     if (response.ok) {
         const data = await response.json()
         dispatch(addComment(data))
@@ -149,7 +149,7 @@ export const deleteALike = (payload) => async(dispatch) => {
     if (response.ok){
         dispatch(deleteLike(payload));
         const data = await response.json()
-        console.log(data)
+
         return response
     }
 }
@@ -183,7 +183,7 @@ const postReducer = (state = {}, action) => {
             for(let post of newState.posts) {
                 if(post.id === action.like.post_id){
                     post.likes = [...post.likes, action.like]
-                    console.log(newState)
+
                     return newState
                 }
             }

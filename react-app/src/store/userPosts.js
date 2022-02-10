@@ -159,10 +159,10 @@ export const createUserComment = (payload) => async (dispatch) => {
         body: JSON.stringify(payload)
     })
 
-    console.log(response, 'response00000000000')
+
     if (response.ok) {
         const data = await response.json()
-        console.log(data.comment, 'comment data***********')
+
 
         dispatch(addUserComment(data))
         return data
@@ -202,8 +202,8 @@ const userPostsReducer = (state = {}, action) => {
         case ADD_USER_COMMENT:
             newState = { ...state }
             for (let post in newState) {
-                // console.log(post, 'action comment)))0)))))')
-                // console.log(newState[post],'in the for************* loop')
+
+
                 if (newState[post].id === action.comment.post_id) {
                     newState[post].comments.push(action.comment)
                     return newState

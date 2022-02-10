@@ -26,7 +26,7 @@ function CommentModal({comment}) {
         onCloseMenuModal()
     }
 
-    console.log(comment, 'comment modal')
+
     if (comment.user.id === user.id) {
 
         return (

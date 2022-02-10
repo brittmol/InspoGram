@@ -19,7 +19,7 @@ function PostDetails({ post, onClose }) {
         onClose()
     }
 
-    console.log(post, 'unddjoaijdoiajsoidjioasdjids&&&&&&&&&&&&')
+
     return (
         <>
             <div className="profile-modal-img-container">

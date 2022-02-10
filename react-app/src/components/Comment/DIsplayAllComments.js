@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 function DisplayAllComments(comments) {
 
-    console.log(comments, '____________-----------------')
+
     const posts = useSelector(state => state.userPostsReducer)
 
     const {userId} = useParams()

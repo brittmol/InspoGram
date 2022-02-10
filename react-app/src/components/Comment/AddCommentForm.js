@@ -13,7 +13,7 @@ function AddCommentForm({id, flag}){
     const [disabled, setDisabled] = useState(true)
     const history = useHistory();
     //const [errors, setErrors] = useState([])
-    console.log('in component ***********************(')
+
     useEffect(() => {
         if (comment.length > 0) {
             setDisabled(false)
@@ -28,7 +28,7 @@ function AddCommentForm({id, flag}){
 
     const handleUserSubmit = async (e) => {
         e.preventDefault()
-        console.log(id, 'user*****************11111111')
+
 
         const payload = {
             comment,
@@ -37,7 +37,7 @@ function AddCommentForm({id, flag}){
         }
 
         setComment("");
-        console.log(payload, 'payload(((((((((())))))))))')
+
         dispatch(createUserComment(payload))
         // history.push('/feed')
     }
@@ -47,7 +47,7 @@ function AddCommentForm({id, flag}){
 
         const handleSubmit = async (e) => {
             e.preventDefault()
-            console.log(id, 'habdle*(************')
+
 
             const payload = {
                 comment,

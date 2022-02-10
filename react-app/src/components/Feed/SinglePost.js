@@ -33,7 +33,7 @@ const SinglePost = (id) => {
     },[likes])
 
     const handleClick = () => {
-        console.log(post[0]?.likes.length)
+
         like ? setLike(false) : setLike(true)
         like ? dispatch(deleteALike({id: post[0]?.id})) : dispatch(likeAPost({id: post[0]?.id}))
         like ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1)

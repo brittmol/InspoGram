@@ -11,7 +11,7 @@ const EditCommentForm = ({pastComment, onClose}) => {
     const [comment, setComment] = useState(pastComment?.comment || "")
     const [errors, setErrors] = useState([])
     //const user = useSelector(state => state.session.user);
-    console.log(pastComment.comment, 'past comment**********************')
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
