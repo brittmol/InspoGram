@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { ProfileMenuModal } from "../../context/Modal";
 import EditCommentModal from "./EditCommentModal";
 import { deleteUserComment } from "../../store/userPosts";
+import { useParams } from "react-router-dom";
 
 
 
@@ -13,6 +14,7 @@ function CommentModal({comment}) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
+    const {userId} = useParams()
 
     const onCloseMenuModal = () => {
       setShowModal(false)
@@ -24,19 +26,43 @@ function CommentModal({comment}) {
         onCloseMenuModal()
     }
 
-    return (
-        <>
-        {/* {user?.id === post?.users?.id && */}
-        <span onClick={() => setShowModal(true)}>. . .</span>
-        {/* } */}
-        {showModal && (
-            <ProfileMenuModal onClose={onCloseMenuModal}>
-                <EditCommentModal onCloseMenuModal={onCloseMenuModal} comment={comment} />
-                <button className="modal-menu-delete" onClick={handleDelete} id={comment.id}>Delete comment</button>
-            </ProfileMenuModal>
-        )}
-        </>
-    )
+    console.log(comment, 'comment modal')
+    if (comment.user.id === user.id) {
+
+        return (
+            <>
+            {/* {user?.id === post?.users?.id && */}
+            <span onClick={() => setShowModal(true)}>. . .</span>
+            {/* } */}
+            {showModal && (
+                <ProfileMenuModal onClose={onCloseMenuModal}>
+                    <EditCommentModal onCloseMenuModal={onCloseMenuModal} comment={comment} />
+                    <button className="modal-menu-delete" onClick={handleDelete} id={comment.id}>Delete comment</button>
+                </ProfileMenuModal>
+            )}
+            </>
+        )
+
+    } else if(user.id === Number(userId)) {
+        return (
+            <>
+            {/* {user?.id === post?.users?.id && */}
+            <span onClick={() => setShowModal(true)}>. . .</span>
+            {/* } */}
+            {showModal && (
+                <ProfileMenuModal onClose={onCloseMenuModal}>
+
+                    <button className="modal-menu-delete" onClick={handleDelete} id={comment.id}>Delete comment</button>
+                </ProfileMenuModal>
+            )}
+            </>
+        )
+    } else {
+        return (
+            null
+        )
+    }
+
 }
 
 export default CommentModal;

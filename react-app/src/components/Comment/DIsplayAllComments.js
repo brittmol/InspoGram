@@ -8,7 +8,6 @@ function DisplayAllComments(comments) {
     const posts = useSelector(state => state.userPostsReducer)
 
 
-    console.log(posts, 'post id ***********')
 
     return (
         <>
