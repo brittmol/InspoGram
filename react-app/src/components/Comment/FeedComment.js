@@ -94,7 +94,7 @@ function FeedCommentForm(id) {
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                 />
-                <button disabled={!comment.length} type="submit">
+                <button className='post-btn' disabled={!comment.length} type="submit">
                     Post
                 </button>
             </form>
