@@ -1,0 +1,53 @@
+.list-of-likes{
+    display: flex;
+    justify-content: space-between;
+    width: 92%;
+    margin: .5rem;
+}
+
+.user-prof-pic{
+    display: flex;
+}
+
+.user-info{
+    margin-left: 10px;
+}
+
+.follow-btn{
+    background-color: var(--blue-primary);
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    width: 6.2rem;
+    height: 2rem;
+}
+
+.following-btn{
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: var(--border-light);
+    width: 6rem;
+    height: 2rem;
+}
+
+.follow-btn:active{
+    background-color: var(--blue-light);
+    color: black;
+}
+
+.following-btn:active{
+    color: var(--blue-primary);
+}
+
+.me-btn{
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: var(--border-light);
+    width: 6rem;
+    height: 2rem;
+}

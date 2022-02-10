@@ -13,9 +13,10 @@ function CreatePostModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>
-            Create post
-      </button>
+      <i className="fas fa-plus" onClick={() => setShowModal(true)}></i>
+      {/* <button onClick={() => setShowModal(true)}> */}
+            {/* Create post */}
+      {/* </button> */}
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CreatePostForm onClose={onCloseModal}/>
