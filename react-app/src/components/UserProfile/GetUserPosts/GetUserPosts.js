@@ -16,7 +16,7 @@ function GetUserPosts() {
 
     useEffect(() => {
         dispatch(getUserPosts(userId))
-    }, [])
+    }, [userId])
 
 
     const postsList = Object.values(posts)
