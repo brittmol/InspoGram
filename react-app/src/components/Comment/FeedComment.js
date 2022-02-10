@@ -31,7 +31,7 @@ function FeedCommentForm(id) {
 
     useEffect(() => {
         const payload = {
-            id: sessionUser.id
+            id: sessionUser?.id
         }
         dispatch(getAllPost(payload));
     }, [dispatch, sessionUser]);
@@ -57,12 +57,12 @@ function FeedCommentForm(id) {
         const payload = {
             comment,
             post_id: id.id,
-            user_id: sessionUser.id
+            user_id: sessionUser?.id
         }
 
         setLastComment(payload.comment);
         setCommentCount(commentCount + 1);
-        setLastUser(sessionUser.username);
+        setLastUser(sessionUser?.username);
         setComment("");
         dispatch(createComment(payload))
     }
