@@ -117,6 +117,7 @@ export const createComment = (payload) => async(dispatch) =>{
 }
 
 export const likeAPost = (payload) => async(dispatch) => {
+    console.log(payload, 'payload ******************')
     const response = await fetch(`/api/posts/${payload.id}/likes`, {
         method: "POST",
         headers: {
@@ -126,7 +127,7 @@ export const likeAPost = (payload) => async(dispatch) => {
     })
     if(response.ok) {
         const data = await response.json()
-
+        console.log(data, 'data************************')
         dispatch(addLike(data))
         return data
     } else if (response.status < 500) {
@@ -147,7 +148,9 @@ export const deleteALike = (payload) => async(dispatch) => {
         method: 'DELETE'
     })
     if (response.ok){
+        console.log(payload, 'delete payload')
         dispatch(deleteLike(payload));
+
         const data = await response.json()
 
         return response
