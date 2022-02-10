@@ -11,10 +11,12 @@ i {
 }
 
 nav {
+  /* position: sticky; */
+  top: 0;
   margin: 0;
   padding: 0 20px;
   height: 65px;
-  width: 300rem;
+  width: 100%;
   background-color: white;
   border: var(--border-light);
 }
