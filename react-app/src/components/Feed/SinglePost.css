@@ -71,12 +71,13 @@ a:hover {
 }
 
 .s-media-btn {
+    box-sizing: border-box;
     display: flex;
-    margin-left: 15px;
     font-size: 2.35rem;
     align-items: center;
-    margin-top: 5px;
-
+    /* margin-left: 15px; */
+    /* margin-top: 5px; */
+    padding: 8px 15px 0px;
 }
 
 .s-button {
@@ -85,12 +86,14 @@ a:hover {
 
 .s-button:hover {
     color: gray;
+    cursor: pointer;
 }
 
 .not-liked:active {
-    color: red;
+    /* color: rgb(224, 66, 66); */
+    color: rgb(233, 90, 90);
 }
 
 .liked {
-    color: red;
+    color: rgb(233, 90, 90);
 }
