@@ -26,6 +26,7 @@ function PostDetailsModal({post}) {
 
   return (
     <div className='profile-post-container'>
+      {console.log(post)}
       <div className="post-icon-container">
         <i className="fas fa-heart hover-icon"><span>{post?.likes?.length}</span></i>
         <i className="fas fa-comment hover-icon"><span>{post?.comments?.length}</span></i>
