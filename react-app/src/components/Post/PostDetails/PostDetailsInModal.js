@@ -5,7 +5,7 @@ import EditPostModal from "../EditPost";
 import './PostDetails.css'
 import MenuModal from "./ProfileMenuModal";
 // import DisplayComment from "../../Comment/DisplayComments";
-import AddCommentForm from "../../Comment/FeedComment";
+import AddCommentForm from "../../Comment/AddCommentForm";
 import DisplayAllComments from "../../Comment/DIsplayAllComments";
 
 
@@ -18,6 +18,8 @@ function PostDetails({ post, onClose }) {
         dispatch(deleteUserPost(id))
         onClose()
     }
+
+
     return (
         <>
             <div className="profile-modal-img-container">

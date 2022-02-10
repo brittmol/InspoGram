@@ -28,4 +28,4 @@ def delete_comment(id):
     comment = Comment.query.get(id) # grabs the post you want to delete
     db.session.delete(comment) # deletes the post from data base
     db.session.commit() # commits the changes in database
-    return # exits
+    return {"message": "Deleted"}
