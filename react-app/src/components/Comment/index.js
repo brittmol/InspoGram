@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 // import EditPostModal from "../EditPost";
 import { ProfileMenuModal } from "../../context/Modal";
 import EditCommentModal from "./EditCommentModal";
+import { deleteUserComment } from "../../store/userPosts";
 
 
 
@@ -19,7 +20,7 @@ function CommentModal({comment}) {
 
     const handleDelete = (e) => {
         const id = e.target.id
-        // dispatch(deleteUserComment(id))
+        dispatch(deleteUserComment(id))
         onCloseMenuModal()
     }
 

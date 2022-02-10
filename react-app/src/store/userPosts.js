@@ -4,6 +4,7 @@ const EDIT_USER_POST = 'userPosts/EDIT_USER_POSTS';
 const DELETE_USER_POST = 'userPosts/DELETE_USER_POSTS';
 const ADD_USER_COMMENT = 'userPost/CREATE_POST'
 const UPDATE_USER_COMMENT = 'userPost/UPDATE_USER_COMMENT'
+const DELETE_USER_COMMENT = 'userPost/DELETE_USER_COMMENT'
 
 
 const loadPosts = (posts) => {
@@ -35,6 +36,13 @@ export const editUserPost = (post) => {
 const deletePost = (id) => {
     return {
         type: DELETE_USER_POST,
+        id
+    }
+}
+
+const removeUserComment = (id) => {
+    return {
+        type: DELETE_USER_COMMENT,
         id
     }
 }
@@ -107,6 +115,23 @@ export const deleteUserPost = (id) => async (dispatch) => {
     const data = await response.json()
     if (data.message === 'Deleted') {
         dispatch(deletePost(id))
+    }
+}
+
+export const deleteUserComment = (id) => async(dispatch) => {
+
+    const response = await fetch(`/api/comments/${id}/delete`,
+    {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id })
+    })
+    const data = await response.json()
+    if (data.message === 'Deleted') {
+
+        dispatch(removeUserComment(id))
     }
 }
 
@@ -198,7 +223,19 @@ const userPostsReducer = (state = {}, action) => {
                 }
             }
             return newState
-
+        case DELETE_USER_COMMENT:
+            newState = {...state}
+            for (let post in newState) {
+                newState[post].comments.forEach(comment => {
+                    if (comment.id === Number(action.id)) {
+                        comment = 1
+                        let index = newState[post].comments.indexOf(1)
+                        newState[post].comments.splice(index, 1)
+                        return newState
+                    }
+                })
+            }
+            return newState
         default:
             return state
     }
