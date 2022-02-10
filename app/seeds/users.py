@@ -3,31 +3,44 @@ from app.models import db, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
+    demo = User( # 1
         username='demo', full_name= "Demo", email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', full_name= "Marnie", email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', full_name= "Bobbie", email='bobbie@aa.io', password='password')
-    susie = User(
-        username='susie', full_name= "Susie", email='susie@aa.io', password='password')
-    john = User(
+    mj = User( # 2
+        username='real_mj', full_name= "Michelle Jones", email='michelleparker@aa.io', password='password')
+    peter = User( # 3
+        username='spidey_boi', full_name= "Peter Parker", email='spiderman@aa.io', password='password')
+    ned = User( # 4
+        username='nerdy_ned', full_name= "Ned leeds", email='nerdBald@aa.io', password='password')
+    john = User( # 5
         username='john_doe', full_name= "John Doe", email='john_doe@aa.io', password='password')
+    jeff = User( # 6
+        username='amazing_packs', full_name="Geff Jranof", email='gopackers@aa.io', password='password')
 
 
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.add(susie)
+    db.session.add(mj)
+    db.session.add(peter)
+    db.session.add(ned)
     db.session.add(john)
+    db.session.add(jeff)
 
     #.followers means users is followed by the appended user
     # user_being_followed.followers.append(user_following)
-    demo.followers.append(marnie)
-    marnie.followers.append(demo)
-    bobbie.followers.append(demo)
-    susie.followers.append(marnie)
-    demo.followers.append(susie)
+    demo.followers.append(mj)
+    demo.followers.append(ned)
+    demo.followers.append(peter)
+    demo.followers.append(john)
+    demo.followers.append(jeff)
+    mj.followers.append(demo)
+    mj.followers.append(ned)
+    mj.followers.append(peter)
+    peter.followers.append(demo)
+    peter.followers.append(mj)
+    peter.followers.append(ned)
+    ned.followers.append(mj)
+    ned.followers.append(demo)
+    ned.followers.append(peter)
+    jeff.followers.append(demo)
 
 
     db.session.commit()

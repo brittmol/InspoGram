@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deleteALike, getAllPost, getLikesByUser, likeAPost } from '../../store/post';
 
+import { deleteALike, getAllPost, getLikesByUser, likeAPost } from '../../store/post';
+import ShowPostLikesModal from "../Modal/LikesModal/LikeModal";
 import FeedCommentForm from '../Comment/FeedComment';
+import { LikeModal } from "../../context/Modal";
 import cat from '../../images/cat.jpg'
 import './SinglePost.css';
 
@@ -11,13 +13,14 @@ import './SinglePost.css';
 
 const SinglePost = (id) => {
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
+
     const posts = useSelector(state => state.post.posts);
     const likes = useSelector(state => state.post.likes);
-    const [likeCount, setLikeCount] = useState(0)
-
+    const sessionUser = useSelector((state) => state.session.user);
 
     const [like, setLike] = useState(false)
+    const [likeCount, setLikeCount] = useState(0);
+    const [showModal, setShowModal] = useState(false);
 
     let post = posts.filter(e => e.id === id.id)
 
@@ -39,6 +42,14 @@ const SinglePost = (id) => {
         like ? setLike(false) : setLike(true)
         like ? dispatch(deleteALike({ id: post[0]?.id })) : dispatch(likeAPost({ id: post[0]?.id }))
         like ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1)
+    }
+
+    const onCloseModal = () => {
+        setShowModal(false)
+    }
+
+    const handleModal = () => {
+        setShowModal(true)
     }
 
     return (
@@ -69,7 +80,12 @@ const SinglePost = (id) => {
             {likeCount > 0 ?
                 <div className='post-likes'>
                     Liked by
-                    <Link to="#"> {likeCount} others</Link>
+                    <Link to="#" onClick={() => handleModal()}> {likeCount} others</Link>
+                    {showModal && (
+                        <LikeModal onClose={onCloseModal}>
+                            <ShowPostLikesModal id={post[0]?.id} onClose={onCloseModal} />
+                        </LikeModal>
+                    )}
                 </div> :
                 <></>
             }

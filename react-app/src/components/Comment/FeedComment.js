@@ -20,6 +20,7 @@ function FeedCommentForm(id) {
     const [lastComment, setLastComment] = useState("");
     const [commentCount, setCommentCount] = useState(0);
 
+    let post = posts.filter(e => e.id === id.id);
 
     useEffect(() => {
         post[0]?.comments[post[0]?.comments.length - 1] ? setLastComment(post[0]?.comments[post[0]?.comments.length - 1].comment) : setLastComment("");
@@ -49,7 +50,6 @@ function FeedCommentForm(id) {
     //const [errors, setErrors] = useState([])
 
     if (!sessionUser) return <Redirect to="/" />;
-    let post = posts.filter(e => e.id === id.id);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
