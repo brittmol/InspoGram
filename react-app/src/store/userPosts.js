@@ -1,3 +1,5 @@
+import { addLike, deleteLike } from "./post";
+
 const LOAD_POSTS = 'userPosts/GET_POSTS';
 const ADD_USER_POST = 'userPosts/ADD_USER_POSTS';
 const EDIT_USER_POST = 'userPosts/EDIT_USER_POSTS';
@@ -5,9 +7,34 @@ const DELETE_USER_POST = 'userPosts/DELETE_USER_POSTS';
 const ADD_USER_COMMENT = 'userPost/CREATE_POST'
 const UPDATE_USER_COMMENT = 'userPost/UPDATE_USER_COMMENT'
 const DELETE_USER_COMMENT = 'userPost/DELETE_USER_COMMENT'
+const ADD_USER_LIKE = 'userPost/ADD_USER_LIKE'
+const GET_USER_LIKES = 'userPost/GET_USER_LIKES'
+const DELETE_USER_LIKE = 'userPost/DELETE_USER_LIKE'
 
 
-const loadPosts = (posts) => {
+
+export const getLikes = (likes) => {
+    return {
+        type: GET_USER_LIKES,
+        likes
+    }
+}
+
+export const addLikeToUser = (like) => {
+    return {
+        type: ADD_USER_LIKE,
+        like
+    }
+}
+
+export const deleteLikeFromUser = (like) => {
+    return {
+        type: DELETE_USER_LIKE,
+        like
+    }
+}
+
+export const loadPosts = (posts) => {
     return {
         type: LOAD_POSTS,
         posts
@@ -51,6 +78,49 @@ const updateComment = (comment) => {
     return {
         type: UPDATE_USER_COMMENT,
         comment
+    }
+}
+
+// export const getUserLikes = (postId) => async(dispatch) => {
+//     const response = await fetch(`/api/users/${payload.id}/likes`)
+// }
+
+export const addUserLike = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${payload.id}/likes`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ payload })
+    })
+    if (response.ok) {
+        const data = await response.json()
+        console.log(data, 'data************************')
+        dispatch(addLikeToUser(data))
+        // dispatch(addLike(data))
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
+}
+
+export const deleteUserLike = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${payload.id}/likes/delete`,
+        {
+            method: 'DELETE'
+        })
+    if (response.ok) {
+
+        // dispatch(deleteLike(payload));
+        dispatch(deleteLikeFromUser(payload))
+        const data = await response.json()
+
+        return response
     }
 }
 
@@ -118,16 +188,16 @@ export const deleteUserPost = (id) => async (dispatch) => {
     }
 }
 
-export const deleteUserComment = (id) => async(dispatch) => {
+export const deleteUserComment = (id) => async (dispatch) => {
 
     const response = await fetch(`/api/comments/${id}/delete`,
-    {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id })
-    })
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id })
+        })
     const data = await response.json()
     if (data.message === 'Deleted') {
 
@@ -184,6 +254,52 @@ export const createUserComment = (payload) => async (dispatch) => {
 const userPostsReducer = (state = {}, action) => {
     let newState = {}
     switch (action.type) {
+        case ADD_USER_LIKE:
+            newState = { ...state }
+            for (let post in newState) {
+
+                if (newState[post].id === action.like.post_id) {
+
+                    newState[post].likes = [...newState[post].likes, action.like]
+
+
+                    return newState
+                }
+            }
+            return newState
+        case DELETE_USER_LIKE:
+            newState = { ...state }
+            // for(let post in newState) {
+                // if(newState[post].id === action.like.id) {
+                //     console.log(newState[post].likes, 'in the delete pre filter')
+                //     console.log(action.like, action.like.id, 'action like')
+                //     newState[post].likes = newState[post].likes.filter((p) => p.post_id !== action.like.id)
+                //     console.log(newState[post].likes, 'in the delete post filter')
+
+                //     return newState
+                // }
+
+            // }
+            // return newState
+            for (let post in newState) {
+                newState[post].likes.forEach(like => {
+
+
+
+                    if (like.post_id === Number(action.like.id)) {
+                        like = 1
+                        let index = newState[post].likes.indexOf(1)
+
+
+                        newState[post].likes.splice(index, 1)
+
+
+
+                        return newState
+                    }
+                })
+            }
+            return newState
         case DELETE_USER_POST:
             newState = { ...state }
             delete newState[action.id]
@@ -211,11 +327,11 @@ const userPostsReducer = (state = {}, action) => {
             }
             return newState
         case UPDATE_USER_COMMENT:
-            newState = {...state}
+            newState = { ...state }
             for (let post in newState) {
                 if (newState[post].id === action.comment.post_id) {
                     newState[post].comments.forEach(comment => {
-                        if(comment.id === action.comment.id) {
+                        if (comment.id === action.comment.id) {
                             comment.comment = action.comment.comment
                         }
                     })
@@ -224,7 +340,7 @@ const userPostsReducer = (state = {}, action) => {
             }
             return newState
         case DELETE_USER_COMMENT:
-            newState = {...state}
+            newState = { ...state }
             for (let post in newState) {
                 newState[post].comments.forEach(comment => {
                     if (comment.id === Number(action.id)) {

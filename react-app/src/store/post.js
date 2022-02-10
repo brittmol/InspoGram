@@ -1,5 +1,7 @@
 // constants
 import { addUserPost } from "./userPosts"
+import { loadPosts } from "./userPosts"
+
 
 const GET_POST = 'post/GET_POST';
 const GET_LIKES = 'post/likes/GET_LIKE';
@@ -61,7 +63,9 @@ export const getLikesByUser = (payload) => async(dispatch) => {
 
     if (response.ok){
         const likes = await response.json();
+
         dispatch(getLikes(likes));
+        // dispatch(getUserLikes(likes.likes))
         return likes
     };
 }
@@ -127,6 +131,7 @@ export const createComment = (payload) => async(dispatch) =>{
 }
 
 export const likeAPost = (payload) => async(dispatch) => {
+
     const response = await fetch(`/api/posts/${payload.id}/likes`, {
         method: "POST",
         headers: {
@@ -138,6 +143,7 @@ export const likeAPost = (payload) => async(dispatch) => {
         const data = await response.json()
 
         dispatch(addLike(data))
+        // dispatch(addUserLike(data))
         return data
     } else if (response.status < 500) {
         const data = await response.json();
@@ -173,7 +179,9 @@ export const deleteALike = (payload) => async(dispatch) => {
         method: 'DELETE'
     })
     if (response.ok){
+
         dispatch(deleteLike(payload));
+        // dispatch(deleteUserLike(payload))
         const data = await response.json()
 
         return response

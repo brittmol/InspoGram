@@ -7,6 +7,8 @@ import MenuModal from "./ProfileMenuModal";
 // import DisplayComment from "../../Comment/DisplayComments";
 import AddCommentForm from "../../Comment/AddCommentForm";
 import DisplayAllComments from "../../Comment/DIsplayAllComments";
+import SinglePost from "../../Feed/SinglePost";
+import PostProfileLikes from "./PostProfileLikes";
 
 
 function PostDetails({ post, onClose }) {
@@ -35,8 +37,10 @@ function PostDetails({ post, onClose }) {
                     {post?.caption}
                 </div>
                 <div>
-                    {/* <DisplayComment comments={post.comments}/> */}
                     <DisplayAllComments comments={post.comments}/>
+                </div>
+                <div>
+                    <PostProfileLikes post={post}/>
                 </div>
                 <div>
                     <AddCommentForm flag={true} id={post.id}/>
