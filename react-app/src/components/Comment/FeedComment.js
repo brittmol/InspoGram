@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { createComment, getAllPost } from '../../store/post';
+import { ProfileModal } from '../../context/Modal';
+import PostDetails from '../Post/PostDetails/PostDetailsInModal';
 import "./AddComment.css";
 
 function FeedCommentForm(id) {
@@ -14,6 +16,7 @@ function FeedCommentForm(id) {
     const [comment, setComment] = useState("");
     const [lastUser, setLastUser] = useState("");
     const [lastUserId, setLastUserId] = useState(0);
+    const [showModal, setShowModal] = useState(false);
     const [lastComment, setLastComment] = useState("");
     const [commentCount, setCommentCount] = useState(0);
 
@@ -23,7 +26,7 @@ function FeedCommentForm(id) {
         post[0]?.comments[post[0]?.comments.length - 1] ? setLastUser(post[0]?.comments[post[0]?.comments.length - 1]?.user.username) : setLastUser("");
         post[0]?.comments[post[0]?.comments.length - 1] ? setLastUserId(post[0]?.comments[post[0]?.comments.length - 1]?.user.id) : setLastUserId(1);
         setCommentCount(post[0]?.comments.length);
-    },[])
+    }, [])
 
     useEffect(() => {
         const payload = {
@@ -31,6 +34,17 @@ function FeedCommentForm(id) {
         }
         dispatch(getAllPost(payload));
     }, [dispatch, sessionUser]);
+
+
+    const onCloseModal = () => {
+        setShowModal(false)
+
+    }
+
+    const handleModal = () => {
+        setShowModal(true)
+
+    }
 
     //const [errors, setErrors] = useState([])
 
@@ -58,7 +72,12 @@ function FeedCommentForm(id) {
             <div className="single-comment">
                 {commentCount > 1 ?
                     <>
-                        <Link className="all-comments" to="#">View all {commentCount} comments</Link>
+                        <Link className="all-comments" to="#" onClick={() => handleModal()}>View all {commentCount} comments</Link>
+                        {showModal && (
+                            <ProfileModal onClose={onCloseModal}>
+                                <PostDetails post={post[0]} onClose={onCloseModal} />
+                            </ProfileModal>
+                        )}
                         <div className="user-comments">
                             <Link to={`/users/${post[0]?.comments[commentCount - 2]?.user.id}`}>
                                 {lastUser}

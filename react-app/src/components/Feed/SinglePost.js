@@ -15,6 +15,8 @@ const SinglePost = (id) => {
     const posts = useSelector(state => state.post.posts);
     const likes = useSelector(state => state.post.likes);
     const [likeCount, setLikeCount] = useState(0)
+
+
     const [like, setLike] = useState(false)
 
     let post = posts.filter(e => e.id === id.id)
@@ -30,12 +32,12 @@ const SinglePost = (id) => {
     useEffect(() => {
         setLikeCount(post[0]?.likes.length)
         setLike(likes?.includes(post[0]?.id))
-    },[likes])
+    }, [likes])
 
     const handleClick = () => {
         console.log(post[0]?.likes.length)
         like ? setLike(false) : setLike(true)
-        like ? dispatch(deleteALike({id: post[0]?.id})) : dispatch(likeAPost({id: post[0]?.id}))
+        like ? dispatch(deleteALike({ id: post[0]?.id })) : dispatch(likeAPost({ id: post[0]?.id }))
         like ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1)
     }
 
@@ -43,10 +45,10 @@ const SinglePost = (id) => {
         <div className="post">
             <div className="post-owner-header">
                 {/* <div className="user-info"> */}
-                    <img className='post-profile-pic' src={cat} alt='cat' />
-                    <Link to={`/users/${post[0]?.user_id}`}>
-                        <h2 className='post-owner'>{post[0]?.users.username}</h2>
-                    </Link>
+                <img className='post-profile-pic' src={cat} alt='cat' />
+                <Link to={`/users/${post[0]?.user_id}`}>
+                    <h2 className='post-owner'>{post[0]?.users.username}</h2>
+                </Link>
                 {/* </div> */}
                 {/* <span className="drop-menu">. . .</span> */}
             </div>
@@ -55,9 +57,9 @@ const SinglePost = (id) => {
                 <div className='like-btn s-button'
                     onClick={() => handleClick()}
                 >
-                    { like ?
-                    <i className="fas fa-heart liked"></i>:
-                    <i className="far fa-heart not-liked"></i>
+                    {like ?
+                        <i className="fas fa-heart liked"></i> :
+                        <i className="far fa-heart not-liked"></i>
                     }
                 </div>
                 <div className='comment-btn s-button'>
