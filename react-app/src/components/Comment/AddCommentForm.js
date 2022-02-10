@@ -12,12 +12,13 @@ function AddCommentForm({id, flag}){
     const [comment, setComment] = useState("");
     const history = useHistory();
     //const [errors, setErrors] = useState([])
+    console.log('in component ***********************(')
 
     if (!sessionUser) return <Redirect to="/" />;
 
     const handleUserSubmit = async (e) => {
         e.preventDefault()
-        console.log(id, 'user*****************')
+        console.log(id, 'user*****************11111111')
 
         const payload = {
             comment,
@@ -26,6 +27,7 @@ function AddCommentForm({id, flag}){
         }
 
         setComment("");
+        console.log(payload, 'payload(((((((((())))))))))')
         dispatch(createUserComment(payload))
         // history.push('/feed')
     }

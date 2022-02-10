@@ -1,11 +1,18 @@
 import CommentModal from ".";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
+function DisplayAllComments(comments) {
+
+    console.log(comments, '____________-----------------')
+    const posts = useSelector(state => state.userPostsReducer)
 
 
-function DisplayAllComments({comments}) {
+    console.log(posts, 'post id ***********')
 
     return (
         <>
-            {comments.map(comment => (
+            {comments.comments.map(comment => (
                 <div key={comment.id}>{comment.comment}
                     <CommentModal comment={comment} />
                 </div>
