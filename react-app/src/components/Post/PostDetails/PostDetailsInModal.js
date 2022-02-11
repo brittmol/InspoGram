@@ -9,6 +9,7 @@ import AddCommentForm from "../../Comment/AddCommentForm";
 import DisplayAllComments from "../../Comment/DIsplayAllComments";
 import SinglePost from "../../Feed/SinglePost";
 import PostProfileLikes from "./PostProfileLikes";
+import cat from "../../../images/cat.jpg";
 
 function PostDetails({ post, onClose }) {
   //const singlePost = useSelector(state => state.userPostsReducer[post.id])
@@ -19,6 +20,8 @@ function PostDetails({ post, onClose }) {
     dispatch(deleteUserPost(id));
     onClose();
   };
+  console.log("!!!!!!!!!!!!!!!!!!!!");
+  console.log(";;;;;;;;;;;;;;;;", post.users);
 
   return (
     <>
@@ -27,17 +30,33 @@ function PostDetails({ post, onClose }) {
       </div>
       <div className="profile-modal-data-container">
         <div className="profile-modal-top">
-          <div className="profile-modal-username">
-            <NavLink onClick={onClose} to={`/users/${post?.users?.id}`}>
+          <div className="profile-modal-username singular-comment-container">
+            <NavLink to={`/users/${post?.users?.id}`}>
+              <img className="profile-pic-comment" src={cat} alt="cat" />
+            </NavLink>
+            <NavLink
+              to={`/users/${post?.users?.id}`}
+              className="comment-username"
+            >
               {post?.users?.username}
             </NavLink>
-
             <MenuModal post={post} />
           </div>
-          <div className="profile-modal-caption">{post?.caption}</div>
-          <div className="profile-modal-comments">
-            <DisplayAllComments comments={post.comments} />
+          <div className="profile-modal-caption singular-comment-container">
+            <NavLink to={`/users/${post?.users?.id}`} activeClassName="active">
+              <img className="profile-pic-comment" src={cat} alt="cat" />
+            </NavLink>
+            <NavLink
+              to={`/users/${post?.users?.id}`}
+              className="comment-username"
+            >
+              {post?.users?.username}
+            </NavLink>
+            <p className="actual-comment">{post.caption}</p>
           </div>
+        </div>
+        <div className="profile-modal-comments">
+          <DisplayAllComments comments={post.comments} />
         </div>
         <div className="profile-modal-bottom">
           <div>
