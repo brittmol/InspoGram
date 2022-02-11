@@ -21,10 +21,12 @@ const NavBar = ({ user }) => {
 
           <div className="right-bar">
             <NavLink to="/feed" exact={true} activeClassName="active">
-              <i className="fas fa-home"></i>
-              {/* <i className="fa-solid fa-house"></i> */}
+              <i class="fa-solid fa-house"></i>
             </NavLink>
+            <i class="fa-brands fa-facebook-messenger"></i>
             <CreatePostModal />
+            <i class="fa-regular fa-compass"></i>
+            <i class="fa-regular fa-heart"></i>
             <NavLink to={`/users/${user.id}`} activeClassName="active">
               <img className="profile-pic-nav" src={cat} alt="cat" />
             </NavLink>

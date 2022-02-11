@@ -8,16 +8,16 @@ a:hover {
   text-decoration: underline;
 }
 
-.post{
-    display: flex;
-    flex-direction: column;
-    max-height: 934.5px;
-    max-width: 614px;
-    /* margin: 10px auto; */
-    margin: 90px auto;
-    border: var(--border-light);
-    border-radius: 3px;
-    background-color: white;
+.post {
+  display: flex;
+  flex-direction: column;
+  max-height: 934.5px;
+  max-width: 614px;
+  margin: 25px auto;
+  /* margin: 90px auto; */
+  border: var(--border-light);
+  border-radius: 3px;
+  background-color: white;
 }
 
 .post-owner-header {
@@ -81,7 +81,7 @@ a:hover {
 
 .s-button {
   /* margin-right: 16px; */
-    margin-right: 1px;
+  margin-right: 1px;
 }
 
 .s-button:hover {
