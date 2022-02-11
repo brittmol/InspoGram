@@ -47,7 +47,7 @@ const CreatePostForm = ({onClose}) => {
             setImageLoading(false)
             setPhotoPrev('#')
             onClose()
-            // history.push(`/users/${user.id}`)
+            history.push(`/users/${user.id}`)
         }
     }
 
