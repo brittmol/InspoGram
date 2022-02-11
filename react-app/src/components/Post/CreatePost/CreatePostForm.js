@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { createPost } from '../../../store/post'
 import { useSelector } from 'react-redux'
 import { getUserPosts } from '../../../store/userPosts'
+import './Post.css'
 
 
 const CreatePostForm = ({onClose}) => {
@@ -11,6 +12,8 @@ const CreatePostForm = ({onClose}) => {
     const history = useHistory()
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
+    const [photoPrev, setPhotoPrev] = useState('#')
+    const [photoClass, setPhotoClass] = useState('photo-hidden')
 
     const [caption, setCaption] = useState("")
     const [photo, setPhoto] = useState("")
@@ -41,6 +44,7 @@ const CreatePostForm = ({onClose}) => {
             setImageLoading(false);
         } else {
             setImageLoading(false)
+            setPhotoPrev('#')
             onClose()
             history.push(`/users/${user.id}`)
         }
@@ -48,7 +52,11 @@ const CreatePostForm = ({onClose}) => {
 
     const updateImage = (e) => {
         const file = e.target.files[0];
-        setImage(file);
+        if(file) {
+            setPhotoPrev(URL.createObjectURL(file))
+            setPhotoClass('photo-shown')
+            setImage(file);
+        }
     }
 
     return (
@@ -57,6 +65,7 @@ const CreatePostForm = ({onClose}) => {
             <div className='login-error-container'>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
+
                 ))}
             </div>
             <textarea
@@ -68,7 +77,9 @@ const CreatePostForm = ({onClose}) => {
               type="file"
               accept="image/*"
               onChange={updateImage}
+              id='photo-upload-input'
             />
+            <img className={photoClass} id='photo-upload-img' src={photoPrev} alt='your photo' />
             <button type="submit">Post</button>
             {(imageLoading)&& <p>Loading...</p>}
         </form>
