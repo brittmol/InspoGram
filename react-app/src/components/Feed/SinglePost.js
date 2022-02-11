@@ -9,7 +9,7 @@ import {
   likeAPost,
 } from "../../store/post";
 // import { getUserPosts } from "../../store/userPosts";
-import ShowPostLikesModal from "../Modal/LikesModal/LikeModal";
+import ShowLikesModal from "../Modal/LikesModal/ShowLikesModal";
 import FeedCommentForm from "../Comment/FeedComment";
 import { LikeModal } from "../../context/Modal";
 import cat from "../../images/cat.jpg";
@@ -31,7 +31,7 @@ const SinglePost = (id) => {
 
   useEffect(() => {
     const payload = {
-      id: sessionUser?.id,
+      user_id: sessionUser?.id,
     };
     // dispatch(getUserPosts(payload.id))
     dispatch(getAllPost(payload));
@@ -68,7 +68,7 @@ const SinglePost = (id) => {
           <h2 className="post-owner">{post[0]?.users.username}</h2>
         </Link>
         {/* </div> */}
-        {/* <span className="drop-menu"><i className="fa-solid fa-ellipsis"></i></span> */}
+        {/* <span className="drop-menu">. . .</span> */}
       </div>
       <img className="photo" src={post[0]?.photos[0].photo} alt="users-pic" />
       <div className="s-media-btn">
@@ -83,6 +83,7 @@ const SinglePost = (id) => {
           <i className="far fa-comment"></i>
         </div>
       </div>
+
       {likeCount > 0 ? (
         <div className="post-likes">
           Liked by
@@ -92,7 +93,7 @@ const SinglePost = (id) => {
           </Link>
           {showModal && (
             <LikeModal onClose={onCloseModal}>
-              <ShowPostLikesModal id={post[0]?.id} onClose={onCloseModal} />
+              <ShowLikesModal post={post[0]} onClose={onCloseModal} />
             </LikeModal>
           )}
         </div>

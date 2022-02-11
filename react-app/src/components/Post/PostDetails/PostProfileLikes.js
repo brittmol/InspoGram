@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { deleteALike, getAllPost, getLikesByUser, likeAPost } from '../../../store/post';
-
-import ShowPostLikesModal from "../../Modal/LikesModal/LikeModal";
-// import FeedCommentForm from "../../Comment/FeedComment";
-import { LikeModal } from '../../../context/Modal'
-import cat from '../../../images/cat.jpg'
-import '../../Feed/SinglePost.css'
 import { addUserLike, deleteUserLike } from "../../../store/userPosts";
+import ShowLikesModal from "../../Modal/LikesModal/ShowLikesModal";
+import { getAllPost, getLikesByUser } from '../../../store/post';
+import { LikeModal } from '../../../context/Modal'
 
+import '../../Feed/SinglePost.css'
 
-function PostProfileLikes({post}) {
+function PostProfileLikes({ post }) {
     const dispatch = useDispatch();
 
     // const posts = useSelector(state => state.post.posts);
@@ -24,13 +21,9 @@ function PostProfileLikes({post}) {
     const [likeCount, setLikeCount] = useState(0);
     const [showModal, setShowModal] = useState(false);
 
-    // let post = posts.filter(e => e.id === id)
-
-
-
     useEffect(() => {
         const payload = {
-            id: sessionUser?.id
+            user_id: sessionUser?.id
         }
         dispatch(getAllPost(payload));
         dispatch(getLikesByUser(payload))
@@ -45,7 +38,7 @@ function PostProfileLikes({post}) {
 
         like ? setLike(false) : setLike(true)
         // like ? dispatch(deleteALike({ id: post?.id })) : (dispatch(likeAPost({ id: post?.id })))
-        like ? dispatch(deleteUserLike({ id: post?.id })) : dispatch(addUserLike({id: post?.id}))
+        like ? dispatch(deleteUserLike({ id: post?.id })) : dispatch(addUserLike({ id: post?.id }))
         like ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1)
     }
 
@@ -78,7 +71,7 @@ function PostProfileLikes({post}) {
                     <Link to="#" onClick={() => handleModal()}> {likeCount} others</Link>
                     {showModal && (
                         <LikeModal onClose={onCloseModal}>
-                            <ShowPostLikesModal id={post?.id} onClose={onCloseModal} />
+                            <ShowLikesModal post={post} onClose={onCloseModal} />
                         </LikeModal>
                     )}
                 </div> :

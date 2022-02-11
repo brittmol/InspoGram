@@ -10,8 +10,6 @@ function GetUserPosts() {
     const user = useSelector(state => state.session.user)
     const posts = useSelector(state => state.userPostsReducer)
 
-
-
     const {userId} = useParams()
 
     useEffect(() => {
@@ -26,6 +24,7 @@ function GetUserPosts() {
                 {postsList?.map(post => (
 
                     <div key={post?.id}>
+                        
                         <PostDetailsModal post={post} />
                     </div>
 

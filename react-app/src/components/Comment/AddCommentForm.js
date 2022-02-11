@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"; // useEffect,
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
-import { createComment } from "../../store/post";
+import { createComment, getAllPost } from "../../store/post";
 import { createUserComment } from "../../store/userPosts";
 import "./AddComment.css";
 
@@ -34,9 +34,8 @@ function AddCommentForm({ id, flag }) {
     };
 
     setComment("");
-
     dispatch(createUserComment(payload));
-    // history.push('/feed')
+    dispatch(getAllPost(payload));
   };
 
   const handleSubmit = async (e) => {
@@ -50,7 +49,7 @@ function AddCommentForm({ id, flag }) {
 
     setComment("");
     dispatch(createComment(payload));
-    // history.push('/feed')
+    dispatch(getAllPost(payload));
   };
 
   return (
