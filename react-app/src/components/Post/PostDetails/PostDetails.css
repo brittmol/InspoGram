@@ -1,39 +1,53 @@
 .profile-modal-img-container {
-    height: 100%;
-    width: 65%;
+  height: 100%;
+  width: 65%;
 }
 
 .profile-modal-img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .profile-modal-data-container {
-    height: 100%;
-    width: 35%;
+  height: 100%;
+  width: 35%;
+  position: relative;
 }
 
 .profile-modal-username {
-    height: 5rem;
-    border-bottom: var(--border-light);
+  height: 5rem;
+  border-bottom: var(--border-light);
 }
 
 .profile-modal-caption {
-    height: 10rem;
-    border-bottom: var(--border-light);
+  height: 10rem;
+  border-bottom: var(--border-light);
+}
+
+.profile-modal-comments {
+  overflow-y: auto;
+  position: absolute;
+  height: 36.5rem;
+}
+
+.profile-modal-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: var(--border-light);
 }
 
 .modal-menu-edit,
 .modal-menu-delete {
-    height: 50%;
-    width: 100%;
-    border: none;
-    background-color: var(--color-white);
-    cursor: pointer;
+  height: 50%;
+  width: 100%;
+  border: none;
+  background-color: var(--color-white);
+  cursor: pointer;
 }
 
 .modal-menu-delete {
-    border-top: var(--border-light);
-    color: var(--color-error);
+  border-top: var(--border-light);
+  color: var(--color-error);
 }
