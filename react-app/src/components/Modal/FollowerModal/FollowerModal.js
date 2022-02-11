@@ -9,9 +9,6 @@ import '../LikesModal/LikeModal.css';
 function FollowerModal({prop}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    //const posts = useSelector(state => state.post.posts);
-
-    //const post = posts.filter(e => e.id === uid);
 
     useEffect(() => {
         const payload = {
@@ -23,7 +20,7 @@ function FollowerModal({prop}) {
     return (
         <>
             {prop.map(user =>
-                <div className="followers-list" key={user.id}>
+                <div className="list-of-likes" key={user.id}>
                     <RenderFollowUser prop={{"id": user.id, "user": user}}  />
                 </div>
             )}

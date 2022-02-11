@@ -13,9 +13,8 @@ function RenderFollowUser({prop}) {
 
     const [isFollowing, setIsFollowing] = useState(false);
 
-    console.log(followingList)
-    console.log(isFollowing)
-    
+ 
+
     useEffect(() => {
         const payload = {
             user_id: sessionUser?.id
