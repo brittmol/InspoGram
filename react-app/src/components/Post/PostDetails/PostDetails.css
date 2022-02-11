@@ -81,7 +81,9 @@
 }
 
 .profile-pic-comment.user {
-  background: linear-gradient(#f6e33c, #c92793);
+  /* background: linear-gradient(#f6e33c, #c92793); */
+  background-image: url("../../../images/color_border.png");
+  background-size: cover;
 }
 
 /* .actual-comment {

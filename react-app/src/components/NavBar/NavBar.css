@@ -36,6 +36,6 @@ nav,
   object-fit: cover;
   margin-top: 0.5rem;
   padding: 0.5rem;
-  background: linear-gradient(#f6e33c, #c92793);
-  /* border-image: linear-gradient(#f6b73c, #4d9f0c) 30; */
+  background-image: url("../../images/color_border.png");
+  background-size: cover;
 }
