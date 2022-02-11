@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { deleteALike, getAllPost, getLikesByUser, likeAPost } from '../../store/post';
 // import { getUserPosts } from "../../store/userPosts";
-import ShowPostLikesModal from "../Modal/LikesModal/LikeModal";
+import ShowLikesModal from "../Modal/LikesModal/ShowLikesModal";
 import FeedCommentForm from '../Comment/FeedComment';
 import { LikeModal } from "../../context/Modal";
 import cat from '../../images/cat.jpg'
@@ -80,13 +80,14 @@ const SinglePost = (id) => {
                     <i className="far fa-comment"></i>
                 </div>
             </div>
+            {console.log(post[0])}
             {likeCount > 0 ?
                 <div className='post-likes'>
                     Liked by
                     <Link to="#" onClick={() => handleModal()}> {likeCount} others</Link>
                     {showModal && (
                         <LikeModal onClose={onCloseModal}>
-                            <ShowPostLikesModal id={post[0]?.id} onClose={onCloseModal} />
+                            <ShowLikesModal post={post[0]} onClose={onCloseModal} />
                         </LikeModal>
                     )}
                 </div> :

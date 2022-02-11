@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import ProtectedRoute from '../Auth/ProtectedRoute';
 import { useSelector, useDispatch } from 'react-redux';
-import GetUserPosts from './GetUserPosts/GetUserPosts';
-import UserProfileHeader from './UserProfileHeader';
-import './UserProfile.css'
-import { getAllPost } from '../../store/post';
+import { useParams } from 'react-router-dom';
 
+import GetUserPosts from './GetUserPosts/GetUserPosts';
+//import ProtectedRoute from '../Auth/ProtectedRoute';
+import UserProfileHeader from './UserProfileHeader';
+import { getAllPost } from '../../store/post';
+import './UserProfile.css'
 
 
 
@@ -15,9 +15,9 @@ function User() {
   const { userId }  = useParams();
   const dispatch = useDispatch()
 
-  const posts = useSelector(state => state.userPostsReducer)
+  const posts = useSelector(state => state.userPostsReducer);
   const postsList = Object.values(posts)
-
+  
   useEffect(() => {
     const payload = {
       user_id: userId

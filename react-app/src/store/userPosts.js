@@ -95,7 +95,6 @@ export const addUserLike = (payload) => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
-        console.log(data, 'data************************')
         dispatch(addLikeToUser(data))
         // dispatch(addLike(data))
         return data

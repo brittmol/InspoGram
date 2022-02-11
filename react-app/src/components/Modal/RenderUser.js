@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 
-import { followAUser, getAllPost, getLikesByUser, unfollowAUser } from "../../../store/post";
-import cat from '../../../images/cat.jpg';
+import { followAUser, getAllPost, getLikesByUser, unfollowAUser } from "../../store/post";
+import cat from '../../images/cat.jpg';
 
-function RenderLikedUser(prop) {
+function RenderUser(prop) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const posts = useSelector(state => state.post.posts);
@@ -60,4 +60,4 @@ function RenderLikedUser(prop) {
     )
 }
 
-export default RenderLikedUser;
+export default RenderUser;

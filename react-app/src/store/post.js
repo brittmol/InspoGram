@@ -5,6 +5,7 @@ import { loadPosts } from "./userPosts"
 
 const GET_POST = 'post/GET_POST';
 const GET_LIKES = 'post/likes/GET_LIKE';
+const GET_SINGLE_POST = 'post/GET_SINGLE_POST';
 
 const ADD_POST = 'post/ADD_POST';
 const ADD_LIKE = 'post/likes/ADD_LIKE';
@@ -15,24 +16,31 @@ const DELETE_LIKE = 'post/likes/DELETE_LIKE';
 const UNFOLLOW_USER = 'user/UNFOLLOW_USER';
 
 
-const addPost = (post) => ({
-    type: ADD_POST,
-    post
-})
+
 
 const getPost = (posts) => ({
     type: GET_POST,
     posts
 })
 
-const addComment = (comment) => ({
-    type: ADD_COMMENT,
-    comment
-})
-
 const getLikes = (likes) => ({
     type: GET_LIKES,
     likes
+})
+
+const getSinglePost = (post) => ({
+    type: GET_SINGLE_POST,
+    post
+})
+
+const addPost = (post) => ({
+    type: ADD_POST,
+    post
+})
+
+const addComment = (comment) => ({
+    type: ADD_COMMENT,
+    comment
 })
 
 const addLike = (like) => ({
@@ -70,8 +78,17 @@ export const getLikesByUser = (payload) => async (dispatch) => {
     };
 }
 
+export const getASinglePost = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${payload.post_id}`);
+
+    if (response.ok){
+        const post = await response.json();
+        dispatch(getSinglePost(post))
+        return post
+    }
+}
+
 export const getAllPost = (payload) => async (dispatch) => {
-    console.log(payload);
     const response = await fetch(`/api/posts/${payload.user_id}/feed`);
 
     if (response.ok) {
@@ -211,7 +228,11 @@ const postReducer = (state = {}, action) => {
         case GET_LIKES:
             const allLikes = action.likes['likes'];
             return { ...state, 'likes': allLikes }
-
+        case GET_SINGLE_POST:
+            newState = { ...state }
+            const newPost = [...state.posts, action.post]
+            newState.posts = [...state.posts, action.post]
+            return newState
         case ADD_POST:
             newState = { ...state, [action.post.id]: action.post }
             return newState

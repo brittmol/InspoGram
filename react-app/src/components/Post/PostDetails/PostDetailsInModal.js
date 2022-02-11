@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import DisplayAllComments from "../../Comment/DIsplayAllComments";
 import { deleteUserPost, getUserPosts } from "../../../store/userPosts";
+import { getASinglePost } from '../../../store/post';
 import AddCommentForm from "../../Comment/AddCommentForm";
 import PostProfileLikes from "./PostProfileLikes";
 import MenuModal from "./ProfileMenuModal";
@@ -18,9 +19,9 @@ function PostDetails({ post, onClose }) {
     //const singlePost = useSelector(state => state.userPostsReducer[post.id])
     const dispatch = useDispatch()
 
-
     useEffect(() => {
         dispatch(getUserPosts(post?.user_id))
+        dispatch(getASinglePost({"post_id": post?.id}))
     }, [dispatch])
 
     const handleDelete = (e) => {

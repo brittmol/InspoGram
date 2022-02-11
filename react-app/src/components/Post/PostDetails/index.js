@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { ProfileModal } from '../../../context/Modal';
-// import CreatePostForm from './CreatePostForm';
-import PostDetails from './PostDetailsInModal';
-import { useHistory, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+
+import { ProfileModal } from '../../../context/Modal';
+import PostDetails from './PostDetailsInModal';
+// import CreatePostForm from './CreatePostForm';
 
 
 
