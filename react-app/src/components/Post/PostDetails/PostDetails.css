@@ -1,39 +1,117 @@
 .profile-modal-img-container {
-    height: 100%;
-    width: 65%;
+  height: 100%;
+  width: 65%;
 }
 
 .profile-modal-img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .profile-modal-data-container {
-    height: 100%;
-    width: 35%;
+  height: 100%;
+  width: 35%;
+  position: relative;
+  font-size: 15px;
 }
 
 .profile-modal-username {
-    height: 5rem;
-    border-bottom: var(--border-light);
+  border-bottom: var(--border-light);
 }
 
 .profile-modal-caption {
-    height: 10rem;
-    border-bottom: var(--border-light);
+  border-bottom: var(--border-light);
+}
+
+.profile-modal-comments {
+  overflow-y: auto;
+  position: absolute;
+  height: 52.5rem;
+  width: 100%;
+}
+
+.profile-modal-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: var(--border-light);
 }
 
 .modal-menu-edit,
 .modal-menu-delete {
-    height: 50%;
-    width: 100%;
-    border: none;
-    background-color: var(--color-white);
-    cursor: pointer;
+  height: 50%;
+  width: 100%;
+  border: none;
+  background-color: var(--color-white);
+  cursor: pointer;
+}
+
+.modal-menu-delete-only {
+  color: var(--color-error);
+  height: 4rem;
+  width: 100%;
+  border: none;
+  background-color: var(--color-white);
+  cursor: pointer;
 }
 
 .modal-menu-delete {
-    border-top: var(--border-light);
-    color: var(--color-error);
+  border-top: var(--border-light);
+  color: var(--color-error);
+}
+
+.singular-comment-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0.35rem;
+}
+
+.comment-username,
+.actual-comment,
+.fa-ellipsis {
+  margin: 2rem 0;
+}
+
+.comment-username,
+.actual-comment,
+.fa-ellipsis {
+  margin-right: 1.5rem;
+}
+
+.profile-pic-comment {
+  border-radius: 50%;
+  height: 4.5rem;
+  width: 3em;
+  margin: 0 1.5rem;
+  object-fit: cover;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+}
+
+.profile-pic-comment.user {
+  /* background: linear-gradient(#f6e33c, #c92793); */
+  background-image: url("../../../images/color_border.png");
+  background-size: cover;
+}
+
+/* .actual-comment {
+  inline-size: 30rem;
+  overflow-wrap: break-word;
+} */
+
+.fa-ellipsis {
+  color: white;
+  /* align-items: flex-end; */
+}
+
+/* .fa-ellipsis:hover {
+  color: var(--gray-primary);
+  transition: all 2s;
+} */
+
+.singular-comment-container:hover .fa-ellipsis {
+  color: gray;
+  transition: all 0.2s;
 }

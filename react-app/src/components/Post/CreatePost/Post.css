@@ -1,0 +1,7 @@
+.photo-hidden {
+    display: none;
+}
+
+.photo-shown {
+    display: block;
+}

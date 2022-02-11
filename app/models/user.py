@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     full_name = db.Column(db.String(255), nullable=False)
+    profile_image_url = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.now())
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -58,6 +59,7 @@ class User(db.Model, UserMixin):
             'full_name': self.full_name,
             'username': self.username,
             'email': self.email,
+            "profile_image_url": self.profile_image_url,
             'created_at': self.created_at,
         }
 
@@ -67,6 +69,7 @@ class User(db.Model, UserMixin):
             'full_name': self.full_name,
             'username': self.username,
             'email': self.email,
+            "profile_image_url": self.profile_image_url,
             'created_at': self.created_at,
             'followers': [follower.f_to_dict() for follower in self.followers],
             'following': [follow.f_to_dict() for follow in self.following],

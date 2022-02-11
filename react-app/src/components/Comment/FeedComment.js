@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react'; // useEffect,
+import React, { useState, useEffect } from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -21,7 +21,6 @@ function FeedCommentForm(id) {
     const [commentCount, setCommentCount] = useState(0);
 
     let post = posts.filter(e => e.id === id.id);
-
     useEffect(() => {
         post[0]?.comments[post[0]?.comments.length - 1] ? setLastComment(post[0]?.comments[post[0]?.comments.length - 1].comment) : setLastComment("");
         post[0]?.comments[post[0]?.comments.length - 1] ? setLastUser(post[0]?.comments[post[0]?.comments.length - 1]?.user.username) : setLastUser("");
@@ -31,7 +30,7 @@ function FeedCommentForm(id) {
 
     useEffect(() => {
         const payload = {
-            id: sessionUser?.id
+            user_id: sessionUser?.id
         }
         dispatch(getAllPost(payload));
     }, [dispatch, sessionUser]);
@@ -65,6 +64,7 @@ function FeedCommentForm(id) {
         setLastUser(sessionUser?.username);
         setComment("");
         dispatch(createComment(payload))
+        dispatch(getAllPost(payload));
     }
 
     return (
@@ -82,10 +82,12 @@ function FeedCommentForm(id) {
                             <Link to={`/users/${post[0]?.comments[commentCount - 2]?.user.id}`}>
                                 {lastUser}
                             </Link>
-                            <div className="caption">{lastComment}</div>
+                            {/* <div className="caption">{lastComment}</div> */}
+                            <div className="caption">{post[0]?.comments[post[0]?.comments.length - 1].comment}</div>
                         </div>
                     </> :
-                    <div><Link to={`/users/${lastUserId}`}>{lastUser}  </Link> {lastComment}</div>
+                    <div><Link to={`/users/${lastUserId}`}>{lastUser}</Link>{lastComment}</div>
+                    // <div><Link to={`/users/${lastUserId}`}>{lastUser}</Link>{post[0]?.comments[post[0]?.comments.length - 1].comment}</div>
                 }
             </div>
             <form className="comment-form" onSubmit={handleSubmit}>

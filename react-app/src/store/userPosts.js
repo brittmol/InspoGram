@@ -95,7 +95,6 @@ export const addUserLike = (payload) => async (dispatch) => {
     })
     if (response.ok) {
         const data = await response.json()
-        console.log(data, 'data************************')
         dispatch(addLikeToUser(data))
         // dispatch(addLike(data))
         return data
@@ -210,10 +209,8 @@ export const getUserPosts = (id) => async (dispatch) => {
 
     const response = await fetch(`/api/users/${id}/posts`)
 
-
     if (response.ok) {
         const data = await response.json()
-
         dispatch(loadPosts(data.posts))
     }
     // add a message for no posts found
@@ -245,11 +242,6 @@ export const createUserComment = (payload) => async (dispatch) => {
         return ['An error occurred. Please try again.']
     }
 }
-
-
-
-
-
 
 const userPostsReducer = (state = {}, action) => {
     let newState = {}
@@ -283,17 +275,10 @@ const userPostsReducer = (state = {}, action) => {
             // return newState
             for (let post in newState) {
                 newState[post].likes.forEach(like => {
-
-
-
                     if (like.post_id === Number(action.like.id)) {
                         like = 1
                         let index = newState[post].likes.indexOf(1)
-
-
                         newState[post].likes.splice(index, 1)
-
-
 
                         return newState
                     }
