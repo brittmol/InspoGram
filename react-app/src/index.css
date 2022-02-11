@@ -21,6 +21,7 @@ body {
   display: flex;
   justify-content: center;
   font-family: var(--font);
+  padding-top: 75px;
 }
 
 #root {

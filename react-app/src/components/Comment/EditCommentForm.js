@@ -32,7 +32,7 @@ const EditCommentForm = ({pastComment, onClose}) => {
             <h2>Edit Comment</h2>
             <div className='login-error-container'>
                 {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
+                    <div key={error}>{error}</div>
                 ))}
             </div>
             <textarea

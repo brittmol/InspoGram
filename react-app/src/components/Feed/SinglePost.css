@@ -1,42 +1,38 @@
 a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-.post{
-    display: flex;
-    flex-direction: column;
-    max-height: 934.5px;
-    max-width: 614px;
-    margin: 10px auto;
-    border: var(--border-light);
-    border-radius: 3px;
-    background-color: white;
+.post {
+  display: flex;
+  flex-direction: column;
+  max-height: 934.5px;
+  max-width: 614px;
+  margin: 25px auto;
+  border: var(--border-light);
+  border-radius: 3px;
+  background-color: white;
 }
 
 .post-owner-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-    padding: 14px 4px 14px 16px;
+  padding: 14px 4px 14px 16px;
 }
 
-/* .user-info {
-    display: flex;
-} */
-
 .post-profile-pic {
-    border-radius: 50%;
-    height: 3.1rem;
-    width: 3.1rem;
-    object-fit: cover;
-    border: 1px solid gray;
+  border-radius: 50%;
+  height: 3.1rem;
+  width: 3.1rem;
+  object-fit: cover;
+  border: 1px solid gray;
 }
 
 /* .drop-menu {
@@ -45,55 +41,88 @@ a:hover {
 } */
 
 .post-owner {
-    font-size: 1.4rem;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    padding-left: 16px;
+  font-size: 1.4rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  padding-left: 16px;
 }
 
 .post-caption {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 1.4rem;
-    margin: 5px 15px;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.4rem;
+  margin: 5px 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
 }
 
 .caption {
-
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 .post-likes {
-    margin-left: 15px;
-    margin-top: 5px;
-    font-size: 1.4rem;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  margin-left: 15px;
+  margin-top: 5px;
+  font-size: 1.4rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
 }
 
 .s-media-btn {
-    box-sizing: border-box;
-    display: flex;
-    font-size: 2.35rem;
-    align-items: center;
-    /* margin-left: 15px; */
-    /* margin-top: 5px; */
-    padding: 8px 15px 0px;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 2.35rem;
+  align-items: center;
+  /* margin-left: 15px; */
+  /* margin-top: 5px; */
+  padding: 8px 15px 0px;
 }
 
 .s-button {
-    margin-right: 16px;
+  /* margin-right: 16px; */
+  margin-right: 1px;
 }
 
 .s-button:hover {
-    color: gray;
-    cursor: pointer;
+  color: gray;
+  cursor: pointer;
 }
 
 .not-liked:active {
-    /* color: rgb(224, 66, 66); */
-    color: rgb(233, 90, 90);
+  /* color: rgb(224, 66, 66); */
+  color: rgb(233, 90, 90);
 }
 
 .liked {
-    color: rgb(233, 90, 90);
+  color: rgb(233, 90, 90);
+}
+
+/* FeedFriends */
+
+.friends-profile-pic {
+  border-radius: 50%;
+  height: 6rem;
+  width: 6rem;
+  margin: 0 1.5rem;
+  object-fit: cover;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-image: url("../../images/color_border.png");
+  background-size: cover;
+}
+
+.post.friends {
+  display: flex;
+  flex-direction: row;
+}
+
+.friend-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.friends-profile-username {
+  font-family: var(--font);
+  font-size: 13px;
 }

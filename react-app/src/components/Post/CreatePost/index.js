@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { Modal } from '../../../context/Modal';
-import CreatePostForm from './CreatePostForm';
-
-
+import React, { useState } from "react";
+import { Modal } from "../../../context/Modal";
+import CreatePostForm from "./CreatePostForm";
 
 function CreatePostModal() {
   const [showModal, setShowModal] = useState(false);
   const onCloseModal = () => {
-    setShowModal(false)
-  }
-
+    setShowModal(false);
+  };
 
   return (
     <>
-      <i className="fas fa-plus" onClick={() => setShowModal(true)}></i>
+      <i
+        className="fa-regular fa-square-plus"
+        onClick={() => setShowModal(true)}
+      ></i>
       {/* <button onClick={() => setShowModal(true)}> */}
-            {/* Create post */}
+      {/* Create post */}
       {/* </button> */}
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreatePostForm onClose={onCloseModal}/>
+          <CreatePostForm onClose={onCloseModal} />
         </Modal>
       )}
     </>

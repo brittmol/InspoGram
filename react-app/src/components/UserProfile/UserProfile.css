@@ -9,16 +9,17 @@
   margin-bottom: 3rem;
 }
 
-
 .profile-pic {
   border-radius: 50%;
   height: 20rem;
   width: 20rem;
   margin: 2rem 5rem;
   object-fit: cover;
+  padding: 2rem;
+  background-image: url("../../images/color_border.png");
+  background-size: cover;
 }
 .profile-info-container {
-
   display: flex;
   flex-direction: column;
   /* width: 65%; */
@@ -26,7 +27,6 @@
 
 .profile-info-container > div {
   height: 28%;
-
 }
 
 .username-profile-heading {
@@ -43,12 +43,9 @@
   font-weight: bolder;
 }
 
-
 .profile-heading-container span:not(:first-child) {
   padding-left: 3.5rem;
 }
-
-
 
 .profile-feed-container {
   display: grid;
@@ -105,12 +102,7 @@
   width: 100%;
   height: 5rem;
   /* margin-top: 4rem; */
-  border-top: var(--border-light)
-
-}
-
-.all-container {
-  padding-top: 3rem;
+  border-top: var(--border-light);
 }
 
 .post-icon-container span {

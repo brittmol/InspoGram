@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllPost } from "../../../store/post";
-import RenderLikedUser from "./RenderLikedUser";
+import RenderUser from "../RenderUser/RenderUser";
 import './LikeModal.css';
 
-function ShowPostLikesModal(id) {
+function ShowLikesModal({post}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const posts = useSelector(state => state.post.posts);
+    //const posts = useSelector(state => state.post.posts);
 
-    const post = posts.filter(e => e.id === id.id);
-
+    //const post = posts.filter(e => e.id === id);
     useEffect(() => {
         const payload = {
             id: sessionUser?.id
@@ -20,13 +19,13 @@ function ShowPostLikesModal(id) {
 
     return (
         <>
-            {post[0]?.likes.map(user =>
+            {post?.likes.map(user =>
                 <div className="list-of-likes" key={user.id}>
-                    <RenderLikedUser prop={{"id": id, "user": user}}  />
+                    <RenderUser prop={{"id": post.id, "user": user}}  />
                 </div>
             )}
         </>
     )
 }
 
-export default ShowPostLikesModal;
+export default ShowLikesModal;

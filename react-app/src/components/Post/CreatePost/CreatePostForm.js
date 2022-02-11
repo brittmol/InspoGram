@@ -65,7 +65,7 @@ const CreatePostForm = ({onClose}) => {
             <h2>Create New Post</h2>
             <div className='login-error-container'>
                 {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
+                    <div key={error}>{error}</div>
 
                 ))}
             </div>

@@ -1,9 +1,12 @@
 import { useParams } from 'react-router-dom'
-import cat from '../../images/cat.jpg'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react';
 import { authenticate } from '../../store/session';
 
+
+import FollowerModal from "../Modal/FollowerModal/FollowerModal";
+import FollowingModal from "../Modal/FollowingModal/FollowingModal";
+import { LikeModal } from "../../context/Modal";
 
 
 function UserProfileHeader({ postsList, user }) {
@@ -61,13 +64,25 @@ function UserProfileHeader({ postsList, user }) {
         }
     }
 
+    const [showFollowerModal, setShowFollwerModal] = useState(false);
+    const [showFollowingModal, setShowFollwingModal] = useState(false);
+
+    const handleFollower = () => setShowFollwerModal(true);
+    const handleFollowing = () => setShowFollwingModal(true);
+
+    const onCloseModal = () => {
+        setShowFollwerModal(false);
+        setShowFollwingModal(false);
+    }
+
+
     return (
         <section className='profile-heading-container'>
             <div className='profile-pic-container'>
                 {/* <div className="profile-pic"> */}
                 {photoPrev !== '#' ?
                     <img className={`${photoClass} profile-pic-pre`} id='photo-upload-img' src={photoPrev} alt='your photo' />
-                : <img className='profile-pic' src={userId === '1' ? sessionUser.profile_image_url : user.profile_image_url} alt='cat' />}
+                : <img className='profile-pic' src={userId === '1' ? sessionUser.profile_image_url : user.profile_image_url} alt='your photo' />}
                 {/* <button onClick={handleUploadPhoto}>Upload profile photo</button> */}
                 {sessionUser.id === Number(userId) && (
                 <div>
@@ -91,8 +106,18 @@ function UserProfileHeader({ postsList, user }) {
                 </div>
                 <div className="user-info-profile-heading">
                     <span> <b>{postsList?.length}</b> posts</span>
-                    <span><b>{user?.followers?.length}</b> followers</span>
-                    <span><b>{user?.following?.length}</b> following</span>
+                    <span onClick={ () => handleFollower() }><b>{user?.followers?.length}</b> followers</span>
+                    {showFollowerModal && (
+                        <LikeModal onClose={onCloseModal}>
+                            <FollowerModal prop={user?.followers}/>
+                        </LikeModal>
+                    )}
+                    <span onClick={ () => handleFollowing() }><b>{user?.following?.length}</b> following</span>
+                    {showFollowingModal && (
+                        <LikeModal onClose={onCloseModal}>
+                            <FollowingModal prop={user?.following}/>
+                        </LikeModal>
+                    )}
                 </div>
                 <div className="full-name-profile-heading">
                     {user.full_name}
