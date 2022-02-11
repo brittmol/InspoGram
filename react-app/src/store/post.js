@@ -3,6 +3,7 @@ import { addUserPost } from "./userPosts"
 import { loadPosts } from "./userPosts"
 
 
+
 const GET_POST = 'post/GET_POST';
 const GET_LIKES = 'post/likes/GET_LIKE';
 
@@ -81,13 +82,10 @@ export const getAllPost = (payload) => async(dispatch) => {
 }
 
 // CREATE
-export const createPost = (payload) => async(dispatch) => {
+export const createPost = (formData) => async(dispatch) => {
     const response = await fetch(`/api/posts/create_post`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
+        body: formData
     })
 
     if (response.ok) {

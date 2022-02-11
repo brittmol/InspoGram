@@ -1,31 +1,54 @@
-import React, { useState } from 'react' //useEffect, 
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react' //useEffect,
+import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { createPost } from '../../../store/post'
 import { useSelector } from 'react-redux'
+import { getUserPosts } from '../../../store/userPosts'
+
 
 const CreatePostForm = ({onClose}) => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const [image, setImage] = useState(null);
+    const [imageLoading, setImageLoading] = useState(false);
 
     const [caption, setCaption] = useState("")
     const [photo, setPhoto] = useState("")
     const [errors, setErrors] = useState([])
     const user = useSelector(state => state.session.user);
 
+    const {userId} = useParams()
+    useEffect(() => {
+        dispatch(getUserPosts(userId))
+    }, [userId, image, imageLoading])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        const formData = new FormData();
+        formData.append("image", image);
+        formData.append("caption", caption)
+        setImageLoading(true);
+
         const payload = { caption, photo }
 
-        const data = await dispatch(createPost(payload))
+        const data = await dispatch(createPost(formData))
+
+
         if (data) {
             setErrors(data)
+            setImageLoading(false);
         } else {
+            setImageLoading(false)
             onClose()
             history.push(`/api/user/${user.id}/posts`)
         }
+    }
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
     }
 
     return (
@@ -42,14 +65,12 @@ const CreatePostForm = ({onClose}) => {
                 onChange={(e) => setCaption(e.target.value)}
             />
             <input
-                type="text"
-                placeholder="insert URL"
-                value={photo}
-                onChange={(e) => setPhoto(e.target.value)}
+              type="file"
+              accept="image/*"
+              onChange={updateImage}
             />
-            <button type="submit">
-                Post
-            </button>
+            <button type="submit">Post</button>
+            {(imageLoading)&& <p>Loading...</p>}
         </form>
     )
 

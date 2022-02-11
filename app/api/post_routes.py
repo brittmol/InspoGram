@@ -4,6 +4,8 @@ from app.forms.comment_form import CreateCommentForm
 from app.forms.post_form import CreatePostForm, EditPostForm
 from app.models import Comment, db, Like, Post, Photo, User
 from app.api.auth_routes import validation_errors_to_error_messages
+from app.aws import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 posts_router = Blueprint('posts', __name__)
 
@@ -44,15 +46,42 @@ def create_post():
     # req = request.json # grabs the information from our form/data
     # new_post = Post(caption=req['caption'], user_id=current_user.id) # create a new post to upload
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data['caption'], 'pre if ********************')
     if form.validate_on_submit():
+        print(form.data['caption'], 'post if ********************')
+
         new_post = Post(caption=form.data['caption'], user_id=current_user.id)
     # will allow user to add multiple photo at once
         # for url in req['photo']:
         db.session.add(new_post)
         db.session.commit()
         # for url in form.data['photo']:
-        new_photos = Photo(photo=form.data['photo'], post_id=new_post.id)
-        db.session.add(new_photos)
+        # new_photos = Photo(photo=form.data['photo'], post_id=new_post.id)
+        # db.session.add(new_photos)
+        # db.session.commit()
+        if "image" not in request.files:
+            return {"errors": ["image required"]}, 400
+
+        image = request.files["image"]
+        if not allowed_file(image.filename):
+            return {"errors": ["file type not permitted"]}, 400
+
+        image.filename = get_unique_filename(image.filename)
+
+        print(image.filename, 'image****************')
+        upload = upload_file_to_s3(image)
+        print(upload, 'upload****************')
+
+        if "url" not in upload:
+            # if the dictionary doesn't have a filename key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+
+        url = upload["url"]
+        # we can use the
+        new_image = Photo(post_id=new_post.id, photo=url)#post id instead of user
+        db.session.add(new_image)
         db.session.commit()
 
         return new_post.to_dict()
