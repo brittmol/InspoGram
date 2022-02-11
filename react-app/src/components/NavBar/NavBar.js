@@ -26,7 +26,7 @@ const NavBar = ({user}) => {
         </NavLink>
         <CreatePostModal />
         <NavLink to={`/users/${user.id}`} activeClassName='active'>
-          <img className='profile-pic-nav' src={cat} alt='cat' />
+          <img className='profile-pic-nav' src={user.profile_image_url ? user.profile_image_url : cat} alt='cat' />
         </NavLink>
         <LogoutButton />
       </div>

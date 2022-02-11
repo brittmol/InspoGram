@@ -13,7 +13,7 @@ function FeedPage() {
 
     useEffect(() => {
         const payload = {
-            id: sessionUser.id
+            id: sessionUser?.id
         }
 
         dispatch(getAllPost(payload));

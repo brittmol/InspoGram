@@ -23,7 +23,7 @@ const UploadPhoto = () => {
         // some sort of loading message is a good idea
         setImageLoading(true);
 
-        const res = await fetch('/api/photos', {
+        const res = await fetch('/api/photos/upload-profile-phot', {
             method: "POST",
             body: formData,
         });

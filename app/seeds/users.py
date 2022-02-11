@@ -4,13 +4,13 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User( # 1
-        username='demo', full_name= "Demo", email='demo@aa.io', password='password')
+        username='demo', full_name= "Demo", email='demo@aa.io', password='password', profile_image_url='https://unsplash.com/photos/WNoLnJo7tS8')
     mj = User( # 2
-        username='real_mj', full_name= "Michelle Jones", email='michelleparker@aa.io', password='password')
+        username='real_mj', full_name= "Michelle Jones", email='michelleparker@aa.io', password='password', profile_image_url='https://unsplash.com/photos/WNoLnJo7tS8')
     peter = User( # 3
-        username='spidey_boi', full_name= "Peter Parker", email='spiderman@aa.io', password='password')
+        username='spidey_boi', full_name= "Peter Parker", email='spiderman@aa.io', password='password', profile_image_url='https://unsplash.com/photos/mEZ3PoFGs_k')
     ned = User( # 4
-        username='nerdy_ned', full_name= "Ned leeds", email='nerdBald@aa.io', password='password')
+        username='nerdy_ned', full_name= "Ned leeds", email='nerdBald@aa.io', password='password', profile_image_url='https://unsplash.com/photos/C8Ta0gwPbQg')
     john = User( # 5
         username='john_doe', full_name= "John Doe", email='john_doe@aa.io', password='password')
     jeff = User( # 6

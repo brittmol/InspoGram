@@ -1,13 +1,80 @@
+import { useParams } from 'react-router-dom'
 import cat from '../../images/cat.jpg'
+import { useSelector } from 'react-redux'
+import { useState } from 'react';
 
 
 function UserProfileHeader({ postsList, user }) {
+
+    const [image, setImage] = useState(null);
+    const [imageLoading, setImageLoading] = useState(false);
+    const [photoPrev, setPhotoPrev] = useState('#')
+    const [photoClass, setPhotoClass] = useState('profile-photo-hidden')
+    const [errors, setErrors] = useState([])
+
+
+    const sessionUser = useSelector(state => state.session.user)
+    const { userId } = useParams()
+
+    const handleUploadPhoto = async() => {
+        const formData = new FormData();
+        formData.append("image", image);
+
+        setImageLoading(true);
+
+
+        const res = await fetch('/api/photos/upload-profile-photo', {
+            method: "PUT",
+            body: formData,
+        });
+        if (res.ok) {
+            await res.json();
+            setImageLoading(false);
+            // history.push("/images");
+        }
+        else {
+            setImageLoading(false);
+            // a real app would probably use more advanced
+            // error handling
+            // ADD ERROR DISPLAYING HERE!!!!!!!!!
+            console.log("error");
+        }
+    }
+
+
+    const photo = user.profile_image_url
+    const handlePhoto = (e) => {
+        // dispatch(uploadProfilePhoto(image))
+        const file = e.target.files[0];
+
+        if(file) {
+            setPhotoPrev(URL.createObjectURL(file))
+            setPhotoClass('profile-photo-shown')
+            setImage(file);
+        }
+    }
+
     return (
         <section className='profile-heading-container'>
             <div className='profile-pic-container'>
                 {/* <div className="profile-pic"> */}
-                    <img className='profile-pic' src={cat} alt='cat' />
-                {/* </div> */}
+                <img className='profile-pic' src={sessionUser.profile_image_url} alt='cat' />
+                {/* <button onClick={handleUploadPhoto}>Upload profile photo</button> */}
+                {sessionUser.id === Number(userId) && (
+                <div>
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handlePhoto}
+                    id='photo-upload-input'
+                />
+                <img className={photoClass} id='photo-upload-img' src={photoPrev} alt='your photo' />
+                </div>
+                )}
+                {image && (
+                    <button onClick={handleUploadPhoto}>Save photo</button>
+                )}
+
             </div>
             <div className='profile-info-container'>
                 <div className="username-profile-heading">

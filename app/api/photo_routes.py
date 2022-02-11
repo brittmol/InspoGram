@@ -1,6 +1,6 @@
 from flask import Blueprint, request#, jsonify
 from flask_login import login_required, current_user#, current_user
-from app.models import db, Photo
+from app.models import db, Photo, User
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
@@ -22,7 +22,7 @@ def get_all_photos():
 # image_routes = Blueprint("photos", __name__)
 
 
-@photos_router.route("", methods=["POST"])
+@photos_router.route("/upload-profile-photo", methods=["PUT"])
 @login_required
 def upload_image():
     if "image" not in request.files:
@@ -45,8 +45,10 @@ def upload_image():
 
     url = upload["url"]
     # we can use the
-    new_image = Photo(post_id=current_user, photo=url)#post id instead of user
-    db.session.add(new_image)
+    # new_image = Photo(post_id=current_user, photo=url)#post id instead of user
+    user = User.query.get(current_user.id)
+    user.profile_image_url = url
+    db.session.add(user)
     db.session.commit()
     return {"url": url}
 

@@ -117,3 +117,11 @@
   padding-left: 1rem;
   font-family: var(--font);
 }
+
+.profile-photo-show {
+  display: block;
+}
+
+.profile-photo-hidden {
+  display: none;
+}
