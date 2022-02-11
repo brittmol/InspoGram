@@ -80,7 +80,7 @@ const SinglePost = (id) => {
                     <i className="far fa-comment"></i>
                 </div>
             </div>
-            {console.log(post[0])}
+            
             {likeCount > 0 ?
                 <div className='post-likes'>
                     Liked by
