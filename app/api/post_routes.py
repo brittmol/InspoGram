@@ -47,6 +47,11 @@ def create_post():
     # new_post = Post(caption=req['caption'], user_id=current_user.id) # create a new post to upload
     form['csrf_token'].data = request.cookies['csrf_token']
     print(form.data['caption'], 'pre if ********************')
+    if "image" not in request.files:
+        return {"errors": ["Please upload photo"]}, 400
+    image = request.files["image"]
+    if not allowed_file(image.filename):
+        return {"errors": ["File type not permitted"]}, 400
     if form.validate_on_submit():
         print(form.data['caption'], 'post if ********************')
 
@@ -59,12 +64,12 @@ def create_post():
         # new_photos = Photo(photo=form.data['photo'], post_id=new_post.id)
         # db.session.add(new_photos)
         # db.session.commit()
-        if "image" not in request.files:
-            return {"errors": ["image required"]}, 400
+        # if "image" not in request.files:
+        #     return {"errors": ["image required"]}, 400
 
-        image = request.files["image"]
-        if not allowed_file(image.filename):
-            return {"errors": ["file type not permitted"]}, 400
+        # image = request.files["image"]
+        # if not allowed_file(image.filename):
+        #     return {"errors": ["file type not permitted"]}, 400
 
         image.filename = get_unique_filename(image.filename)
 
