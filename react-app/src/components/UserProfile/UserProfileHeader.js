@@ -14,9 +14,9 @@ function UserProfileHeader({ postsList, user }) {
     const [photoClass, setPhotoClass] = useState('profile-photo-hidden')
     const [errors, setErrors] = useState([])
 
-    // useEffect(() => {
-    //     dispatch(authenticate())
-    // }, [])
+    useEffect(() => {
+        dispatch(authenticate())
+    }, [image, photoPrev, photoClass, errors])
 
     const sessionUser = useSelector(state => state.session.user)
     const { userId } = useParams()
@@ -64,7 +64,7 @@ function UserProfileHeader({ postsList, user }) {
         <section className='profile-heading-container'>
             <div className='profile-pic-container'>
                 {/* <div className="profile-pic"> */}
-                <img className='profile-pic' src={user.profile_image_url} alt='cat' />
+                <img className='profile-pic' src={userId === '1' ? sessionUser.profile_image_url : user.profile_image_url} alt='cat' />
                 {/* <button onClick={handleUploadPhoto}>Upload profile photo</button> */}
                 {sessionUser.id === Number(userId) && (
                 <div>
