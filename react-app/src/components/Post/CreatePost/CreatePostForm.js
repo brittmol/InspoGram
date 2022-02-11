@@ -16,7 +16,7 @@ const CreatePostForm = ({onClose}) => {
     const [photoClass, setPhotoClass] = useState('photo-hidden')
 
     const [caption, setCaption] = useState("")
-    const [photo, setPhoto] = useState("")
+    // const [photo, setPhoto] = useState("")
     const [errors, setErrors] = useState([])
     const user = useSelector(state => state.session.user);
 
@@ -34,7 +34,7 @@ const CreatePostForm = ({onClose}) => {
         formData.append("caption", caption)
         setImageLoading(true);
 
-        const payload = { caption, photo }
+        // const payload = { caption, photo }
 
         const data = await dispatch(createPost(formData))
 
