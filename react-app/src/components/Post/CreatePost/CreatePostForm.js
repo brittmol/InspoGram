@@ -20,6 +20,7 @@ const CreatePostForm = ({onClose}) => {
     const [errors, setErrors] = useState([])
     const user = useSelector(state => state.session.user);
 
+
     // const {userId} = useParams()
     // useEffect(() => {
     //     dispatch(getUserPosts(userId))
@@ -46,7 +47,7 @@ const CreatePostForm = ({onClose}) => {
             setImageLoading(false)
             setPhotoPrev('#')
             onClose()
-            history.push(`/users/${user.id}`)
+            // history.push(`/users/${user.id}`)
         }
     }
 
