@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getAllPost } from "../../../store/post";
-import RenderUser from "../RenderUser";
+import RenderFollowUser from "../RenderUser/RenderFollowUser";
+
+import '../LikesModal/LikeModal.css';
 
 function FollowerModal({prop}) {
     const dispatch = useDispatch();
@@ -10,7 +12,6 @@ function FollowerModal({prop}) {
     //const posts = useSelector(state => state.post.posts);
 
     //const post = posts.filter(e => e.id === uid);
-    console.log(prop.followerList);
 
     useEffect(() => {
         const payload = {
@@ -21,9 +22,9 @@ function FollowerModal({prop}) {
 
     return (
         <>
-            {prop.followerList?.map(user =>
+            {prop.map(user =>
                 <div className="followers-list" key={user.id}>
-                    <RenderUser prop={{"id": prop.u_id, "user": user}}  />
+                    <RenderFollowUser prop={{"id": user.id, "user": user}}  />
                 </div>
             )}
         </>

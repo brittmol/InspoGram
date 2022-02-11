@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllPost } from "../../../store/post";
-import RenderUser from "../RenderUser";
+import RenderUser from "../RenderUser/RenderUser";
 import './LikeModal.css';
 
 function ShowLikesModal({post}) {
