@@ -17,10 +17,10 @@ const CreatePostForm = ({onClose}) => {
     const [errors, setErrors] = useState([])
     const user = useSelector(state => state.session.user);
 
-    const {userId} = useParams()
-    useEffect(() => {
-        dispatch(getUserPosts(userId))
-    }, [userId, image, imageLoading])
+    // const {userId} = useParams()
+    // useEffect(() => {
+    //     dispatch(getUserPosts(userId))
+    // }, [userId, image, imageLoading])
 
 
     const handleSubmit = async (e) => {
@@ -42,7 +42,7 @@ const CreatePostForm = ({onClose}) => {
         } else {
             setImageLoading(false)
             onClose()
-            history.push(`/api/user/${user.id}/posts`)
+            history.push(`/users/${user.id}`)
         }
     }
 
