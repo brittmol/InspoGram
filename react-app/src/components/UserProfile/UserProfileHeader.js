@@ -1,17 +1,22 @@
 import { useParams } from 'react-router-dom'
 import cat from '../../images/cat.jpg'
-import { useSelector } from 'react-redux'
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react';
+import { authenticate } from '../../store/session';
+
 
 
 function UserProfileHeader({ postsList, user }) {
-
+    const dispatch = useDispatch()
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
     const [photoPrev, setPhotoPrev] = useState('#')
     const [photoClass, setPhotoClass] = useState('profile-photo-hidden')
     const [errors, setErrors] = useState([])
 
+    // useEffect(() => {
+    //     dispatch(authenticate())
+    // }, [])
 
     const sessionUser = useSelector(state => state.session.user)
     const { userId } = useParams()
@@ -30,6 +35,7 @@ function UserProfileHeader({ postsList, user }) {
         if (res.ok) {
             await res.json();
             setImageLoading(false);
+            dispatch(authenticate())
             // history.push("/images");
         }
         else {
