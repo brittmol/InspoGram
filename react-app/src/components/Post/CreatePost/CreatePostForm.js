@@ -61,7 +61,7 @@ const CreatePostForm = ({onClose}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="create-post-form" onSubmit={handleSubmit}>
             <h2>Create New Post</h2>
             <div className='login-error-container'>
                 {errors.map((error, ind) => (
@@ -69,11 +69,6 @@ const CreatePostForm = ({onClose}) => {
 
                 ))}
             </div>
-            <textarea
-                placeholder="Write a caption..."
-                value={caption}
-                onChange={(e) => setCaption(e.target.value)}
-            />
             <input
               type="file"
               accept="image/*"
@@ -81,7 +76,12 @@ const CreatePostForm = ({onClose}) => {
               id='photo-upload-input'
             />
             <img className={photoClass} id='photo-upload-img' src={photoPrev} alt='your photo' />
-            <button type="submit">Post</button>
+            <textarea
+                placeholder="Write a caption..."
+                value={caption}
+                onChange={(e) => setCaption(e.target.value)}
+            />
+            <button className="create-post-btn" type="submit">Post</button>
             {(imageLoading)&& <p>Loading...</p>}
         </form>
     )

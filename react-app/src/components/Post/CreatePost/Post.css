@@ -1,7 +1,37 @@
+#photo-upload-img{
+    width: 337px;
+    height: 248px;
+}
+
 .photo-hidden {
     display: none;
 }
 
 .photo-shown {
     display: block;
+}
+
+.create-post-form{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 4rem;
+}
+
+.create-post-form > * {
+    margin: 5px;
+}
+
+.create-post-btn{
+    border: 1px solid silver;
+    background-color: white;
+    color: #0095f6;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.create-post-btn:active{
+    color: grey;
 }

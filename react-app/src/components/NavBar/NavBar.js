@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import LogoutButton from "../Auth/LogoutButton";
@@ -8,6 +9,8 @@ import logo from "../../images/Inspogram.jpg";
 import cat from "../../images/cat.jpg";
 
 const NavBar = ({ user }) => {
+  const sessionUser = useSelector((state) => state.session.user);
+
   return (
     <nav>
       <div className="nav-container">
@@ -23,12 +26,12 @@ const NavBar = ({ user }) => {
             <NavLink to="/feed" exact={true} activeClassName="active">
               <i className="fa-solid fa-house"></i>
             </NavLink>
-            <i className="fa-brands fa-facebook-messenger"></i>
+            {/* <i className="fa-brands fa-facebook-messenger"></i> */}
             <CreatePostModal />
-            <i className="fa-regular fa-compass"></i>
-            <i className="fa-regular fa-heart"></i>
+            {/* <i className="fa-regular fa-compass"></i> */}
+            {/* <i className="fa-regular fa-heart"></i> */}
             <NavLink to={`/users/${user.id}`} activeClassName="active">
-              <img className="profile-pic-nav" src={cat} alt="cat" />
+              <img className="profile-pic-nav" src={ sessionUser?.profile_image_url ? sessionUser?.profile_image_url : cat } alt="cat" />
             </NavLink>
             <LogoutButton />
           </div>
