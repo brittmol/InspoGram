@@ -103,6 +103,6 @@
 } */
 
 .singular-comment-container:hover .fa-ellipsis {
-  color: var(--gray-primary);
+  color: gray;
   transition: all 0.2s;
 }
