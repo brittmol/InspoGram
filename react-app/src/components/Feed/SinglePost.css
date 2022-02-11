@@ -13,7 +13,8 @@ a:hover {
     flex-direction: column;
     max-height: 934.5px;
     max-width: 614px;
-    margin: 10px auto;
+    /* margin: 10px auto; */
+    margin: 90px auto;
     border: var(--border-light);
     border-radius: 3px;
     background-color: white;
@@ -81,7 +82,8 @@ a:hover {
 }
 
 .s-button {
-    margin-right: 16px;
+    /* margin-right: 16px; */
+    margin-right: 1px;
 }
 
 .s-button:hover {
