@@ -20,8 +20,6 @@ function PostDetails({ post, onClose }) {
     dispatch(deleteUserPost(id));
     onClose();
   };
-  console.log("!!!!!!!!!!!!!!!!!!!!");
-  console.log(";;;;;;;;;;;;;;;;", post.users);
 
   return (
     <>

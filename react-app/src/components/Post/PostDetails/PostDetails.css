@@ -92,7 +92,17 @@
   overflow-wrap: break-word;
 } */
 
-/* .fa-ellipsis {
-  color: gray;
-  align-items: flex-end;
+.fa-ellipsis {
+  color: white;
+  /* align-items: flex-end; */
+}
+
+/* .fa-ellipsis:hover {
+  color: var(--gray-primary);
+  transition: all 2s;
 } */
+
+.singular-comment-container:hover .fa-ellipsis {
+  color: var(--gray-primary);
+  transition: all 0.2s;
+}

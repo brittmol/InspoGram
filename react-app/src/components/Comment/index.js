@@ -51,7 +51,9 @@ function CommentModal({ comment }) {
     return (
       <>
         {/* {user?.id === post?.users?.id && */}
-        <span onClick={() => setShowModal(true)}>. . .</span>
+        <span onClick={() => setShowModal(true)}>
+          <i className="fa-solid fa-ellipsis"></i>
+        </span>
         {/* } */}
         {showModal && (
           <ProfileMenuModal onClose={onCloseMenuModal}>
