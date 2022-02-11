@@ -20,7 +20,7 @@ function User() {
 
   useEffect(() => {
     const payload = {
-        id: userId
+      user_id: userId
     }
     dispatch(getAllPost(payload));
 }, [dispatch, userId]);

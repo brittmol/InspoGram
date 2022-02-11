@@ -30,7 +30,7 @@ function PostProfileLikes({post}) {
 
     useEffect(() => {
         const payload = {
-            id: sessionUser?.id
+            user_id: sessionUser?.id
         }
         dispatch(getAllPost(payload));
         dispatch(getLikesByUser(payload))

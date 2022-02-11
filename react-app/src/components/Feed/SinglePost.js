@@ -28,7 +28,7 @@ const SinglePost = (id) => {
 
     useEffect(() => {
         const payload = {
-            id: sessionUser?.id
+            user_id: sessionUser?.id
         }
         // dispatch(getUserPosts(payload.id))
         dispatch(getAllPost(payload));

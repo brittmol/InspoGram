@@ -1,26 +1,33 @@
+import React, { useEffect } from 'react'; 
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { deleteUserPost } from "../../../store/userPosts";
-import EditPostModal from "../EditPost";
-import './PostDetails.css'
-import MenuModal from "./ProfileMenuModal";
-// import DisplayComment from "../../Comment/DisplayComments";
-import AddCommentForm from "../../Comment/AddCommentForm";
+
 import DisplayAllComments from "../../Comment/DIsplayAllComments";
-import SinglePost from "../../Feed/SinglePost";
+import { deleteUserPost, getUserPosts } from "../../../store/userPosts";
+import AddCommentForm from "../../Comment/AddCommentForm";
 import PostProfileLikes from "./PostProfileLikes";
+import MenuModal from "./ProfileMenuModal";
+// import EditPostModal from "../EditPost";
+// import SinglePost from "../../Feed/SinglePost";
+// import DisplayComment from "../../Comment/DisplayComments";
+
+import './PostDetails.css'
 
 
 function PostDetails({ post, onClose }) {
     //const singlePost = useSelector(state => state.userPostsReducer[post.id])
     const dispatch = useDispatch()
 
+
+    useEffect(() => {
+        dispatch(getUserPosts(post?.user_id))
+    }, [dispatch])
+
     const handleDelete = (e) => {
         const id = e.target.id
         dispatch(deleteUserPost(id))
         onClose()
     }
-
 
     return (
         <>

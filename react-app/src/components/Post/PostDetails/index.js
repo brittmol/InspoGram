@@ -14,30 +14,6 @@ function PostDetailsModal({ post }) {
   const { userId } = useParams()
   const user = useSelector(state => state.session.user)
 
-  const [likesCount, setLikesCount] = useState(0)
-  const [isLiked, setIsLiked] = useState(false)
-
-
-  // post?.likes.forEach(element => {
-  //   console.log(element?.user_id, 'element')
-
-  console.log(isLiked, 'liked****')
-  console.log(likesCount, 'likes count*******')
-  // });
-  useEffect(() => {
-    const filtered = post?.likes?.filter(element => {
-      // console.log(element?.user_id, 'element')
-      return element?.user_id === user?.id
-    });
-
-    setIsLiked(filtered.length >= 1)
-    setLikesCount(post?.likes?.length)
-
-  }, [])
-  useEffect(() => {
-
-  })
-
   const onCloseModal = () => {
     setShowModal(false)
     history.push(`/users/${userId}`)
@@ -48,12 +24,8 @@ function PostDetailsModal({ post }) {
     history.push(`/users/${userId}/posts/${post.id}`)
   }
 
-
-
-
   return (
     <div className='profile-post-container'>
-      {console.log(post)}
       <div className="post-icon-container">
         <i className="fas fa-heart hover-icon"><span>{post?.likes?.length}</span></i>
         <i className="fas fa-comment hover-icon"><span>{post?.comments?.length}</span></i>
