@@ -47,6 +47,15 @@
   cursor: pointer;
 }
 
+.modal-menu-delete-only {
+  color: var(--color-error);
+  height: 4rem;
+  width: 100%;
+  border: none;
+  background-color: var(--color-white);
+  cursor: pointer;
+}
+
 .modal-menu-delete {
   border-top: var(--border-light);
   color: var(--color-error);

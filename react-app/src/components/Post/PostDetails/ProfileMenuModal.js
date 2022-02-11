@@ -30,7 +30,7 @@ function MenuModal({ post }) {
         <ProfileMenuModal onClose={onCloseMenuModal}>
           <EditPostModal onCloseMenuModal={onCloseMenuModal} post={post} />
           <button
-            className="modal-menu-delete"
+            className="modal-menu-delete-only"
             onClick={handleDelete}
             id={post.id}
           >

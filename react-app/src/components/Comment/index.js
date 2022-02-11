@@ -58,7 +58,7 @@ function CommentModal({ comment }) {
         {showModal && (
           <ProfileMenuModal onClose={onCloseMenuModal}>
             <button
-              className="modal-menu-delete"
+              className="modal-menu-delete-only"
               onClick={handleDelete}
               id={comment.id}
             >
