@@ -125,3 +125,11 @@
 .profile-photo-hidden {
   display: none;
 }
+
+.profile-pic-pre {
+  border-radius: 50%;
+  height: 20rem;
+  width: 20rem;
+  margin: 2rem 5rem;
+  object-fit: cover;
+}

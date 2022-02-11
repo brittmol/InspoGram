@@ -36,6 +36,7 @@ function UserProfileHeader({ postsList, user }) {
             await res.json();
             setImageLoading(false);
             dispatch(authenticate())
+            setImage(null)
             // history.push("/images");
         }
         else {
@@ -64,7 +65,9 @@ function UserProfileHeader({ postsList, user }) {
         <section className='profile-heading-container'>
             <div className='profile-pic-container'>
                 {/* <div className="profile-pic"> */}
-                <img className='profile-pic' src={userId === '1' ? sessionUser.profile_image_url : user.profile_image_url} alt='cat' />
+                {photoPrev !== '#' ?
+                    <img className={`${photoClass} profile-pic-pre`} id='photo-upload-img' src={photoPrev} alt='your photo' />
+                : <img className='profile-pic' src={userId === '1' ? sessionUser.profile_image_url : user.profile_image_url} alt='cat' />}
                 {/* <button onClick={handleUploadPhoto}>Upload profile photo</button> */}
                 {sessionUser.id === Number(userId) && (
                 <div>
@@ -74,7 +77,7 @@ function UserProfileHeader({ postsList, user }) {
                     onChange={handlePhoto}
                     id='photo-upload-input'
                 />
-                <img className={photoClass} id='photo-upload-img' src={photoPrev} alt='your photo' />
+                {/* <img className={photoClass} id='photo-upload-img' src={photoPrev} alt='your photo' /> */}
                 </div>
                 )}
                 {image && (
