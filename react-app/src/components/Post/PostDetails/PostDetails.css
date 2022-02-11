@@ -27,7 +27,7 @@
 .profile-modal-comments {
   overflow-y: auto;
   position: absolute;
-  height: 36.5rem;
+  height: 52.5rem;
   width: 100%;
 }
 
@@ -62,7 +62,7 @@
 .comment-username,
 .actual-comment,
 .fa-ellipsis {
-  margin: 1rem 0;
+  margin: 2rem 0;
 }
 
 .comment-username,
@@ -72,11 +72,16 @@
 
 .profile-pic-comment {
   border-radius: 50%;
-  height: 4rem;
-  width: 2.5em;
+  height: 4.5rem;
+  width: 3em;
   margin: 0 1.5rem;
   object-fit: cover;
   margin-top: 0.5rem;
+  padding: 0.5rem;
+}
+
+.profile-pic-comment.user {
+  background: linear-gradient(#f6e33c, #c92793);
 }
 
 /* .actual-comment {

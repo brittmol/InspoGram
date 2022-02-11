@@ -1,21 +1,20 @@
 :root {
-    --blue-primary: #0095f6;
-    --blue-light: #c0dffd;
+  --blue-primary: #0095f6;
+  --blue-light: #c0dffd;
 
-    --gray-primary: #262626;
-    --gray-secondary: gray;
-    --color-placeholder: rgb(167, 167, 167);
+  --gray-primary: #262626;
+  --gray-secondary: gray;
+  --color-placeholder: rgb(167, 167, 167);
 
-    --color-error: red;
+  --color-error: red;
 
-    --color-white: white;
+  --color-white: white;
 
-    /* BORDER */
-    --border-light: 1px solid lightgray;
-    --border-dark: 1px solid gray;
+  /* BORDER */
+  --border-light: 1px solid lightgray;
+  --border-dark: 1px solid gray;
 
-    /* FONT */
+  /* FONT */
 
-    --font: Arial, Helvetica, sans-serif;
-
+  --font: Arial, Helvetica, sans-serif;
 }

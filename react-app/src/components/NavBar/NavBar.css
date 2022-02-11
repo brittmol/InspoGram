@@ -30,9 +30,12 @@ nav,
 
 .profile-pic-nav {
   border-radius: 50%;
-  height: 3rem;
-  width: 3em;
+  height: 3.5rem;
+  width: 3.5rem;
   /* margin: 2rem 5rem; */
   object-fit: cover;
   margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: linear-gradient(#f6e33c, #c92793);
+  /* border-image: linear-gradient(#f6b73c, #4d9f0c) 30; */
 }
