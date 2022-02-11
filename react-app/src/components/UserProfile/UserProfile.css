@@ -105,11 +105,6 @@
   border-top: var(--border-light);
 }
 
-.all-container {
-  /* margin: 40px auto; */
-  /* padding-top: 3rem; */
-}
-
 .post-icon-container span {
   padding-left: 1rem;
   font-family: var(--font);
