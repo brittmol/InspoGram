@@ -11,7 +11,7 @@ function FeedFriends() {
     <div className="post friends">
       <div className="friend-profile">
         <NavLink to={`/users/${user?.id}`}>
-          <img className="friends-profile-pic" src={cat} alt="cat" />
+          <img className="friends-profile-pic" src={user?.profile_image_url ? user?.profile_image_url : cat} alt="cat" />
         </NavLink>
         <div className="friends-profile-username">{user?.username}</div>
       </div>
