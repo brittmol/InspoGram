@@ -74,4 +74,9 @@
 
 #### Splash Page & User Authentication
 User can either log in with an exisiting account or sign up to create a new account. Alternatively if the user doesn't want to make an account, they can log using the demo user link.
+<br>
 [![1.png](https://i.postimg.cc/qRGDBBTS/1.png)](https://postimg.cc/TLpJC6hJ)
+
+
+### User Feed Page
+[![2.png](https://i.postimg.cc/8zM8v6gr/2.png)](https://postimg.cc/FYrn51R9)
