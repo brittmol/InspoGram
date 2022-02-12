@@ -8,7 +8,6 @@ import cat from '../../../images/cat.jpg';
 function RenderUser({prop}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const posts = useSelector(state => state.post.posts);
 
     const followingList = sessionUser?.following.map(user => user.id);
 

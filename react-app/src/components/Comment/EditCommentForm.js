@@ -1,16 +1,13 @@
-import React, { useState } from 'react' // useEffect,
-//import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react' 
 import { useDispatch } from 'react-redux'
 import { updateUserComment } from '../../store/userPosts'
-//import { useSelector } from 'react-redux'
+import "./EditCommentForm.css";
 
 const EditCommentForm = ({pastComment, onClose}) => {
     const dispatch = useDispatch()
-    //const history = useHistory()
 
     const [comment, setComment] = useState(pastComment?.comment || "")
     const [errors, setErrors] = useState([])
-    //const user = useSelector(state => state.session.user);
 
 
     const handleSubmit = async (e) => {
@@ -18,29 +15,30 @@ const EditCommentForm = ({pastComment, onClose}) => {
 
         const id = pastComment.id
 
-        const data = await dispatch(updateUserComment(id, comment))
+        const data = dispatch(updateUserComment(id, comment))
         if (data) {
-            setErrors(data)
+            onClose()
         } else {
+            setErrors(data)
             onClose()
             // history.push(`/api/user/${user.id}/posts`)
         }
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="class-name-check" onSubmit={handleSubmit}>
             <h2>Edit Comment</h2>
-            <div className='login-error-container'>
-                {errors.map((error, ind) => (
+            {/* <div className='login-error-container'>
+                {errors?.map((error, ind) => (
                     <div key={error}>{error}</div>
                 ))}
-            </div>
+            </div> */}
             <textarea
                 placeholder="Write a comment..."
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
             />
-            <button type="submit">
+            <button className="edit-comment-btn" type="submit">
                 Update Comment
             </button>
         </form>

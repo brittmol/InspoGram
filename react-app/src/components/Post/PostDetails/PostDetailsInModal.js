@@ -30,6 +30,7 @@ function PostDetails({ post, onClose }) {
     onClose();
   };
 
+
   return (
     <>
       <div className="profile-modal-img-container">
@@ -39,7 +40,7 @@ function PostDetails({ post, onClose }) {
         <div className="profile-modal-top">
           <div className="profile-modal-username singular-comment-container">
             <NavLink to={`/users/${post?.users?.id}`}>
-              <img className="profile-pic-comment user" src={cat} alt="cat" />
+              <img className="profile-pic-comment user" src={post?.users?.profile_image_url ? post?.users.profile_image_url : cat} alt="cat" />
             </NavLink>
             <NavLink
               to={`/users/${post?.users?.id}`}
@@ -51,7 +52,7 @@ function PostDetails({ post, onClose }) {
           </div>
           <div className="profile-modal-caption singular-comment-container">
             <NavLink to={`/users/${post?.users?.id}`} activeClassName="active">
-              <img className="profile-pic-comment user" src={cat} alt="cat" />
+              <img className="profile-pic-comment user" src={post?.users?.profile_image_url ? post?.users.profile_image_url : cat} alt="cat" />
             </NavLink>
             <NavLink
               to={`/users/${post?.users?.id}`}
@@ -63,7 +64,7 @@ function PostDetails({ post, onClose }) {
           </div>
         </div>
         <div className="profile-modal-comments">
-          <DisplayAllComments comments={post.comments} />
+          <DisplayAllComments comments={post.comments} u_id={post?.users}/>
         </div>
         <div className="profile-modal-bottom">
           <div>

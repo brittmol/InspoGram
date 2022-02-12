@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditCommentForm from './EditCommentForm';
 
-
-
-
 function EditCommentModal ({comment, onCloseMenuModal}) {
   const [showModal, setShowModal] = useState(false);
   const onCloseModal = () => {
@@ -15,7 +12,6 @@ function EditCommentModal ({comment, onCloseMenuModal}) {
     }
   }
   
-
   return (
     <>
       <button className='modal-menu-edit' id={comment.id} onClick={() => setShowModal(true)}>

@@ -1,0 +1,25 @@
+.post-edit-form-check{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.post-edit-form-check h2{
+    font-size: 3rem;
+}
+
+.post-edit-form-check textarea{
+    width: 25rem;
+    height: 13rem;
+}
+
+.post-edit-btn{
+    margin-top: .5rem;
+    color: white;
+    background-color: #0095f6;
+    padding: 1rem;
+}
+
+.post-edit-btn:active{
+    background-color: #00008B;
+}

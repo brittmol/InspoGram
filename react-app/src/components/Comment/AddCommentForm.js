@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"; // useEffect,
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { createComment, getAllPost } from "../../store/post";
 import { createUserComment } from "../../store/userPosts";
 import "./AddComment.css";
@@ -11,7 +11,6 @@ function AddCommentForm({ id, flag }) {
 
   const [comment, setComment] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const history = useHistory();
   //const [errors, setErrors] = useState([])
 
   useEffect(() => {
@@ -28,7 +27,7 @@ function AddCommentForm({ id, flag }) {
     };
 
     dispatch(getAllPost(payload));
-  }, [disabled, comment]);
+  }, [dispatch, disabled, comment]);
 
   if (!sessionUser) return <Redirect to="/" />;
 

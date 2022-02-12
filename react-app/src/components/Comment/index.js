@@ -15,7 +15,7 @@ function CommentModal({ comment }) {
 
   useEffect( () => {
     dispatch(getAllPost({"user_id": user.id}))
-  },[dispatch])
+  },[dispatch, showModal])
 
   const onCloseMenuModal = () => {
     setShowModal(false);
@@ -24,7 +24,6 @@ function CommentModal({ comment }) {
   const handleDelete = (e) => {
     const id = e.target.id;
     dispatch(deleteUserComment(id));
-    dispatch(getAllPost({"user_id": user.id}))
     onCloseMenuModal();
   };
 
