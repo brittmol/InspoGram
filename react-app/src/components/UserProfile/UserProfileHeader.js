@@ -10,6 +10,7 @@ import { LikeModal } from "../../context/Modal";
 import cameraIcon from '../../images/camera.svg'
 import uploadIcon from '../../images/upload.svg'
 
+import cat from '../../images/cat.jpg';
 
 
 function UserProfileHeader({ postsList, user }) {
@@ -78,16 +79,17 @@ function UserProfileHeader({ postsList, user }) {
         setShowFollwingModal(false);
     }
 
+    console.log(photoPrev)
 
     return (
         <section className='profile-heading-container'>
             <div className='profile-pic-container'>
                 {/* <div className="profile-pic"> */}
                 {photoPrev !== '#' ?
-                    <img className={`${photoClass} profile-pic-pre profile-pic`} id='photo-upload-img' src={photoPrev} alt='your photo' />
-                    : <img className='profile-pic' src={userId === '1' ? sessionUser.profile_image_url : user.profile_image_url} alt='your photo' />}
+                    <img className={`${photoClass} profile-pic-pre profile-pic`} id='photo-upload-img profile-pic' src={photoPrev} alt='your photo' />
+                    : <img className='profile-pic' src={Number(userId) === sessionUser?.id ? (sessionUser?.profile_image_url ? sessionUser?.profile_image_url : cat) : (user?.profile_image_url ? user?.profile_image_url : cat)} alt='your photo' />}
                 {/* <button onClick={handleUploadPhoto}>Upload profile photo</button> */}
-                {sessionUser.id === Number(userId) && (
+                {sessionUser?.id === Number(userId) && (
                     <div className='save-upload-container'>
                         {image ?
                             (<label className='upload-button-header' onClick={handleUploadPhoto}>
@@ -111,7 +113,6 @@ function UserProfileHeader({ postsList, user }) {
                         <img className='save-button-header' src={uploadIcon} alt='save' />
                     </button>
                 )} */}
-
             </div>
             <div className='profile-info-container'>
                 <div className="username-profile-heading">

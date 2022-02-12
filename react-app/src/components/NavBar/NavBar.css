@@ -67,3 +67,38 @@ nav {
   background-image: url("../../images/color_border.png");
   background-size: cover;
 }
+
+.profile-pic-dropdown {
+  position: absolute;
+  /* position: fixed; */
+  display: flex;
+  flex-direction: column;
+  /* border: var(--border-light); */
+  border-radius: 20%;
+  background-color: white;
+  /* margin: 10px 10px 0px -1px; */
+  padding: 12px;
+  /* transform: translate(-100px -10px); */
+  transition: all 0.2s;
+  box-shadow: 2px 2px 5px lightgray;
+}
+
+button {
+  background-color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.fa-user,
+.fa-arrow-right-from-bracket {
+  font-size: 15px;
+}
+
+.profile {
+  border-bottom: var(--border-light);
+  padding-bottom: 10px;
+}
+
+.logout {
+  padding-top: 10px;
+}

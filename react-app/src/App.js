@@ -45,12 +45,12 @@ function App() {
         <Route path='/feed' >
           <FeedPage />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        <Route path='/users' exact={true} >
           <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' >
+        </Route>
+        <Route path='/users/:userId' >
           <User />
-        </ProtectedRoute>
+        </Route>
         <ProtectedRoute path='/users/:userId/posts/:postId' >
           {/* <User /> */}
         </ProtectedRoute>
