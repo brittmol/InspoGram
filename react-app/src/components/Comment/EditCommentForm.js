@@ -17,9 +17,9 @@ const EditCommentForm = ({pastComment, onClose}) => {
 
         const data = dispatch(updateUserComment(id, comment))
         if (data) {
-            setErrors(data)
             onClose()
         } else {
+            setErrors(data)
             onClose()
             // history.push(`/api/user/${user.id}/posts`)
         }

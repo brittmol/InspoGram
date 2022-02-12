@@ -1,8 +1,8 @@
-import React, { useState } from 'react' // useEffect,
-//import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { updateUserPost } from '../../../store/userPosts'
-//import { useSelector } from 'react-redux'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { updateUserPost } from '../../../store/userPosts';
+import "./EditPostForm.css"
 
 const EditPostForm = ({post, onClose}) => {
     const dispatch = useDispatch()
@@ -18,17 +18,18 @@ const EditPostForm = ({post, onClose}) => {
 
         const id = post.id
 
-        const data = await dispatch(updateUserPost(id, caption))
+        const data = dispatch(updateUserPost(id, caption))
         if (data) {
-            setErrors(data)
+            onClose()
         } else {
+            setErrors(data)
             onClose()
             // history.push(`/api/user/${user.id}/posts`)
         }
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="post-edit-form-check" onSubmit={handleSubmit}>
             <h2>Edit Caption</h2>
             <div className='login-error-container'>
                 {errors.map((error, ind) => (
@@ -40,7 +41,7 @@ const EditPostForm = ({post, onClose}) => {
                 value={caption}
                 onChange={(e) => setCaption(e.target.value)}
             />
-            <button type="submit">
+            <button className="post-edit-btn" type="submit">
                 Post
             </button>
         </form>
