@@ -1,0 +1,25 @@
+.class-name-check{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.class-name-check h2{
+    font-size: 3rem;
+}
+
+.class-name-check textarea{
+    width: 25rem;
+    height: 13rem;
+}
+
+.edit-comment-btn{
+    margin-top: .5rem;
+    color: white;
+    background-color: #0095f6;
+    padding: 1rem;
+}
+
+.edit-comment-btn:active{
+    background-color: #00008B;
+}
