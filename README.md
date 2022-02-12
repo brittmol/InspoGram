@@ -21,8 +21,6 @@
 </br>
 <h1 align='center' style='font-weight: bold'> Getting Started </h1>
 
-## Getting started
-
 1. Clone this repository (only this branch)
 
    ```bash
@@ -67,40 +65,42 @@
    ```bash
    pipenv lock -r > requirements.txt
    ```
-<h1 align='center' style='font-weight: bold'> Index </h1>
+<h1 align='center' style='font-weight: bold'> Feature List </h1>
 <br>
-
-### Feature List
 
 #### Splash Page & User Authentication
 User can either log in with an exisiting account or sign up to create a new account. Alternatively if the user doesn't want to make an account, they can log using the demo user link.
 <br>
-[![1.png align='center'](https://i.postimg.cc/qRGDBBTS/1.png)](https://postimg.cc/TLpJC6hJ)
+
+[![1.png](https://i.postimg.cc/qRGDBBTS/1.png)](https://postimg.cc/TLpJC6hJ)
 
 #### User Feed Page
 When a user logs in or sign ups, they will be redirected to the feed page, where they'll be able to view other people's post that they follow, along with having the ability to like and comment on their specific post.
-[![2.png align='center'](https://i.postimg.cc/8zM8v6gr/2.png)](https://postimg.cc/FYrn51R9)
+[![2.png](https://i.postimg.cc/8zM8v6gr/2.png)](https://postimg.cc/FYrn51R9)
 
 #### Creating Post
 By clicking the + button on the navigation bar, logged in user can create a post on their profile picture for other people to see that decides to go on your page, or that is already following you
+<br>
 [![1.png](https://i.postimg.cc/1t7BzsM3/1.png)](https://postimg.cc/Fdc3Wt2M)
 [![2.png](https://i.postimg.cc/BbdCxprW/2.png)](https://postimg.cc/SYf846QV)
 
 #### Liking/Unliking a Post 
 User can click the heart to like or unlike the post. The heart will be filled if a user has liked the post either wirse it'll display an empty heart for the user to like
-[![3.png align='center'](https://i.postimg.cc/xj5L0xkX/3.png)](https://postimg.cc/Yj4vRxz7)
-[![4.png align='center'](https://i.postimg.cc/15zw4G6J/4.png)](https://postimg.cc/QVRHyWfT)
+<br>
+[![3.png](https://i.postimg.cc/xj5L0xkX/3.png)](https://postimg.cc/Yj4vRxz7)
+[![4.png](https://i.postimg.cc/15zw4G6J/4.png)](https://postimg.cc/QVRHyWfT)
 
 #### Viewing Comment
 In the feed page, the user will be able to view the last comment of the post, but if they want to see more, they can click the view all comments link be bring up a post detail modal to see all the comments that are on the post
-[![5.png align='center'](https://i.postimg.cc/gkBRhxHd/5.png)](https://postimg.cc/mtCtf2n6)
+[![5.png](https://i.postimg.cc/gkBRhxHd/5.png)](https://postimg.cc/mtCtf2n6)
 
 ### Editing Comment
 To edit your own comment, user must find the comment that they wrote in the post detail, and next to their comment, there will be a three ... menu that will bring up a pop-up modal to edit or delete your own comment
-[![4.png align='center'](https://i.postimg.cc/brGTDWFH/4.png)](https://postimg.cc/wRpJnfz7
-[![5.png align='center'](https://i.postimg.cc/66SzJ6yH/5.png)](https://postimg.cc/bdx11h0b)
+<br>
+[![4.png](https://i.postimg.cc/brGTDWFH/4.png)](https://postimg.cc/wRpJnfz7)
+[![5.png](https://i.postimg.cc/66SzJ6yH/5.png)](https://postimg.cc/bdx11h0b)
 
 #### Edit/Deleting a post
 To delete a post, the owner of the post must go to their own profile page and click the three ... that is on the top of the post detail modal and another pop-up will come up prompting the user whether they want to edit the description/caption of their post or delete it.
-[![3.png align='center'](https://i.postimg.cc/J4kx1wXR/3.png)](https://postimg.cc/tY9W5MDc)
+[![3.png](https://i.postimg.cc/J4kx1wXR/3.png)](https://postimg.cc/tY9W5MDc)
 
