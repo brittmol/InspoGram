@@ -20,6 +20,14 @@ function AddCommentForm({ id, flag }) {
     } else {
       setDisabled(true);
     }
+    
+    const payload = {
+      comment,
+      post_id: id,
+      user_id: sessionUser?.id,
+    };
+
+    dispatch(getAllPost(payload));
   }, [disabled, comment]);
 
   if (!sessionUser) return <Redirect to="/" />;
@@ -33,9 +41,9 @@ function AddCommentForm({ id, flag }) {
       user_id: sessionUser.id,
     };
 
-    setComment("");
     dispatch(createUserComment(payload));
     dispatch(getAllPost(payload));
+    setComment("");
   };
 
   const handleSubmit = async (e) => {
@@ -47,9 +55,9 @@ function AddCommentForm({ id, flag }) {
       user_id: sessionUser.id,
     };
 
-    setComment("");
     dispatch(createComment(payload));
     dispatch(getAllPost(payload));
+    setComment("");
   };
 
   return (

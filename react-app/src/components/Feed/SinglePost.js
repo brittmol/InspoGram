@@ -9,6 +9,8 @@ import {
   likeAPost,
 } from "../../store/post";
 // import { getUserPosts } from "../../store/userPosts";
+import { ProfileModal } from "../../context/Modal";
+import PostDetails from "../Post/PostDetails/PostDetailsInModal";
 import ShowLikesModal from "../Modal/LikesModal/ShowLikesModal";
 import FeedCommentForm from "../Comment/FeedComment";
 import { LikeModal } from "../../context/Modal";
@@ -26,6 +28,7 @@ const SinglePost = (id) => {
   const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [showCommentModal, setCommentModal] = useState(false);
 
   let post = posts.filter((e) => e.id === id.id);
 
@@ -53,17 +56,22 @@ const SinglePost = (id) => {
 
   const onCloseModal = () => {
     setShowModal(false);
+    setCommentModal(false);
   };
 
   const handleModal = () => {
     setShowModal(true);
   };
 
+  const handleCommentModal = () => {
+    setCommentModal(true);
+  };
+
   return (
     <div className="post">
       <div className="post-owner-header">
         {/* <div className="user-info"> */}
-        <img className="post-profile-pic" src={cat} alt="cat" />
+        <img className="post-profile-pic" src={post[0]?.users?.profile_image_url ? post[0]?.users?.profile_image_url : cat} alt="cat" />
         <Link to={`/users/${post[0]?.user_id}`}>
           <h2 className="post-owner">{post[0]?.users.username}</h2>
         </Link>
@@ -80,7 +88,12 @@ const SinglePost = (id) => {
           )}
         </div>
         <div className="comment-btn s-button">
-          <i className="far fa-comment"></i>
+          <i onClick={() => handleCommentModal()} className="far fa-comment"></i>
+          {showCommentModal && (
+            <ProfileModal onClose={onCloseModal}>
+              <PostDetails post={post[0]} onClose={onCloseModal} />
+            </ProfileModal>
+          )}
         </div>
       </div>
 

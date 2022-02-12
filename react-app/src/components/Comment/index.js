@@ -1,18 +1,21 @@
-// import { ProfileMenuModal } from "../../../context/Modal";
-import { useSelector, useDispatch } from "react-redux";
-import React, { useState } from "react";
-// import { deleteUserPost } from "../../../store/userPosts";
-// import EditPostModal from "../EditPost";
-import { ProfileMenuModal } from "../../context/Modal";
-import EditCommentModal from "./EditCommentModal";
-import { deleteUserComment } from "../../store/userPosts";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import EditCommentModal from "./EditCommentModal";
+import { getAllPost } from "../../store/post";
+import { ProfileMenuModal } from "../../context/Modal";
+import { deleteUserComment } from "../../store/userPosts";
 
 function CommentModal({ comment }) {
-  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
   const { userId } = useParams();
+  const [showModal, setShowModal] = useState(false);
+  const user = useSelector((state) => state.session.user);
+
+  useEffect( () => {
+    dispatch(getAllPost({"user_id": user.id}))
+  },[dispatch])
 
   const onCloseMenuModal = () => {
     setShowModal(false);
@@ -21,6 +24,7 @@ function CommentModal({ comment }) {
   const handleDelete = (e) => {
     const id = e.target.id;
     dispatch(deleteUserComment(id));
+    dispatch(getAllPost({"user_id": user.id}))
     onCloseMenuModal();
   };
 

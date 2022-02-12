@@ -33,7 +33,7 @@ function FeedCommentForm(id) {
             user_id: sessionUser?.id
         }
         dispatch(getAllPost(payload));
-    }, [dispatch, sessionUser]);
+    }, [dispatch, sessionUser, lastComment]);
 
 
     const onCloseModal = () => {
@@ -59,12 +59,12 @@ function FeedCommentForm(id) {
             user_id: sessionUser?.id
         }
 
-        setLastComment(payload.comment);
-        setCommentCount(commentCount + 1);
         setLastUser(sessionUser?.username);
-        setComment("");
+        setCommentCount(commentCount + 1);
+        setLastComment(payload.comment);
         dispatch(createComment(payload))
         dispatch(getAllPost(payload));
+        setComment("");
     }
 
     return (

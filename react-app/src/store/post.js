@@ -1,6 +1,6 @@
 // constants
 import { addUserPost } from "./userPosts"
-import { loadPosts } from "./userPosts"
+//import { loadPosts } from "./userPosts"
 
 
 
@@ -200,7 +200,7 @@ export const deleteALike = (payload) => async (dispatch) => {
         // dispatch(deleteUserLike(payload))
         const data = await response.json()
 
-        return response
+        return data
     }
 }
 
@@ -229,7 +229,7 @@ const postReducer = (state = {}, action) => {
         case GET_SINGLE_POST:
             newState = { ...state }
             const newPost = [...state.posts, action.post]
-            newState.posts = [...state.posts, action.post]
+            newState.posts = newPost
             return newState
         case ADD_POST:
             newState = { ...state, [action.post.id]: action.post }

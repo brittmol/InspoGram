@@ -1,4 +1,4 @@
-import { addLike, deleteLike } from "./post";
+//import { addLike, deleteLike } from "./post";
 
 const LOAD_POSTS = 'userPosts/GET_POSTS';
 const ADD_USER_POST = 'userPosts/ADD_USER_POSTS';
@@ -119,7 +119,7 @@ export const deleteUserLike = (payload) => async (dispatch) => {
         dispatch(deleteLikeFromUser(payload))
         const data = await response.json()
 
-        return response
+        return data
     }
 }
 
