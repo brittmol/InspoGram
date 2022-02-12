@@ -80,3 +80,7 @@ User can either log in with an exisiting account or sign up to create a new acco
 
 ### User Feed Page
 [![2.png](https://i.postimg.cc/8zM8v6gr/2.png)](https://postimg.cc/FYrn51R9)
+
+[![3.png](https://i.postimg.cc/xj5L0xkX/3.png)](https://postimg.cc/Yj4vRxz7)
+[![4.png](https://i.postimg.cc/15zw4G6J/4.png)](https://postimg.cc/QVRHyWfT)
+[![5.png](https://i.postimg.cc/gkBRhxHd/5.png)](https://postimg.cc/mtCtf2n6)
