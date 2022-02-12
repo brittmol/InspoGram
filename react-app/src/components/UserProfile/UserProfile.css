@@ -18,6 +18,11 @@
   padding: 2rem;
   background-image: url("../../images/color_border.png");
   background-size: cover;
+  transition: all .3s;
+}
+
+.profile-pic:hover .upload-button-header {
+
 }
 .profile-info-container {
   display: flex;
@@ -124,4 +129,46 @@
   width: 20rem;
   margin: 2rem 5rem;
   object-fit: cover;
+}
+
+.upload-input-header {
+  display: none;
+}
+
+.upload-label-header {
+  height: 3rem;
+}
+
+.upload-logo-header {
+  height: 3rem;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 3rem;
+
+
+}
+/* .save-button-header { */
+  /* display: none; */
+/* } */
+
+.upload-button-header {
+  height: 3rem;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 3rem;
+
+}
+
+.save-button-header {
+  height: 3rem;
+}
+
+.profile-pic-container {
+  position: relative;
+}
+
+.save-upload-container {
+  position: absolute;
+  top: 21rem;
+  left: 21rem;
 }

@@ -7,6 +7,9 @@ import { authenticate } from '../../store/session';
 import FollowerModal from "../Modal/FollowerModal/FollowerModal";
 import FollowingModal from "../Modal/FollowingModal/FollowingModal";
 import { LikeModal } from "../../context/Modal";
+import cameraIcon from '../../images/camera.svg'
+import uploadIcon from '../../images/upload.svg'
+
 
 
 function UserProfileHeader({ postsList, user }) {
@@ -24,7 +27,7 @@ function UserProfileHeader({ postsList, user }) {
     const sessionUser = useSelector(state => state.session.user)
     const { userId } = useParams()
 
-    const handleUploadPhoto = async() => {
+    const handleUploadPhoto = async () => {
         const formData = new FormData();
         formData.append("image", image);
 
@@ -57,7 +60,7 @@ function UserProfileHeader({ postsList, user }) {
         // dispatch(uploadProfilePhoto(image))
         const file = e.target.files[0];
 
-        if(file) {
+        if (file) {
             setPhotoPrev(URL.createObjectURL(file))
             setPhotoClass('profile-photo-shown')
             setImage(file);
@@ -81,23 +84,33 @@ function UserProfileHeader({ postsList, user }) {
             <div className='profile-pic-container'>
                 {/* <div className="profile-pic"> */}
                 {photoPrev !== '#' ?
-                    <img className={`${photoClass} profile-pic-pre`} id='photo-upload-img' src={photoPrev} alt='your photo' />
-                : <img className='profile-pic' src={userId === '1' ? sessionUser.profile_image_url : user.profile_image_url} alt='your photo' />}
+                    <img className={`${photoClass} profile-pic-pre profile-pic`} id='photo-upload-img' src={photoPrev} alt='your photo' />
+                    : <img className='profile-pic' src={userId === '1' ? sessionUser.profile_image_url : user.profile_image_url} alt='your photo' />}
                 {/* <button onClick={handleUploadPhoto}>Upload profile photo</button> */}
                 {sessionUser.id === Number(userId) && (
-                <div>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handlePhoto}
-                    id='photo-upload-input'
-                />
-                {/* <img className={photoClass} id='photo-upload-img' src={photoPrev} alt='your photo' /> */}
-                </div>
+                    <div className='save-upload-container'>
+                        {image ?
+                            (<label className='upload-button-header' onClick={handleUploadPhoto}>
+                                <img className='save-button-header' src={uploadIcon} alt='save' />
+                            </label>)
+                            : (<label className='upload-label-header'>
+                                <img className='upload-logo-header' src={cameraIcon} alt='upload' />
+                                <input
+                                    className='upload-input-header'
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handlePhoto}
+                                    id='photo-upload-input'
+                                />
+                                {/* <img className={photoClass} id='photo-upload-img' src={photoPrev} alt='your photo' /> */}
+                            </label>)}
+                    </div>
                 )}
-                {image && (
-                    <button onClick={handleUploadPhoto}>Save photo</button>
-                )}
+                {/* {image && (
+                    <button className='upload-button-header' onClick={handleUploadPhoto}>
+                        <img className='save-button-header' src={uploadIcon} alt='save' />
+                    </button>
+                )} */}
 
             </div>
             <div className='profile-info-container'>
@@ -106,16 +119,16 @@ function UserProfileHeader({ postsList, user }) {
                 </div>
                 <div className="user-info-profile-heading">
                     <span> <b>{postsList?.length}</b> posts</span>
-                    <span onClick={ () => handleFollower() }><b>{user?.followers?.length}</b> followers</span>
+                    <span onClick={() => handleFollower()}><b>{user?.followers?.length}</b> followers</span>
                     {showFollowerModal && (
                         <LikeModal onClose={onCloseModal}>
-                            <FollowerModal prop={user?.followers}/>
+                            <FollowerModal prop={user?.followers} />
                         </LikeModal>
                     )}
-                    <span onClick={ () => handleFollowing() }><b>{user?.following?.length}</b> following</span>
+                    <span onClick={() => handleFollowing()}><b>{user?.following?.length}</b> following</span>
                     {showFollowingModal && (
                         <LikeModal onClose={onCloseModal}>
-                            <FollowingModal prop={user?.following}/>
+                            <FollowingModal prop={user?.following} />
                         </LikeModal>
                     )}
                 </div>
