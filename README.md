@@ -11,7 +11,7 @@
 <h1 align='center' style='font-weight: bold'> Index </h1>
 <br>
 <div align='center' style='font-weight: bold'>
- <a href='https://github.com/JTannerShaw/One-to-Ten/wiki/MVP-Feature-List'>Feature List</a> - <a href='https://github.com/JTannerShaw/One-to-Ten/wiki/Database-Schema'>DB Schema</a> - <a href='https://github.com/JTannerShaw/One-to-Ten/wiki/API-Documentation'>API Documentation</a> - <a href='https://github.com/JTannerShaw/One-to-Ten/wiki/Frontend-Routes'> Frontend Routes </a>
+ <a href='https://github.com/PeterShinnn/python-group-project/wiki/Feature-List'>Feature List</a> - <a href='https://github.com/PeterShinnn/python-group-project/wiki/Database-Schema'>DB Schema</a> - <a href='https://github.com/PeterShinnn/python-group-project/wiki/API-Routes'>API Documentation</a> - <a href='https://github.com/PeterShinnn/python-group-project/wiki/Frontend-Routes'> Frontend Routes </a>
 <br>
 </br>
 </div>
