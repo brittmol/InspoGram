@@ -67,8 +67,11 @@
    ```bash
    pipenv lock -r > requirements.txt
    ```
+<h1 align='center' style='font-weight: bold'> Index </h1>
+<br>
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+### Feature List
+
+#### Splash Page & User Authentication
+User can either log in with an exisiting account or sign up to create a new account. Alternatively if the user doesn't want to make an account, they can log using the demo user link.
+[![1.png](https://i.postimg.cc/qRGDBBTS/1.png)](https://postimg.cc/TLpJC6hJ)
