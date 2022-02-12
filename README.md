@@ -1,6 +1,27 @@
-# Flask React Project
+# Inspogram
 
-This is the starter for the Flask React project.
+<h1 align='center' style='font-weight: bold'> One-to-Ten</h1>
+<div>
+<p align='center'> Inspogram is a project, inspired by <a style='font-weight: bold' href='https://www.instagram.com/'>Instagram</a>. It's a social media platform, where people can share pictures and other users can comment, like a post as well on other people. 
+</br>
+</p>
+
+</div>
+
+<h1 align='center' style='font-weight: bold'> Index </h1>
+<br>
+<div align='center' style='font-weight: bold'>
+ <a href='https://github.com/JTannerShaw/One-to-Ten/wiki/MVP-Feature-List'>Feature List</a> - <a href='https://github.com/JTannerShaw/One-to-Ten/wiki/Database-Schema'>DB Schema</a> - <a href='https://github.com/JTannerShaw/One-to-Ten/wiki/API-Documentation'>API Documentation</a> - <a href='https://github.com/JTannerShaw/One-to-Ten/wiki/Frontend-Routes'> Frontend Routes </a>
+<br>
+</br>
+</div>
+<div align='center'>
+<h1 align='center' style='font-weight: bold'>Technologies Used </h1>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg" height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/>
+</div>
+<br>
+</br>
+<h1 align='center' style='font-weight: bold'> Getting Started </h1>
 
 ## Getting started
 
