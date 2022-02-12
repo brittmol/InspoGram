@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react' //useEffect,
-import { useHistory, useParams } from 'react-router-dom'
+import React, { useState } from 'react' //useEffect,
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { createPost } from '../../../store/post'
 import { useSelector } from 'react-redux'
-import { getUserPosts } from '../../../store/userPosts'
 import './Post.css'
 
 
@@ -37,7 +36,7 @@ const CreatePostForm = ({onClose}) => {
 
         // const payload = { caption, photo }
 
-        const data = await dispatch(createPost(formData))
+        const data = dispatch(createPost(formData))
 
 
         if (data) {

@@ -25,9 +25,9 @@
 }
 
 .profile-modal-comments {
-  overflow-y: auto;
   position: absolute;
-  height: 52.5rem;
+  overflow-y: auto;
+  height: 40rem;
   width: 100%;
 }
 

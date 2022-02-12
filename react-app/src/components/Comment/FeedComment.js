@@ -33,20 +33,16 @@ function FeedCommentForm(id) {
             user_id: sessionUser?.id
         }
         dispatch(getAllPost(payload));
-    }, [dispatch, sessionUser, lastComment]);
+    }, [dispatch, sessionUser, lastComment, showModal]);
 
 
     const onCloseModal = () => {
         setShowModal(false)
-
     }
 
     const handleModal = () => {
         setShowModal(true)
-
     }
-
-    //const [errors, setErrors] = useState([])
 
     if (!sessionUser) return <Redirect to="/" />;
 

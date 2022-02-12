@@ -3,6 +3,7 @@
     justify-content: space-between;
     width: 92%;
     margin: .5rem;
+    overflow-y: scroll;
 }
 
 .user-prof-pic{

@@ -56,7 +56,7 @@ function UserProfileHeader({ postsList, user }) {
     }
 
 
-    const photo = user.profile_image_url
+    //const photo = user.profile_image_url
     const handlePhoto = (e) => {
         // dispatch(uploadProfilePhoto(image))
         const file = e.target.files[0];
@@ -78,8 +78,6 @@ function UserProfileHeader({ postsList, user }) {
         setShowFollwerModal(false);
         setShowFollwingModal(false);
     }
-
-    console.log(photoPrev)
 
     return (
         <section className='profile-heading-container'>

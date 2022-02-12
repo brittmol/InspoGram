@@ -1,5 +1,4 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from "react"
 import { NavLink } from "react-router-dom";
 
 import CreatePostModal from "../Post/CreatePost";
@@ -16,7 +15,6 @@ const NavBar = ({ user }) => {
           <div className="left-bar">
             <NavLink to="/feed" exact={true} activeClassName="active">
               <img className="logo" src={logo} alt="logo" />
-              {/* <p className='logo'>Inspogram</p> */}
             </NavLink>
           </div>
 
@@ -24,14 +22,7 @@ const NavBar = ({ user }) => {
             <NavLink to="/feed" exact={true} activeClassName="active">
               <i className="fa-solid fa-house"></i>
             </NavLink>
-            {/* <i className="fa-brands fa-facebook-messenger"></i> */}
             <CreatePostModal />
-            {/* <i className="fa-regular fa-compass"></i> */}
-            {/* <i className="fa-regular fa-heart"></i> */}
-            {/* <NavLink to={`/users/${user.id}`} activeClassName="active">
-              <img className="profile-pic-nav" src={ sessionUser?.profile_image_url ? sessionUser?.profile_image_url : cat } alt="cat" />
-            </NavLink>
-            <LogoutButton /> */}
             <ProfileButton user={user} />
           </div>
         </div>

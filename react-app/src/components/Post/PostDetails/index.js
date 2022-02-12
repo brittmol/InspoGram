@@ -1,5 +1,4 @@
-import { useSelector } from 'react-redux';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { ProfileModal } from '../../../context/Modal';
@@ -13,7 +12,6 @@ function PostDetailsModal({ post }) {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory()
   const { userId } = useParams()
-  const user = useSelector(state => state.session.user)
 
   const onCloseModal = () => {
     setShowModal(false)

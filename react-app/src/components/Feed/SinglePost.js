@@ -71,7 +71,7 @@ const SinglePost = (id) => {
     <div className="post">
       <div className="post-owner-header">
         {/* <div className="user-info"> */}
-        <img className="post-profile-pic" src={post[0]?.users?.profile_image_url ? post[0]?.users?.profile_image_url : cat} alt="cat" />
+        <img className="post-profile-pic" src={post[0]?.users?.profile_image_url ? post[0]?.users?.profile_image_url : cat} alt="profile-pic" />
         <Link to={`/users/${post[0]?.user_id}`}>
           <h2 className="post-owner">{post[0]?.users.username}</h2>
         </Link>
