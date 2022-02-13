@@ -1,4 +1,5 @@
 import { React, useEffect } from "react"; //, useState
+import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPost } from '../../store/post';
 import SinglePost from "./SinglePost";
@@ -20,6 +21,7 @@ function FeedPage() {
         dispatch(getAllPost(payload));
     }, [dispatch, sessionUser])
 
+    if (!sessionUser) return <Redirect to="/login" />;
     if (!posts) return null;
 
     return (
