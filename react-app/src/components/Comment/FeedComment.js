@@ -34,14 +34,14 @@ function FeedCommentForm(id) {
         }
         dispatch(getAllPost(payload));
         dispatch(getLikesByUser(payload));
-        setCommentCount(post[0]?.comments.length);
-        setLastUser(post[0]?.comments[post[0]?.comments.length - 1]?.user.username)
-        setLastComment(post[0]?.comments[post[0]?.comments.length - 1]?.comment)
     }, [dispatch, sessionUser, lastComment, showModal]);
 
 
     const onCloseModal = () => {
         setShowModal(false)
+        setCommentCount(post[0]?.comments.length);
+        setLastUser(post[0]?.comments[post[0]?.comments.length - 1]?.user.username)
+        setLastComment(post[0]?.comments[post[0]?.comments.length - 1]?.comment)
     }
 
     const handleModal = () => {
@@ -59,11 +59,12 @@ function FeedCommentForm(id) {
             user_id: sessionUser?.id
         }
 
-        setLastUser(sessionUser?.username);
-        setCommentCount(commentCount + 1);
-        setLastComment(payload.comment);
         dispatch(createComment(payload))
         dispatch(getAllPost(payload));
+        setLastUser(sessionUser?.username);
+        setLastUserId(sessionUser?.id);
+        setLastComment(payload.comment);
+        setCommentCount(commentCount + 1);
         setComment("");
     }
 
