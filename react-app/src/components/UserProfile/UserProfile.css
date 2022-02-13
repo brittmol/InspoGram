@@ -139,24 +139,25 @@
   height: 3rem;
 }
 
-.upload-logo-header {
+.upload-logo-header,
+.save-button-header {
   height: 3rem;
   cursor: pointer;
-  background-color: white;
-  border-radius: 3rem;
-
-
 }
 /* .save-button-header { */
   /* display: none; */
 /* } */
 
-.upload-button-header {
-  height: 3rem;
+.upload-button-header,
+.upload-label-header {
+  height: 4rem;
+  width: 4rem;
   cursor: pointer;
   background-color: white;
   border-radius: 3rem;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .save-button-header {

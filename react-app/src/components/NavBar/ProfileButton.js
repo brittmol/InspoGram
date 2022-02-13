@@ -34,7 +34,7 @@ const sessionUser = useSelector((state) => state.session.user);
           <div className="profile">
             <NavLink to={`/users/${user.id}`} activeClassName="active">
               <button>
-                <i class="fa-regular fa-user"></i>Profile
+                <i className="fa-regular fa-user"></i>Profile
               </button>
             </NavLink>
           </div>
