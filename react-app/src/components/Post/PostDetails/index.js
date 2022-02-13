@@ -5,9 +5,6 @@ import { ProfileModal } from '../../../context/Modal';
 import PostDetails from './PostDetailsInModal';
 // import CreatePostForm from './CreatePostForm';
 
-
-
-
 function PostDetailsModal({ post }) {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory()

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { createComment, getAllPost } from '../../store/post';
+import { createComment, getAllPost, getLikesByUser } from '../../store/post';
 import { ProfileModal } from '../../context/Modal';
 import PostDetails from '../Post/PostDetails/PostDetailsInModal';
 import "./AddComment.css";
@@ -33,6 +33,10 @@ function FeedCommentForm(id) {
             user_id: sessionUser?.id
         }
         dispatch(getAllPost(payload));
+        dispatch(getLikesByUser(payload));
+        setCommentCount(post[0]?.comments.length);
+        setLastUser(post[0]?.comments[post[0]?.comments.length - 1]?.user.username)
+        setLastComment(post[0]?.comments[post[0]?.comments.length - 1]?.comment)
     }, [dispatch, sessionUser, lastComment, showModal]);
 
 
