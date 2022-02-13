@@ -16,7 +16,6 @@ function PostProfileLikes({ post }) {
     const likes = useSelector(state => state.post.likes);
     const sessionUser = useSelector((state) => state.session.user);
 
-
     const [like, setLike] = useState(false)
     const [likeCount, setLikeCount] = useState(0);
     const [showModal, setShowModal] = useState(false);
@@ -37,6 +36,7 @@ function PostProfileLikes({ post }) {
     const handleClick = () => {
 
         like ? setLike(false) : setLike(true)
+        dispatch(getAllPost({ "user_id": sessionUser?.id}));
         // like ? dispatch(deleteALike({ id: post?.id })) : (dispatch(likeAPost({ id: post?.id })))
         like ? dispatch(deleteUserLike({ id: post?.id })) : dispatch(addUserLike({ id: post?.id }))
         like ? setLikeCount(likeCount - 1) : setLikeCount(likeCount + 1)

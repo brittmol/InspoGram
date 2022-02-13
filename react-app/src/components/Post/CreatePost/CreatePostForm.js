@@ -38,11 +38,11 @@ const CreatePostForm = ({onClose}) => {
 
         const data = dispatch(createPost(formData))
 
-
         if (data) {
-            setErrors(data)
             setImageLoading(false);
+            onClose()
         } else {
+            setErrors(data)
             setImageLoading(false)
             setPhotoPrev('#')
             onClose()
