@@ -1,8 +1,5 @@
-// constants
+
 import { addUserPost } from "./userPosts"
-//import { loadPosts } from "./userPosts"
-
-
 
 const GET_POST = 'post/GET_POST';
 const GET_LIKES = 'post/likes/GET_LIKE';
@@ -15,9 +12,6 @@ const FOLLOW_USER = 'user/FOLLOW_USER';
 
 const DELETE_LIKE = 'post/likes/DELETE_LIKE';
 const UNFOLLOW_USER = 'user/UNFOLLOW_USER';
-
-
-
 
 const getPost = (posts) => ({
     type: GET_POST,

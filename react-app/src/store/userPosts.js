@@ -1,5 +1,3 @@
-//import { addLike, deleteLike } from "./post";
-
 const LOAD_POSTS = 'userPosts/GET_POSTS';
 const ADD_USER_POST = 'userPosts/ADD_USER_POSTS';
 const EDIT_USER_POST = 'userPosts/EDIT_USER_POSTS';
@@ -10,8 +8,6 @@ const DELETE_USER_COMMENT = 'userPost/DELETE_USER_COMMENT'
 const ADD_USER_LIKE = 'userPost/ADD_USER_LIKE'
 const GET_USER_LIKES = 'userPost/GET_USER_LIKES'
 const DELETE_USER_LIKE = 'userPost/DELETE_USER_LIKE'
-
-
 
 export const getLikes = (likes) => {
     return {
@@ -81,10 +77,6 @@ const updateComment = (comment) => {
     }
 }
 
-// export const getUserLikes = (postId) => async(dispatch) => {
-//     const response = await fetch(`/api/users/${payload.id}/likes`)
-// }
-
 export const addUserLike = (payload) => async (dispatch) => {
     const response = await fetch(`/api/posts/${payload.id}/likes`, {
         method: 'POST',
@@ -96,7 +88,6 @@ export const addUserLike = (payload) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(addLikeToUser(data))
-        // dispatch(addLike(data))
         return data
     } else if (response.status < 500) {
         const data = await response.json();
@@ -114,8 +105,6 @@ export const deleteUserLike = (payload) => async (dispatch) => {
             method: 'DELETE'
         })
     if (response.ok) {
-
-        // dispatch(deleteLike(payload));
         dispatch(deleteLikeFromUser(payload))
         const data = await response.json()
 
@@ -159,8 +148,6 @@ export const updateUserPost = (id, caption) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json()
-
-        // dispatch(editPost(data))
         dispatch(editUserPost(data))
         return null
     } else if (response.status < 500) {
