@@ -10,7 +10,7 @@ follows = db.Table(
     db.Column("followed_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 )
 if environment == "production":
-    <instance_variable>.schema = SCHEMA
+    follows.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
