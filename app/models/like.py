@@ -3,8 +3,9 @@ from datetime import datetime
 
 class Like(db.Model):
     __tablename__ = "likes"
-        if environment == "production":
-            __table_args__ = {'schema': SCHEMA}
+    
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     is_liked = db.Column(db.Boolean, default=False)
